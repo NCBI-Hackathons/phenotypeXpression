@@ -2,6 +2,7 @@ import os
 import sys
 from typing import List, Dict, Tuple
 from phenox.paths import PhenoXPaths
+from phenox.mesh_lookup import MeshSearcher
 
 
 # class for linking differential gene expression to disease
@@ -19,8 +20,9 @@ class PhenoX:
         Retrieve the best MeSH term from search query
         :return:
         """
-        sys.stdout.write("Mapping to closest MeSH term...\n")
-        return "", list()
+        mesh = MeshSearcher()
+        mesh_entry = mesh.lookup(self.query_str)
+        return mesh_entry['name'], [mesh.mesh[c]['name'] for c in mesh_entry['children']]
 
     def _get_geo_datasets(self, mesh_term: str) -> Dict:
         """
@@ -82,7 +84,7 @@ class PhenoX:
         :return:
         """
         # get best mesh term from user query
-        mesh_term, mesh_tree = self._get_best_mesh_term()
+        mesh_term, mesh_children = self._get_best_mesh_term()
 
         # retrieve GEO datasets and pubmed ids using MeSH disease term
         geo_data_dict = self._get_geo_datasets(mesh_term)
