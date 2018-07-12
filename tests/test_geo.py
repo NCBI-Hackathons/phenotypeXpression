@@ -7,7 +7,7 @@ from phenox.geo_data import GEOQuery
 
 
 paths = PhenoXPaths()
-test_data_path = os.path.join(paths.test_dir, 'data', 'test_docsums.json')
+test_data_path = os.path.join(paths.test_dir, 'data', 'test_geo_data.json')
 
 class TestGEO(unittest.TestCase):
     def test_geo_data_fetcher(self):
