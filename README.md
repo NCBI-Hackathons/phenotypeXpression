@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1210203.svg)](https://doi.org/10.5281/zenodo.1210203)
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
 
 # phenotypeXpression
 ## Synopsis
@@ -73,13 +73,13 @@ For the given MeSH term, PhenoX will attempt to generate all subclassification o
 
 ### Subsection A, Word Cloud
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
 
 Something about wordcloud
 
 ### Subsection B, Expression Profiles
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
 
 Something about heatmap
 
