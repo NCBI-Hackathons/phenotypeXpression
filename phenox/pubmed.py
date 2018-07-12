@@ -66,13 +66,16 @@ class pubmed:
     
     # count word frequencies based on clustering results
     def cluster_count(self,cluster):
-        # ?? what will be the dtype of cluster??
+        '''
+        cluster dtype: list of list
+        '''
         n_cluster = 0
         for c in cluster:
             dner_cluster_list = []
             for pmid in c:
                 dner_cluster_list.extend(self.pmid_dner[pmid])
             self.dner_cluster[n_cluster] = Counter(dner_cluster_list)
+            n_cluster+=1
             
                 
         
