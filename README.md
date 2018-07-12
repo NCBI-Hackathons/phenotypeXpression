@@ -83,6 +83,14 @@ Something about wordcloud
 
 Something about heatmap
 
+## Authors
+
+Agnes Bao  
+Robert R Butler III  
+Huaiying Lin  
+Subhajit Sengupta  
+Lucy Lu Wang  
+
 ## Citation
 
 Citation
