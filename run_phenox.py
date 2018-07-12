@@ -6,12 +6,13 @@ from phenox.phenox import PhenoX
 
 def run(args):
     print('Input query: %s' % args.query_str)
-    phenox = PhenoX(args.query_str)
+    phenox = PhenoX(args.email, args.query_str)
     phenox.subtype()
 
 
 parser = argparse.ArgumentParser()
 
+parser.add_argument('email')
 parser.add_argument('query_str')
 parser.set_defaults(func=run)
 
