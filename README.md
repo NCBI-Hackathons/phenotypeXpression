@@ -2,6 +2,8 @@
 
 ![image](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png)
 
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png" width="200" />
+
 # phenotypeXpression
 ## Synopsis
 
