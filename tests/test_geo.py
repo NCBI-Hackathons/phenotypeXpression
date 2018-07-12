@@ -3,7 +3,7 @@ import json
 import unittest
 import Bio.Entrez as Entrez
 from phenox.paths import PhenoXPaths
-from phenox.get_docsum import GEOQuery
+from phenox.geo_data import GEOQuery
 
 
 paths = PhenoXPaths()
