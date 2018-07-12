@@ -1,0 +1,6 @@
+biopython
+spacy
+spacy-lookup
+json
+pickle
+collections

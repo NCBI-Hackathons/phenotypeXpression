@@ -4,6 +4,7 @@ from typing import List, Dict, Tuple
 from phenox.paths import PhenoXPaths
 from phenox.mesh_lookup import MeshSearcher
 from phenox.geo_data import GEOQuery
+from phenox.pubmed import Pubmed
 
 
 # class for linking differential gene expression to disease
@@ -45,16 +46,9 @@ class PhenoX:
         :return:
         """
         sys.stdout.write("Retrieving matching PubMed abstracts...\n")
-        return dict()
-
-    def _extract_phenotype_disease(self, pubmed_dict: Dict) -> Dict:
-        """
-        Extract phenotyp and disease terms and sort by frequency
-        :param pubmed_dict:
-        :return:
-        """
-        sys.stdout.write("Extracting phenotypes from abstracts...\n")
-        return dict()
+        pubmed = Pubmed(self.email, pubmed_ids)
+        term_freq = pubmed.get_term_frequencies()
+        return term_freq
 
     def _analyze_aggregate_geo_data(self, geo_data_dict: Dict) -> Dict:
         """
@@ -95,10 +89,7 @@ class PhenoX:
         pubmed_ids, geo_gene_dict = self._get_geo_datasets(self.email, mesh_term)
 
         # get pubmed abstracts
-        pubmed_dict = self._fetch_pubmed_abstracts(pubmed_ids)
-
-        # get phenotype and disease terms from pubmed abstracts
-        term_frequency = self._extract_phenotype_disease(pubmed_dict)
+        term_frequency = self._fetch_pubmed_abstracts(pubmed_ids)
 
         # perform gene expression aggregation analysis
         geo_clusters = self._analyze_aggregate_geo_data(geo_gene_dict)
