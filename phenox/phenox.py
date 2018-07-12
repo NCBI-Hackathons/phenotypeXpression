@@ -3,17 +3,19 @@ import sys
 from typing import List, Dict, Tuple
 from phenox.paths import PhenoXPaths
 from phenox.mesh_lookup import MeshSearcher
+from phenox.geo_data import GEOQuery
 
 
 # class for linking differential gene expression to disease
 class PhenoX:
-    def __init__(self, query_str: str) -> None:
+    def __init__(self, email: str, query_str: str) -> None:
         """
         Initialize class
         :param gene_list:
         """
         self.paths = PhenoXPaths()
         self.query_str = query_str
+        self.email = email
 
     def _get_best_mesh_term(self) -> Tuple:
         """
@@ -24,16 +26,19 @@ class PhenoX:
         mesh_entry = mesh.lookup(self.query_str)
         return mesh_entry['name'], [mesh.mesh[c]['name'] for c in mesh_entry['children']]
 
-    def _get_geo_datasets(self, mesh_term: str) -> Dict:
+    def _get_geo_datasets(self, email: str, mesh_term: str) -> Tuple:
         """
         Given a MeSH term, fetch GEO datasets and corresponding PubMed IDs
+        :param email:
         :param mesh_term:
         :return:
         """
         sys.stdout.write("Retrieving matching GEO datasets...\n")
-        return dict()
+        geo = GEOQuery(email=email)
+        pubmed_ids, gene_dict = geo.get_all_geo_data(mesh_term)
+        return pubmed_ids, gene_dict
 
-    def _fetch_pubmed_abstracts(self, geo_data_dict: Dict) -> Dict:
+    def _fetch_pubmed_abstracts(self, pubmed_ids: List) -> Dict:
         """
         Retrieve Pubmed abstracts from list of Pubmed IDs in the GEO data dict
         :param geo_data_dict:
@@ -87,16 +92,16 @@ class PhenoX:
         mesh_term, mesh_children = self._get_best_mesh_term()
 
         # retrieve GEO datasets and pubmed ids using MeSH disease term
-        geo_data_dict = self._get_geo_datasets(mesh_term)
+        pubmed_ids, geo_gene_dict = self._get_geo_datasets(self.email, mesh_term)
 
         # get pubmed abstracts
-        pubmed_dict = self._fetch_pubmed_abstracts(geo_data_dict)
+        pubmed_dict = self._fetch_pubmed_abstracts(pubmed_ids)
 
         # get phenotype and disease terms from pubmed abstracts
         term_frequency = self._extract_phenotype_disease(pubmed_dict)
 
         # perform gene expression aggregation analysis
-        geo_clusters = self._analyze_aggregate_geo_data(geo_data_dict)
+        geo_clusters = self._analyze_aggregate_geo_data(geo_gene_dict)
 
         # combine gene expression and phenotype data
         geo_clusters = self._merge_and_combine(term_frequency, geo_clusters)

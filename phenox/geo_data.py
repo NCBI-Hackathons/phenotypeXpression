@@ -192,3 +192,36 @@ class GEOQuery:
                     gene_dict[x] = y
 
         return gene_dict
+
+    def get_pubmed_ids(self, data_dict):
+        """
+        Fetch PubMed terms from GDS data
+        :param gds_dict:
+        :return:
+        """
+        gds_list = list(data_dict.keys())
+
+        # elink gds to pid
+        pid_list = Entrez.read(
+            Entrez.elink(
+                id=gds_list, db='pubmed', dbfrom='gds', linkname='gds_pubmed'
+            )
+        )
+
+        # extract pubmed IDs
+        pids = [el['LinkSetDb'][0]['Link'][0]['Id'] for el in pid_list]
+
+        return pids
+
+    def get_all_geo_data(self, mesh_term: str):
+        """
+        Link all functions together to retrieve GEO data
+        :param mesh_term:
+        :return:
+        """
+        query_results = self.get_ncbi_docsum(mesh_term, self.db)
+        gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
+        pids = self.get_pubmed_ids(gds_dict)
+        gene_dict = self.genedict_from_profile(query_results)
+        return pids, gene_dict
+
