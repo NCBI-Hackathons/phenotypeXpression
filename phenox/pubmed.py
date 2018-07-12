@@ -5,11 +5,14 @@ Created on Wed Jul 11 15:34:02 2018
 @author: Xiaojun
 """
 
+
 import Bio.Entrez as Entrez
 import spacy
 from spacy_lookup import Entity
 import pickle
 from collections import Counter
+
+Entrez.email = '390943746@qq.com'
 
 '''
 Takea a list of PubMed IDs, fetch abstract text and find DO and HPO entities
@@ -26,6 +29,7 @@ class pubmed:
         self.pmid_dner = {}
         # raw entity text
         self.pmid_ent_text = {}
+        self.dner_cluster = {}
         self.total_dner = []
 
         self.nlp = spacy.load('en')
@@ -36,7 +40,6 @@ class pubmed:
         
     # fetch abstract from a single pmid    
     def fetch_abstract(self,pmid):
-        Entrez.emal = '390943746@qq.com'
         handle = Entrez.efetch(db='pubmed', id=pmid, retmode='xml')
         record = Entrez.read(handle)
         try:
@@ -59,8 +62,22 @@ class pubmed:
                 # convert recognized keyword to the main term (first item) in DO/HPO
                 dner.append(self.id2kw[self.kw2id[ent.text.lower()]][0])
         self.total_dner.extend(dner)
-        return Counter(kw), Counter(dner)
+        return Counter(kw), dner
+    
+    # count word frequencies based on clustering results
+    def cluster_count(self,cluster):
+        # ?? what will be the dtype of cluster??
+        n_cluster = 0
+        for c in cluster:
+            dner_cluster_list = []
+            for pmid in c:
+                dner_cluster_list.extend(self.pmid_dner[pmid])
+            self.dner_cluster[n_cluster] = Counter(dner_cluster_list)
+            
+                
+        
 
+# pmid list for psoriasis
 psoriasis = ['24646743', 
              '22479649', 
              '25129481', 
