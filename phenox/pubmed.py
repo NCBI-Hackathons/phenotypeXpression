@@ -9,8 +9,7 @@ import Bio.Entrez as Entrez
 import spacy
 from spacy_lookup import Entity
 import pickle
-
-Entrez.emal = '390943746@qq.com'
+from collections import Counter
 
 '''
 Takea a list of PubMed IDs, fetch abstract text and find DO and HPO entities
@@ -23,31 +22,84 @@ class pubmed:
         '''
         self.pmid_list = pmid_list
         self.pmid_abstracts = {}
+        # disease and human phenotype NER
+        self.pmid_dner = {}
+        # raw entity text
+        self.pmid_ent_text = {}
+        self.total_dner = []
+
         self.nlp = spacy.load('en')
-        self.id2kw = json.load(open('../data/doid.json'))
-        self.id2kw.update(json.load(open('../data/hp.json')))
-        entity = Entity(keywords_list=['python', 'java platform'])
+        self.id2kw = pickle.load(open('../data/id2kw_dict.pkl','rb'))
+        self.kw2id = pickle.load(open('../data/kw2id_dict.pkl','rb'))
+        entity = Entity(keywords_list=list(self.kw2id.keys()),label='DO/HPO')
+        self.nlp.add_pipe(entity, last=True)
         
     # fetch abstract from a single pmid    
     def fetch_abstract(self,pmid):
+        Entrez.emal = '390943746@qq.com'
         handle = Entrez.efetch(db='pubmed', id=pmid, retmode='xml')
         record = Entrez.read(handle)
-        abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText'][0]
-        self.pmid_abstracts[pmid] = abstract
+        try:
+            abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText'][0]
+        except:
+            abstract = ''
+        self.pmid_abstracts[pmid] = str(abstract)
+        
+    def extract_DNER(self,pmid):
+        self.pmid_ent_text[pmid], self.pmid_dner[pmid] = self.find_DNER(self.pmid_abstracts[pmid])
     
     # find disease and phenotype NER
     def find_DNER(self,abstract_text):
-        pass
-    
-abstract = u"The association studies of several immune-diseases with the 3' Regulatory Region 1 (3'RR1) increased interest on the role that the region plays in the immune-regulation. The 3'RR1 is a polymorphic region on human chromosome 14q32, acting as a cis-regulative element on the Immunoglobulin constant-gene locus recently considered as super-enhancer. The human 3'RR1 share large sequences with its paralogous 3'RR2, at high level of similarity. Thus, a focused investigation was necessary to discriminate each one of the duplicated components of the two regions and its specific contribution to the immunologic phenotype. One of the duplicated elements is the hs1.2 enhancer. The 3'RR1 alleles of this enhancer were demonstrated to play a role in autoimmune diseases, including Psoriasis. We sequenced a specific region internal to the 3'RR1 in hs1.2 homozygous subjects, to detect SNPs associated to the main alleles of the enhancer. We identified two alternative nine-SNPs haplotypes strictly linked to the allele *1 and *2 of hs1.2, that could be used as markers to further investigate the region and associations to pathology. Finally, we identified two haplotypes, namely E2A1 and E2A2, that strongly support the hypothesis of a relevant effect of the rs35216181 in the onset of Psoriasis when the *2 allele is present." 
-nlp = spacy.load('en')
-entity = Entity(keywords_file='../data/kwlist.txt',label='DO')
-nlp.add_pipe(entity, last=True)
+        kw = []
+        dner = []
+        doc = self.nlp(abstract_text)
+        for ent in doc.ents:
+            if ent.label_=='DO/HPO' and ent.__getitem__(0).is_stop==False:
+                kw.append(ent.text)
+                # convert recognized keyword to the main term (first item) in DO/HPO
+                dner.append(self.id2kw[self.kw2id[ent.text.lower()]][0])
+        self.total_dner.extend(dner)
+        return Counter(kw), Counter(dner)
 
-doc = nlp(abstract)
-        
+psoriasis = ['24646743', 
+             '22479649', 
+             '25129481', 
+             '25129481', 
+             '23633458', 
+             '24391825', 
+             '23771123', 
+             '22277938', 
+             '22348003', 
+             '21483750', 
+             '22479649', 
+             '27667537', 
+             '23407402', 
+             '21388663', 
+             '22908096', 
+             '22677045', 
+             '20829794', 
+             '22752307', 
+             '20688981', 
+             '19718476', 
+             '18648529', 
+             '19052557', 
+             '18716044', 
+             '17277128', 
+             '16858420', 
+             '17020965', 
+             '17947518', 
+             '16885358', 
+             '16618722', 
+             '16505361', 
+             '17075716', 
+             '11121445']
+
+test = pubmed(psoriasis)
+for pmid in test.pmid_list:
+    test.fetch_abstract(pmid)
+    test.extract_DNER(pmid)
     
-    
+test.freq_list = Counter(test.total_dner)
         
     
         
