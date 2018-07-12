@@ -2,7 +2,7 @@
 
 ![image](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png)
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png" width="200" />
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png" width="300" />
 
 # phenotypeXpression
 ## Synopsis
