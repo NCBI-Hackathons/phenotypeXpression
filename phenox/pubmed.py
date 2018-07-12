@@ -6,6 +6,7 @@ Created on Wed Jul 11 15:34:02 2018
 """
 
 
+import tqdm
 import Bio.Entrez as Entrez
 import spacy
 import os
@@ -74,3 +75,15 @@ class Pubmed:
             self.dner_cluster[n_cluster] = Counter(dner_cluster_list)
             n_cluster += 1
         return n_cluster
+
+    def get_term_frequencies(self):
+        """
+        Get all term frequencies
+        :return:
+        """
+        for pmid in tqdm.tqdm(self.pmid_list):
+            self.fetch_abstract(pmid)
+            self.extract_DNER(pmid)
+
+        freq_list = Counter(self.total_dner)
+        return freq_list
