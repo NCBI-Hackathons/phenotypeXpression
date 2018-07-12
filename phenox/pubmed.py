@@ -80,7 +80,7 @@ class pubmed:
                 
         
 
-# pmid list for psoriasis
+# test: pmid list for psoriasis
 psoriasis = ['24646743', 
              '22479649', 
              '25129481', 
