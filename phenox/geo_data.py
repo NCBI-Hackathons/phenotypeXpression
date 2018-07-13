@@ -2,6 +2,8 @@ import sys
 import logging
 import time
 import tqdm
+import random
+from typing import List, Dict, Tuple
 from collections import defaultdict
 import Bio.Entrez as Entrez
 from urllib.error import HTTPError
@@ -95,7 +97,7 @@ class GEOQuery:
             fetch_handle.close()
         return
 
-    def get_ncbi_docsum(self, mesh_term, database):
+    def get_ncbi_docsum(self, mesh_term, database) -> List:
         """
         Get document summaries from NCBI database
         :param mesh_term:
@@ -127,7 +129,7 @@ class GEOQuery:
 
         return query_results
 
-    def batch_local(self, query_type, id_list, **kwargs):
+    def batch_local(self, query_type, id_list, **kwargs) -> Dict:
         """
         Batch local
         :param query_type:
@@ -136,7 +138,7 @@ class GEOQuery:
         :return:
         """
         count = len(id_list)
-        result_dict = {}
+        result_dict = dict()
 
         for start in range(0, count, self.elink_batch):
             end = min(count, start + self.elink_batch)
@@ -154,7 +156,7 @@ class GEOQuery:
                 result_dict[el['IdList'][0]] = el['LinkSetDb'][0]['Link'][0]['Id']
         return result_dict
 
-    def gdsdict_from_profile(self, query_results):
+    def gdsdict_from_profile(self, query_results) -> Tuple:
         """
         Generate GDS data dict from profile data
         :param query_results:
@@ -176,7 +178,7 @@ class GEOQuery:
 
         return gds_dict, gene_freq
 
-    def genedict_from_profile(self, query_results):
+    def genedict_from_profile(self, query_results) -> Dict:
         """
         Generate gene data dict from profile data
         :param query_results:
@@ -193,7 +195,7 @@ class GEOQuery:
 
         return gene_dict
 
-    def get_pubmed_ids(self, data_dict):
+    def get_pubmed_ids(self, data_dict) -> Dict:
         """
         Fetch PubMed terms from GDS data
         :param gds_dict:
@@ -209,11 +211,13 @@ class GEOQuery:
         )
 
         # extract pubmed IDs
-        pids = [el['LinkSetDb'][0]['Link'][0]['Id'] for el in pid_list]
+        pids = {
+            el['IdList'][0]: el['LinkSetDb'][0]['Link'][0]['Id'] for el in pid_list
+        }
 
         return pids
 
-    def get_all_geo_data(self, mesh_term: str):
+    def get_all_geo_data(self, mesh_term: str) -> List:
         """
         Link all functions together to retrieve GEO data
         :param mesh_term:
@@ -223,5 +227,22 @@ class GEOQuery:
         gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
         pids = self.get_pubmed_ids(gds_dict)
         gene_dict = self.genedict_from_profile(query_results)
-        return pids, gene_freq, gene_dict
+
+        def split_pids_into_clusters(pid_dict, num_clusters):
+            groups = []
+            pid_list = list(pid_dict.keys())
+            while num_clusters > 0:
+                if num_clusters == 1:
+                    group = pid_list
+                else:
+                    group = random.sample(pid_list, round(1./num_clusters))
+                    pid_list = list(set(pid_list).difference(group))
+                groups.append(group)
+                num_clusters -= 1
+            return groups
+
+        # placeholder for clustering output
+        clusters = split_pids_into_clusters(pids, 3)
+
+        return clusters
 
