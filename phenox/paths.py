@@ -8,3 +8,4 @@ class PhenoXPaths:
         self.data_dir = os.path.join(self.base_dir, 'data')
         self.src_dir = os.path.join(self.base_dir, 'phenox')
         self.test_dir = os.path.join(self.base_dir, 'tests')
+        self.output_dir = os.path.join(self.base_dir, 'output')

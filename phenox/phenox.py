@@ -29,17 +29,16 @@ class PhenoX:
         """
         mesh = MeshSearcher()
         mesh_entry = mesh.lookup(self.query_str)
-        return mesh_entry['name'], [mesh.mesh[c]['name'] for c in mesh_entry['children']]
+        return mesh_entry, [mesh.mesh[c]['name'] for c in mesh_entry['children']]
 
-    def _get_geo_datasets(self, email: str, mesh_term: str) -> List:
+    def _get_geo_datasets(self, mesh_term: str) -> List:
         """
         Given a MeSH term, fetch GEO datasets and corresponding PubMed IDs
-        :param email:
         :param mesh_term:
         :return:
         """
         sys.stdout.write("Retrieving matching GEO datasets...\n")
-        geo = GEOQuery(email=email)
+        geo = GEOQuery(email=self.email)
         pubmed_clusters = geo.get_all_geo_data(mesh_term)
         return pubmed_clusters
 
@@ -66,8 +65,9 @@ class PhenoX:
         :param clusters:
         :return:
         """
+        output_file = os.path.join(self.paths.output_dir, 'wordcloud.png')
         plotter = WordcloudPlotter()
-        plotter.generate_wordclouds(clusters)
+        plotter.generate_wordclouds(clusters, output_file)
         return
 
     def subtype(self):
@@ -80,7 +80,7 @@ class PhenoX:
 
         # retrieve GEO datasets, generate clusters, visualize in R,
         # and output clustered pubmed abstracts
-        pubmed_clusters = self._get_geo_datasets(self.email, mesh_term)
+        pubmed_clusters = self._get_geo_datasets(mesh_term['name'])
 
         # NER and count term frequency in pubmed clusters
         term_frequency = self._fetch_pubmed_abstracts(pubmed_clusters)
