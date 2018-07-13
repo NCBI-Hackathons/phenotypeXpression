@@ -4,3 +4,4 @@ spacy-lookup
 json
 pickle
 collections
+tqdm
