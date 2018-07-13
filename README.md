@@ -80,19 +80,20 @@ For the given MeSH term, PhenoX will attempt to generate all subclassifications 
 
 <a title="By Monikasj [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Wikipedia-word-cloud.jpg"><img width="512" alt="Wikipedia-word-cloud" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wikipedia-word-cloud.jpg/512px-Wikipedia-word-cloud.jpg"></a>
 
-Word clouds are generated for each subcluster based on a combination of Human Phenotype Ontology and Human Disease Ontology search terms. Additionally, MeSH child terms of the parent query are counted to see if they correlate strongly with any given cluster. 
+Phenotype and disease ontological terms are enriched using occurence in PubMed abstract, title, and keywords. The spacy module scrapes terms which have been serialized by pickle for speed. Term frequency data is gathered for each GEO DataSet, and the counts are merged for the gene expression clusters. Word_cloud is then used to visualize the result, with a separate png image files for each cluster.
 
 ### Expression Profiles
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/heat.png" width="600" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/hcluster.pdf" width="600" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/heatmap.pdf" width="600" align="middle"/>
 
-Something about heatmap/dendrogram. PERHAPS A HEATMAP ALIGNED TO DENDROGRAM OF COUNTS (OR BOOTSTRAPS?). BE SURE TO INCLUDE DATA ON MULTISCALE BOOTSTRAP CLUSTERING. 
+GEO profiles which are filtered for differential expression are matched to the query term by the Entrez eSearch method. Resulting GEO DataSets, each with differential NCBI GeneID sets and an associated PubMed ID are then used for downstream analysis. The GDS are then clustered using pvclust in R, which uses hclust for hierarchical clustering based on the binary gene presence or absence across all the GDS. GDS with only a single differential gene are excluded to reduce noise. Clustering generates P-values via approximately unbiased (AU) method and bootstrap probabilities (BP) at each node. Branches are defined as sub-classification clusters with shared AU node values greater than 95%. The GDS set in each sub-classification cluster is then used for PubMedID associated literature data.
 
 ### Cluster map
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/Figure4ab.jpg" width="600" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/image.png" width="600" align="middle"/>
 
-An overall cluster map showing pairwise distances between GDS datasets based on differential gene expression. CLUSTERED BY ABOVE, COLORED BY CLUSTER, 
+An overall cluster map showing pairwise distances between GDS datasets based on absoulte difference in number of genes per GDS. Based on the gene sets defined above.
 
 ## Authors
 
