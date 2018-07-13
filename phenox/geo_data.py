@@ -3,10 +3,13 @@ import logging
 import time
 import tqdm
 import random
+import math
 from typing import List, Dict, Tuple
 from collections import defaultdict
 import Bio.Entrez as Entrez
 from urllib.error import HTTPError
+
+import phenox.utils.base_utils as base_utils
 
 
 # class for querying GEO databases
@@ -230,19 +233,21 @@ class GEOQuery:
 
         def split_pids_into_clusters(pid_dict, num_clusters):
             groups = []
-            pid_list = list(pid_dict.keys())
+            pid_list = list(set(pid_dict.values()))
+            if len(pid_list) < 2 * num_clusters:
+                num_clusters = int(round(num_clusters/2))
             while num_clusters > 0:
                 if num_clusters == 1:
                     group = pid_list
                 else:
-                    group = random.sample(pid_list, round(1./num_clusters))
-                    pid_list = list(set(pid_list).difference(group))
+                    group = random.sample(pid_list, int(round(1./num_clusters*len(pid_list))))
+                    pid_list = list(set(pid_list).difference(set(group)))
                 groups.append(group)
                 num_clusters -= 1
             return groups
 
         # placeholder for clustering output
-        clusters = split_pids_into_clusters(pids, 3)
+        clusters = split_pids_into_clusters(pids, 2)
 
         return clusters
 

@@ -56,7 +56,7 @@ class PhenoX:
         for i, id_list in enumerate(pubmed_ids):
             pubmed = Pubmed(self.email, id_list)
             term_freq = pubmed.get_term_frequencies()
-            wordcloud_data[i] = term_freq
+            wordcloud_data[i + 1] = term_freq
 
         return wordcloud_data
 
