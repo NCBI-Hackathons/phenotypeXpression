@@ -34,7 +34,7 @@ MORE USE CASES
 
 ## Installation
 
-Implemented in python3 requires >=3.4. To install in git clone and unpack or... to run from command line, add to path:
+Implemented in python3 requires >=3.4. To install:
 
 ```
 git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
