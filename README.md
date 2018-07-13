@@ -65,6 +65,7 @@ spacy-lookup
 json
 pickle
 collections
+tqdm
 ```
 
 Note on deps. CLUSTERING DEPS
