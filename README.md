@@ -84,8 +84,8 @@ Phenotype and disease ontological terms are enriched using occurence in PubMed a
 
 ### Expression Profiles
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/hcluster.pdf" width="600" align="middle"/>
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/heatmap.pdf" width="600" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/hcluster-1.png" width="600" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/heatmap-1.png" width="600" align="middle"/>
 
 GEO profiles which are filtered for differential expression are matched to the query term by the Entrez eSearch method. Resulting GEO DataSets, each with differential NCBI GeneID sets and an associated PubMed ID are then used for downstream analysis. The GDS are then clustered using pvclust in R, which uses hclust for hierarchical clustering based on the binary gene presence or absence across all the GDS. GDS with only a single differential gene are excluded to reduce noise. Clustering generates P-values via approximately unbiased (AU) method and bootstrap probabilities (BP) at each node. Branches are defined as sub-classification clusters with shared AU node values greater than 95%. The GDS set in each sub-classification cluster is then used for PubMedID associated literature data.
 
