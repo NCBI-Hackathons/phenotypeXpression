@@ -7,12 +7,14 @@
 
 ### Subclassification of disease states based on the intersection of literature and expression
 
-Words, words, words
+PhenotypeXpression (PhenoX) provides a lightweight tool for clinicians to rapidly aggregate the publicly available gene expression data and literature available from the NCBI. It requires a minimum of resources and can quickly survey publicly available research. By combining the subtype HPO and DOID information with GEO dataset expression profiles, each sub-classification of a disease is given a characteristic fingerprint. This enables clinicians to (1) identify a set of genes that have altered expression in a phenotype and its related targets to aid in research, (2) use those target genes to inform treatment selection by affected pathway, and (3) rapidly identify public datasets that are available for comparison with their own gene expression data.
+
+Flow Chart here
 
 ## Quick Start
 
 ```bash
-
+Usage here
 ```
 
 ### Minimum Inputs
@@ -25,27 +27,31 @@ Additional arguements include a specification of and output file prefix (-o, --o
 
 ## Motivation
 
-Abstract
+Before personalized medicine can be fully implemented, disease classification ontologies will need to gain many orders of magnitude. However, this then complicates the role of clinicians seeking to use a more tailored diagnosis. Differential expression within a disease set, its subtypes, can have a significant impact on treatment effect.
+
+USE CASES
 
 ## Installation
 
 Implemented in python3 requires >=3.4. To install in git clone and unpack or... to run from command line, add to path:
 
 ```
-export PATH=$PATH:path/to/folder/phenotypeXpression/phenox
+git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
+cd phenotypeXpression
+./setup.sh
 ``` 
-or add to your ~/.bash_profile
 
 Examples of each input file type are provided in the test subfolder. For instance:
 
 ```
+source activate phenoX
 sample run here
 ```
 
 Should produce the following files:
 
 ```
-result
+ls file result
 ```
 
 
@@ -95,23 +101,6 @@ Robert R Butler III
 Huaiying Lin  
 Subhajit Sengupta  
 Lucy Lu Wang  
-
-## Citation
-
-Citation
-
-```
-@article{key ,
-	author = {},
-	title = {},
-	journal = {F1000Research},
-	volume = {},
-	year = {2018},
-	pages = {},
-	doi = {},
-	url = {}
-}
-```
 
 ## References
 
