@@ -18,10 +18,6 @@ fi
 
 export PATH=$HOME/anaconda3/bin:$PATH
 
-source ~/anaconda3/bin/deactivate ${CONDAENV}
-
-conda remove -y --name ${CONDAENV} --all
-
 conda create -n ${CONDAENV} -y python==3.6 pip pytest || true
 
 echo "Activating Conda Environment ----->"
