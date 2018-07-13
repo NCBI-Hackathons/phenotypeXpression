@@ -14,6 +14,7 @@ from spacy_lookup import Entity
 import pickle
 from collections import Counter
 from phenox.paths import PhenoXPaths
+import pandas as pd
 
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
@@ -27,6 +28,7 @@ class Pubmed:
         self.pmid_dner = {}
         # raw entity text
         self.pmid_ent_text = {}
+        self.pmid_clustered = [] # a list of list: cluster of pmids
         self.dner_cluster = {}
         self.total_dner = []
 
@@ -87,3 +89,17 @@ class Pubmed:
 
         freq_list = Counter(self.total_dner)
         return freq_list
+    
+    # organize pmid into clusters from cluster analysis output (csv file)
+    def get_cluster_from_csv(self, gdsid_pmid_map, csvfilepath='../data/memb.csv'):
+        """
+        Change read_csv path if csvfilepath changes in the future
+        """
+        cluster_res = pd.read_csv(csvfilepath)
+        cluster_names = cluster_res['cluster'].unique()
+        for n in cluster_names:
+            c_pmid = []
+            for g in cluster_res['gdsid'][cluster_res['cluster']==n]:
+                c_pmid.append(gdsid_pmid_map[g])
+            self.pmid_clustered.append(c_pmid)
+        
