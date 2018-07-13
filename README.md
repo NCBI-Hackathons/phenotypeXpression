@@ -91,7 +91,7 @@ GEO profiles which are filtered for differential expression are matched to the q
 
 ### Cluster map
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/Figure4ab.jpg" width="600" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/image.png" width="600" align="middle"/>
 
 An overall cluster map showing pairwise distances between GDS datasets based on absoulte difference in number of genes per GDS. Based on the gene sets defined above.
 
