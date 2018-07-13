@@ -28,7 +28,9 @@ Additional arguements include a specification of and output file prefix (-o, --o
 
 Before personalized medicine can be fully implemented, disease classification ontologies will need to gain many orders of magnitude. However, this then complicates the role of clinicians seeking to use a more tailored diagnosis. Differential expression within a disease set, its subtypes, can have a significant impact on treatment effect.
 
-USE CASES
+In many cases, the subtypes for complex diseases have yet to be defined or named. These subtypes can be defined by gene expression profiles or phenotypic traits. This project aims to produce a quantitative and qualitative description of subtypes of common diseases, using gene expression signatures from the NCBI Gene Expression Omnibus (GEO), as well as phenotypic traits mined from the literature.
+
+MORE USE CASES
 
 ## Installation
 
@@ -37,7 +39,7 @@ Implemented in python3 requires >=3.4. To install in git clone and unpack or... 
 ```
 git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
 cd phenotypeXpression
-./setup.sh
+sh setup.sh
 ``` 
 
 Examples of each input file type are provided in the test subfolder. For instance:
@@ -67,13 +69,11 @@ collections
 
 Note on deps. CLUSTERING DEPS
 
-### Memory/System requirements
-
-Note on system requirements
-
 ## Details on Results...
 
 For the given MeSH term, PhenoX will attempt to generate all subclassifications of the condition based on the available expression data in the NCBI Gene Expression Omnibus. Each subclass will have two major features, a word cloud of phenotypic terms associated with the seach tem via a literature search, and a gene expression profile of differentially expressed genes. The output will include several file types described in detail below to 
+
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/Output.png" width="600" align="middle"/>
 
 ### Word Clouds
 
