@@ -17,9 +17,11 @@ Words, words, words
 
 ### Minimum Inputs
 
-
+The primary inputs are a MeSH term and your email. The MeSH term should specify the parent condition for which you would like to derive subgroup information. The email is required to batch query NCBI databases.
 
 ### Optional Arguments
+
+Additional arguements include a specification of and output file prefix (-o, --out), and two thresholds for clustering: (1) minimum count of gene X across all GDS sets and (2) minimum number of genes for a given GDS set. There two thresholds determine the sensitivity of the clustering. FURTHER EXPLANATION
 
 ## Motivation
 
@@ -49,19 +51,16 @@ result
 
 ### Dependencies
 
-The following from my pipenv:
-
 ```
-biopython==1.70
-  - numpy [required: Any, installed: 1.14.0]
-pandas==0.22.0
-  - numpy [required: >=1.9.0, installed: 1.14.0]
-  - python-dateutil [required: >=2, installed: 2.6.1]
-    - six [required: >=1.5, installed: 1.11.0]
-  - pytz [required: >=2011k, installed: 2018.3]
+biopython
+spacy
+spacy-lookup
+json
+pickle
+collections
 ```
 
-Note on deps
+Note on deps. CLUSTERING DEPS
 
 ### Memory/System requirements
 
@@ -69,19 +68,25 @@ Note on system requirements
 
 ## Details on Results...
 
-For the given MeSH term, PhenoX will attempt to generate all subclassification of the condition based on the available expression data in the NCBI Gene Expression Omnibus. Each subclass will have two major features, a word cloud of phenotypic terms associated with the seach tem via a literature search, and a gene expression profile of differentially expressed genes.
+For the given MeSH term, PhenoX will attempt to generate all subclassifications of the condition based on the available expression data in the NCBI Gene Expression Omnibus. Each subclass will have two major features, a word cloud of phenotypic terms associated with the seach tem via a literature search, and a gene expression profile of differentially expressed genes. The output will include several file types described in detail below to 
 
-### Subsection A, Word Cloud
-
-![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
-
-Something about wordcloud
-
-### Subsection B, Expression Profiles
+### Word Clouds
 
 ![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
 
-Something about heatmap
+Word clouds are generated for each subcluster based on a combination of Human Phenotype Ontology and Human Disease Ontology search terms. Additionally, MeSH child terms of the parent query are counted to see if they correlate strongly with any given cluster. 
+
+### Expression Profiles
+
+![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
+
+Something about heatmap/dendrogram. PERHAPS A HEATMAP ALIGNED TO DENDROGRAM OF COUNTS (OR BOOTSTRAPS?). BE SURE TO INCLUDE DATA ON MULTISCALE BOOTSTRAP CLUSTERING. 
+
+### Cluster map
+
+![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
+
+An overall cluster map showing pairwise distances between GDS datasets based on differential gene expression. CLUSTERED BY ABOVE, COLORED BY CLUSTER, 
 
 ## Authors
 
