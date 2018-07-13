@@ -1,11 +1,15 @@
 import os
 import sys
+import math
 from typing import List, Dict, Tuple
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
 from phenox.paths import PhenoXPaths
 from phenox.mesh_lookup import MeshSearcher
 from phenox.geo_data import GEOQuery
 from phenox.pubmed import Pubmed
-
+from phenox.wordcloud import WordcloudPlotter
 
 # class for linking differential gene expression to disease
 class PhenoX:
@@ -27,7 +31,7 @@ class PhenoX:
         mesh_entry = mesh.lookup(self.query_str)
         return mesh_entry['name'], [mesh.mesh[c]['name'] for c in mesh_entry['children']]
 
-    def _get_geo_datasets(self, email: str, mesh_term: str) -> Tuple:
+    def _get_geo_datasets(self, email: str, mesh_term: str) -> List:
         """
         Given a MeSH term, fetch GEO datasets and corresponding PubMed IDs
         :param email:
@@ -36,8 +40,8 @@ class PhenoX:
         """
         sys.stdout.write("Retrieving matching GEO datasets...\n")
         geo = GEOQuery(email=email)
-        pubmed_ids, gene_dict = geo.get_all_geo_data(mesh_term)
-        return pubmed_ids, gene_dict
+        pubmed_clusters = geo.get_all_geo_data(mesh_term)
+        return pubmed_clusters
 
     def _fetch_pubmed_abstracts(self, pubmed_ids: List) -> Dict:
         """
@@ -46,28 +50,15 @@ class PhenoX:
         :return:
         """
         sys.stdout.write("Retrieving matching PubMed abstracts...\n")
-        pubmed = Pubmed(self.email, pubmed_ids)
-        term_freq = pubmed.get_term_frequencies()
-        return term_freq
 
-    def _analyze_aggregate_geo_data(self, geo_data_dict: Dict) -> Dict:
-        """
-        Analyze aggregate gene expression data
-        :param geo_data_dict:
-        :return:
-        """
-        sys.stdout.write("Analyzing aggregating gene expression data...\n")
-        return dict()
+        wordcloud_data = dict()
 
-    def _merge_and_combine(self, term_freq: Dict, clusters: Dict) -> Dict:
-        """
-        Merge term frequency data into cluster data
-        :param term_freq:
-        :param clusters:
-        :return:
-        """
-        sys.stdout.write("Merging literature and gene expression data...\n")
-        return clusters
+        for i, id_list in enumerate(pubmed_ids):
+            pubmed = Pubmed(self.email, id_list)
+            term_freq = pubmed.get_term_frequencies()
+            wordcloud_data[i + 1] = term_freq
+
+        return wordcloud_data
 
     def _visualize(self, clusters: Dict) -> None:
         """
@@ -75,6 +66,8 @@ class PhenoX:
         :param clusters:
         :return:
         """
+        plotter = WordcloudPlotter()
+        plotter.generate_wordclouds(clusters)
         return
 
     def subtype(self):
@@ -85,17 +78,12 @@ class PhenoX:
         # get best mesh term from user query
         mesh_term, mesh_children = self._get_best_mesh_term()
 
-        # retrieve GEO datasets and pubmed ids using MeSH disease term
-        pubmed_ids, geo_gene_dict = self._get_geo_datasets(self.email, mesh_term)
+        # retrieve GEO datasets, generate clusters, visualize in R,
+        # and output clustered pubmed abstracts
+        pubmed_clusters = self._get_geo_datasets(self.email, mesh_term)
 
-        # get pubmed abstracts
-        term_frequency = self._fetch_pubmed_abstracts(pubmed_ids)
+        # NER and count term frequency in pubmed clusters
+        term_frequency = self._fetch_pubmed_abstracts(pubmed_clusters)
 
-        # perform gene expression aggregation analysis
-        geo_clusters = self._analyze_aggregate_geo_data(geo_gene_dict)
-
-        # combine gene expression and phenotype data
-        geo_clusters = self._merge_and_combine(term_frequency, geo_clusters)
-
-        # visualize data
-        self._visualize(geo_clusters)
+        # visualize everything
+        self._visualize(term_frequency)
