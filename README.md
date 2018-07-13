@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1210203.svg)](https://doi.org/10.5281/zenodo.1210203)
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png" width="300" align= "middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/PhenoX.png" width="300" align= "middle"/>
 
 # phenotypeXpression
 ## Synopsis
@@ -72,19 +72,19 @@ For the given MeSH term, PhenoX will attempt to generate all subclassifications 
 
 ### Word Clouds
 
-![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
+<a title="By Monikasj [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Wikipedia-word-cloud.jpg"><img width="512" alt="Wikipedia-word-cloud" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wikipedia-word-cloud.jpg/512px-Wikipedia-word-cloud.jpg"></a>
 
 Word clouds are generated for each subcluster based on a combination of Human Phenotype Ontology and Human Disease Ontology search terms. Additionally, MeSH child terms of the parent query are counted to see if they correlate strongly with any given cluster. 
 
 ### Expression Profiles
 
-![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/heat.png" width="1000" align="middle"/>
 
 Something about heatmap/dendrogram. PERHAPS A HEATMAP ALIGNED TO DENDROGRAM OF COUNTS (OR BOOTSTRAPS?). BE SURE TO INCLUDE DATA ON MULTISCALE BOOTSTRAP CLUSTERING. 
 
 ### Cluster map
 
-![alt text](https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/PhenoX.png "PhenoX Logo")
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/Figure4ab.jpg" width="1000" align="middle"/>
 
 An overall cluster map showing pairwise distances between GDS datasets based on differential gene expression. CLUSTERED BY ABOVE, COLORED BY CLUSTER, 
 
