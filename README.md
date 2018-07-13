@@ -8,7 +8,7 @@
 
 PhenotypeXpression (PhenoX) is a prototype precision medicine tool for clinicians to rapidly aggregate the publicly available gene expression data and literature available from the NCBI. It requires a minimum of resources and can quickly survey publicly available research. By combining the subtype HPO and DOID information with GEO dataset expression profiles, each sub-classification of a disease is given a characteristic fingerprint. This enables clinicians to (1) identify a set of genes that have altered expression in a phenotype and its related targets to aid in research, (2) use those target genes to inform treatment selection by affected pathway, and (3) rapidly identify public datasets that are available for comparison with their own gene expression data.
 
-Flow Chart here
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/Data_overview.png" width="800" align="middle"/>
 
 ### Minimum Inputs
 
@@ -58,13 +58,11 @@ collections
 tqdm
 ```
 
-Note on deps. CLUSTERING DEPS
-
 ## Details on Results...
 
 For the given MeSH term, PhenoX will attempt to generate all subclassifications of the condition based on the available expression data in the NCBI Gene Expression Omnibus. Each subclass will have two major features, a word cloud of phenotypic terms associated with the seach tem via a literature search, and a gene expression profile of differentially expressed genes. The output will include several file types described in detail below to 
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/Output.png" width="600" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/workflow.png" width="900" align="middle"/>
 
 ### Word Clouds
 
