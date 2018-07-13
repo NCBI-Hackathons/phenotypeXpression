@@ -68,7 +68,7 @@ For the given MeSH term, PhenoX will attempt to generate all subclassifications 
 
 ### Word Clouds
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/wordcloud.png" width="600" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/wordcloud.png" width="1000" align="middle"/>
 
 Phenotype and disease ontological terms are enriched using occurence in PubMed abstract, title, and keywords. The spacy module scrapes terms which have been serialized by pickle for speed. Term frequency data is gathered for each GEO DataSet, and the counts are merged for the gene expression clusters. Word_cloud is then used to visualize the result, with a separate png image files for each cluster.
 
@@ -92,11 +92,3 @@ Robert R Butler III
 Huaiying Lin  
 Subhajit Sengupta  
 Lucy Lu Wang  
-
-## References
-
-<sup>1</sup>    
-<sup>2</sup>    
-<sup>3</sup>    
-<sup>4</sup>    
-<sup>5</sup>    
