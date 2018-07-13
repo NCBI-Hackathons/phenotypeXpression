@@ -50,19 +50,22 @@ class Pubmed:
                 abs_str.append(a)
         except:
             abs_str.append('')
+            
         # title
         try:
             title = record['PubmedArticle'][0]['MedlineCitation']['Article']['ArticleTitle']
             abs_str.append(title)
         except:
             abs_str.append('')
+            
         # keyword list
         try:
-            kw = record['PubmedArticle'][0]['MedlineCitation']['KeywordList'][0]
-            for w in kw:
+            kwls = record['PubmedArticle'][0]['MedlineCitation']['KeywordList'][0]
+            for w in kwls:
                 abs_str.append(w)
         except:
             abs_str.append('')
+            
         self.pmid_abstracts[pmid] = ' '.join(abs_str)
         
     def extract_DNER(self, pmid):
