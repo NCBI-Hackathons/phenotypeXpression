@@ -10,12 +10,6 @@ PhenotypeXpression (PhenoX) is a prototype precision medicine tool for clinician
 
 Flow Chart here
 
-## Quick Start
-
-```bash
-Usage here
-```
-
 ### Minimum Inputs
 
 The primary inputs are a MeSH term and your email. The MeSH term should specify the parent condition for which you would like to derive subgroup information. The email is required to batch query NCBI databases.
@@ -26,15 +20,11 @@ Additional arguements include a specification of and output file prefix (-o, --o
 
 ## Motivation
 
-Before personalized medicine can be fully implemented, disease classification ontologies will need to gain many orders of magnitude. However, this then complicates the role of clinicians seeking to use a more tailored diagnosis. Differential expression within a disease set, its subtypes, can have a significant impact on treatment effect.
-
-In many cases, the subtypes for complex diseases have yet to be defined or named. These subtypes can be defined by gene expression profiles or phenotypic traits. This project aims to produce a quantitative and qualitative description of subtypes of common diseases, using gene expression signatures from the NCBI Gene Expression Omnibus (GEO), as well as phenotypic traits mined from the literature.
-
-MORE USE CASES
+Before personalized medicine can be fully implemented, disease classification ontologies will need to gain many orders of magnitude. However, this then complicates the role of clinicians seeking to use a more tailored diagnosis. Differential expression within a disease set, its subtypes, can have a significant impact on treatment effect. In many cases, the subtypes for complex diseases have yet to be defined or named. These subtypes can be defined by gene expression profiles or phenotypic traits. This project aims to produce a quantitative and qualitative description of subtypes of common diseases, using gene expression signatures from the NCBI Gene Expression Omnibus (GEO), as well as phenotypic traits mined from the literature.
 
 ## Installation
 
-Implemented in python3 requires >=3.4. To install:
+Implemented in python3 requires >=3.4 and R >=3.5. To install:
 
 ```
 git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
@@ -46,15 +36,15 @@ Examples of each input file type are provided in the test subfolder. For instanc
 
 ```
 source activate phenoX
-sample run here
+python run_phenox.py A.N.Other@example.com "Psoriasis"
 ```
 
 Should produce the following files:
 
-```
-ls file result
-```
-
+* Dendgrogram of GDS with bottstraps and cluster boxes
+* A word cloud for each cluster box
+* Heatmap of differentially expressed genes per GDS (columns)
+* A pairwise distance graph of GDS by differing gene set
 
 ### Dependencies
 
@@ -78,7 +68,7 @@ For the given MeSH term, PhenoX will attempt to generate all subclassifications 
 
 ### Word Clouds
 
-<a title="By Monikasj [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Wikipedia-word-cloud.jpg"><img width="512" alt="Wikipedia-word-cloud" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wikipedia-word-cloud.jpg/512px-Wikipedia-word-cloud.jpg"></a>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/wordcloud.png" width="1000" align="middle"/>
 
 Phenotype and disease ontological terms are enriched using occurence in PubMed abstract, title, and keywords. The spacy module scrapes terms which have been serialized by pickle for speed. Term frequency data is gathered for each GEO DataSet, and the counts are merged for the gene expression clusters. Word_cloud is then used to visualize the result, with a separate png image files for each cluster.
 
@@ -102,11 +92,3 @@ Robert R Butler III
 Huaiying Lin  
 Subhajit Sengupta  
 Lucy Lu Wang  
-
-## References
-
-<sup>1</sup>    
-<sup>2</sup>    
-<sup>3</sup>    
-<sup>4</sup>    
-<sup>5</sup>    
