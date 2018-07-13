@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/140350694.svg)](https://zenodo.org/badge/latestdoi/140350694)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1311476.svg)](https://doi.org/10.5281/zenodo.1311476)
 
 <img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/PhenoX.png" width="300" align= "middle"/>
 
@@ -83,13 +83,13 @@ Word clouds are generated for each subcluster based on a combination of Human Ph
 
 ### Expression Profiles
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/heat.png" width="1000" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/heat.png" width="600" align="middle"/>
 
 Something about heatmap/dendrogram. PERHAPS A HEATMAP ALIGNED TO DENDROGRAM OF COUNTS (OR BOOTSTRAPS?). BE SURE TO INCLUDE DATA ON MULTISCALE BOOTSTRAP CLUSTERING. 
 
 ### Cluster map
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/Figure4ab.jpg" width="1000" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/Figure4ab.jpg" width="600" align="middle"/>
 
 An overall cluster map showing pairwise distances between GDS datasets based on differential gene expression. CLUSTERED BY ABOVE, COLORED BY CLUSTER, 
 
