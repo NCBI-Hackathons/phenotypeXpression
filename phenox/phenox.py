@@ -36,8 +36,8 @@ class PhenoX:
         """
         sys.stdout.write("Retrieving matching GEO datasets...\n")
         geo = GEOQuery(email=email)
-        pubmed_ids, gene_dict = geo.get_all_geo_data(mesh_term)
-        return pubmed_ids, gene_dict
+        pubmed_ids, gene_freq, gene_dict = geo.get_all_geo_data(mesh_term)
+        return pubmed_ids, gene_freq, gene_dict
 
     def _fetch_pubmed_abstracts(self, pubmed_ids: List) -> Dict:
         """
@@ -86,7 +86,7 @@ class PhenoX:
         mesh_term, mesh_children = self._get_best_mesh_term()
 
         # retrieve GEO datasets and pubmed ids using MeSH disease term
-        pubmed_ids, geo_gene_dict = self._get_geo_datasets(self.email, mesh_term)
+        pubmed_ids, geo_gene_freq, geo_gene_dict = self._get_geo_datasets(self.email, mesh_term)
 
         # get pubmed abstracts
         term_frequency = self._fetch_pubmed_abstracts(pubmed_ids)

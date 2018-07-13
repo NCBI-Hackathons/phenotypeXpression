@@ -223,5 +223,5 @@ class GEOQuery:
         gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
         pids = self.get_pubmed_ids(gds_dict)
         gene_dict = self.genedict_from_profile(query_results)
-        return pids, gene_dict
+        return pids, gene_freq, gene_dict
 
