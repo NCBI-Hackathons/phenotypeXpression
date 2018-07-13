@@ -245,7 +245,11 @@ class GEOQuery:
         :return:
         """
         r_script_path = os.path.join(self.paths.src_dir, 'cluster.R')
-        subprocess.run(["Rscript", r_script_path, self.paths.data_dir])
+        r_command_args = ['Rscript', r_script_path, '-d', self.paths.data_dir]
+        r_command = ' '.join(r_command_args)
+        r_process = subprocess.Popen(r_command, stdout=subprocess.PIPE, shell=True)
+        (output, err) = r_process.communicate()
+        p_status = r_process.wait()
         return
 
     def get_all_geo_data(self, mesh_term: str) -> Dict:

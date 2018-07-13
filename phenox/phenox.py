@@ -69,6 +69,8 @@ class PhenoX:
         :param clusters:
         :return:
         """
+        heatmap_file = os.path.join(self.paths.data_dir, 'heatmap.pdf')
+        os.system(heatmap_file)
         output_file = os.path.join(self.paths.output_dir, 'wordcloud.png')
         plotter = WordcloudPlotter()
         plotter.generate_wordclouds(clusters, output_file)
