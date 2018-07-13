@@ -239,7 +239,7 @@ class GEOQuery:
         pdd.to_csv(os.path.join(self.paths.output_dir, "gds.gene.mat.csv"))
         return
     
-    def get_all_geo_data(self, mesh_term: str) -> List:
+    def get_all_geo_data(self, mesh_term: str) -> Dict:
         """
         Link all functions together to retrieve GEO data
         :param mesh_term:
@@ -250,25 +250,7 @@ class GEOQuery:
         pids = self.get_pubmed_ids(gds_dict)
         gene_dict = self.genedict_from_profile(query_results)
         self.export_gds_to_csv(gds_dict)
-        
-        def split_pids_into_clusters(pid_dict, num_clusters):
-            groups = []
-            pid_list = list(set(pid_dict.values()))
-            if len(pid_list) < 2 * num_clusters:
-                num_clusters = int(round(num_clusters/2))
-            while num_clusters > 0:
-                if num_clusters == 1:
-                    group = pid_list
-                else:
-                    group = random.sample(pid_list, int(round(1./num_clusters*len(pid_list))))
-                    pid_list = list(set(pid_list).difference(set(group)))
-                groups.append(group)
-                num_clusters -= 1
-            return groups
 
-        # placeholder for clustering output
-        clusters = split_pids_into_clusters(pids, 2)
-
-        return clusters
+        return pids
     
 

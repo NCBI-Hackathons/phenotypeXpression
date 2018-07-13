@@ -14,25 +14,26 @@ from spacy_lookup import Entity
 import pickle
 from collections import Counter
 from phenox.paths import PhenoXPaths
+import pandas as pd
 
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
 class Pubmed:
-    def __init__(self, email, pmid_list):
+    def __init__(self, email):
         Entrez.email = email
-        paths = PhenoXPaths()
-        self.pmid_list = pmid_list
-        self.pmid_abstracts = {}
+        self.paths = PhenoXPaths()
+        self.pmid_abstracts = dict()
         # disease and human phenotype NER
         self.pmid_dner = {}
         # raw entity text
         self.pmid_ent_text = {}
+        self.pmid_clustered = [] # a list of list: cluster of pmids
         self.dner_cluster = {}
         self.total_dner = []
 
         self.nlp = spacy.load('en')
-        self.id2kw = pickle.load(open(os.path.join(paths.data_dir, 'id2kw_dict.pkl'), 'rb'))
-        self.kw2id = pickle.load(open(os.path.join(paths.data_dir, 'kw2id_dict.pkl'), 'rb'))
+        self.id2kw = pickle.load(open(os.path.join(self.paths.data_dir, 'id2kw_dict.pkl'), 'rb'))
+        self.kw2id = pickle.load(open(os.path.join(self.paths.data_dir, 'kw2id_dict.pkl'), 'rb'))
         entity = Entity(keywords_list=list(self.kw2id.keys()), label='DO/HPO')
         self.nlp.add_pipe(entity, last=True)
         
@@ -44,6 +45,7 @@ class Pubmed:
             abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText'][0]
         except:
             abstract = ''
+
         self.pmid_abstracts[pmid] = str(abstract)
         
     def extract_DNER(self, pmid):
@@ -76,12 +78,26 @@ class Pubmed:
             n_cluster += 1
         return n_cluster
 
-    def get_term_frequencies(self):
+    # organize pmid into clusters from cluster analysis output (csv file)
+    def get_cluster_from_csv(self, gdsid_pmid_map, csvfilepath):
+        """
+        Change read_csv path if csvfilepath changes in the future
+        """
+        cluster_res = pd.read_csv(csvfilepath)
+        cluster_names = cluster_res['cluster'].unique()
+        for n in cluster_names:
+            c_pmid = []
+            for g in cluster_res['gdsid'][cluster_res['cluster'] == n]:
+                c_pmid.append(gdsid_pmid_map[str(g)])
+            self.pmid_clustered.append(c_pmid)
+        return self.pmid_clustered
+
+    def get_term_frequencies(self, pmid_list):
         """
         Get all term frequencies
         :return:
         """
-        for pmid in tqdm.tqdm(self.pmid_list):
+        for pmid in tqdm.tqdm(pmid_list):
             self.fetch_abstract(pmid)
             self.extract_DNER(pmid)
 
