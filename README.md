@@ -84,6 +84,11 @@ Phenotype and disease ontological terms are enriched using occurence in PubMed a
 
 ### Expression Profiles
 
+<object data="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/hcluster.pdf" type="application/pdf" width="600px">
+    <embed src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/hcluster.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/hcluster.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 <img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/hcluster.pdf" width="600" align="middle"/>
 <img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/heatmap.pdf" width="600" align="middle"/>
 
