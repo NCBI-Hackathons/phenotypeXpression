@@ -3,7 +3,7 @@ import sys
 import logging
 import time
 import tqdm
-import random
+import subprocess
 from typing import List, Dict, Tuple
 from collections import defaultdict
 import Bio.Entrez as Entrez
@@ -238,7 +238,16 @@ class GEOQuery:
         pdd = pdd[pdd.sum(axis=1) > 1]
         pdd.to_csv(os.path.join(self.paths.output_dir, "gds.gene.mat.csv"))
         return
-    
+
+    def call_r_clustering_script(self):
+        """
+        Call R script
+        :return:
+        """
+        r_script_path = os.path.join(self.paths.src_dir, 'cluster.R')
+        subprocess.run(["Rscript", r_script_path, self.paths.data_dir])
+        return
+
     def get_all_geo_data(self, mesh_term: str) -> Dict:
         """
         Link all functions together to retrieve GEO data
@@ -250,7 +259,6 @@ class GEOQuery:
         pids = self.get_pubmed_ids(gds_dict)
         gene_dict = self.genedict_from_profile(query_results)
         self.export_gds_to_csv(gds_dict)
-
+        self.call_r_clustering_script()
         return pids
-    
 
