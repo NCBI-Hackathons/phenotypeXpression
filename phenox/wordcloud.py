@@ -9,7 +9,7 @@ class WordcloudPlotter:
     def __init__(self):
         self.paths = PhenoXPaths()
 
-    def generate_wordclouds(self, clusters):
+    def generate_wordclouds(self, clusters, output_file):
         """
         Generate plot with subplots of wordclouds
         :param clusters:
@@ -18,7 +18,7 @@ class WordcloudPlotter:
         num_clusters = len(clusters)
         num_columns = 3
         num_rows = int(math.ceil(num_clusters/num_columns))
-        fig, axes = plt.subplots(num_rows, num_columns)
+        fig, axes = plt.subplots(num_rows, num_columns, figsize=(18, 5*num_rows), dpi= 80)
         fig.subplots_adjust(hspace=0, wspace=0)
 
         single_row = False
@@ -52,4 +52,6 @@ class WordcloudPlotter:
                 axes[row, col].set_title('Group %i' % k)
                 axes[row, col].axis('on')
 
+        plt.savefig(output_file, bbox_inches='tight')
         plt.show()
+        print('Wordcloud saved to %s' % output_file)
