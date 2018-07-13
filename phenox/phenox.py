@@ -31,7 +31,7 @@ class PhenoX:
         mesh_entry = mesh.lookup(self.query_str)
         return mesh_entry, [mesh.mesh[c]['name'] for c in mesh_entry['children']]
 
-    def _get_geo_datasets(self, mesh_term: str) -> List:
+    def _get_geo_datasets(self, mesh_term: str) -> Dict:
         """
         Given a MeSH term, fetch GEO datasets and corresponding PubMed IDs
         :param mesh_term:
@@ -39,10 +39,10 @@ class PhenoX:
         """
         sys.stdout.write("Retrieving matching GEO datasets...\n")
         geo = GEOQuery(email=self.email)
-        pubmed_clusters = geo.get_all_geo_data(mesh_term)
-        return pubmed_clusters
+        pubmed_dict = geo.get_all_geo_data(mesh_term)
+        return pubmed_dict
 
-    def _fetch_pubmed_abstracts(self, pubmed_ids: List) -> Dict:
+    def _fetch_pubmed_abstracts(self, pubmed_dict: Dict) -> Dict:
         """
         Retrieve Pubmed abstracts from list of Pubmed IDs in the GEO data dict
         :param geo_data_dict:
@@ -50,11 +50,15 @@ class PhenoX:
         """
         sys.stdout.write("Retrieving matching PubMed abstracts...\n")
 
+        cluster_csv_file = os.path.join(self.paths.data_dir, 'memb.csv')
+
+        pubmed = Pubmed(self.email)
+        pubmed_ids = pubmed.get_cluster_from_csv(pubmed_dict, cluster_csv_file)
+
         wordcloud_data = dict()
 
         for i, id_list in enumerate(pubmed_ids):
-            pubmed = Pubmed(self.email, id_list)
-            term_freq = pubmed.get_term_frequencies()
+            term_freq = pubmed.get_term_frequencies(id_list)
             wordcloud_data[i + 1] = term_freq
 
         return wordcloud_data
@@ -80,10 +84,10 @@ class PhenoX:
 
         # retrieve GEO datasets, generate clusters, visualize in R,
         # and output clustered pubmed abstracts
-        pubmed_clusters = self._get_geo_datasets(mesh_term['name'])
+        pubmed_dict = self._get_geo_datasets(mesh_term['name'])
 
         # NER and count term frequency in pubmed clusters
-        term_frequency = self._fetch_pubmed_abstracts(pubmed_clusters)
+        term_frequency = self._fetch_pubmed_abstracts(pubmed_dict)
 
         # visualize everything
         self._visualize(term_frequency)

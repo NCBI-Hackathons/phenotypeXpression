@@ -19,11 +19,10 @@ import pandas as pd
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
 class Pubmed:
-    def __init__(self, email, pmid_list):
+    def __init__(self, email):
         Entrez.email = email
-        paths = PhenoXPaths()
-        self.pmid_list = pmid_list
-        self.pmid_abstracts = {}
+        self.paths = PhenoXPaths()
+        self.pmid_abstracts = dict()
         # disease and human phenotype NER
         self.pmid_dner = {}
         # raw entity text
@@ -33,8 +32,8 @@ class Pubmed:
         self.total_dner = []
 
         self.nlp = spacy.load('en')
-        self.id2kw = pickle.load(open(os.path.join(paths.data_dir, 'id2kw_dict.pkl'), 'rb'))
-        self.kw2id = pickle.load(open(os.path.join(paths.data_dir, 'kw2id_dict.pkl'), 'rb'))
+        self.id2kw = pickle.load(open(os.path.join(self.paths.data_dir, 'id2kw_dict.pkl'), 'rb'))
+        self.kw2id = pickle.load(open(os.path.join(self.paths.data_dir, 'kw2id_dict.pkl'), 'rb'))
         entity = Entity(keywords_list=list(self.kw2id.keys()), label='DO/HPO')
         self.nlp.add_pipe(entity, last=True)
         
@@ -42,31 +41,12 @@ class Pubmed:
     def fetch_abstract(self, pmid):
         handle = Entrez.efetch(db='pubmed', id=pmid, retmode='xml')
         record = Entrez.read(handle)
-        abs_str = []
-        # abstract text
         try:
-            abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText']
-            for a in abstract:
-                abs_str.append(a)
+            abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText'][0]
         except:
-            abs_str.append('')
-            
-        # title
-        try:
-            title = record['PubmedArticle'][0]['MedlineCitation']['Article']['ArticleTitle']
-            abs_str.append(title)
-        except:
-            abs_str.append('')
-            
-        # keyword list
-        try:
-            kwls = record['PubmedArticle'][0]['MedlineCitation']['KeywordList'][0]
-            for w in kwls:
-                abs_str.append(w)
-        except:
-            abs_str.append('')
-            
-        self.pmid_abstracts[pmid] = ' '.join(abs_str)
+            abstract = ''
+
+        self.pmid_abstracts[pmid] = str(abstract)
         
     def extract_DNER(self, pmid):
         self.pmid_ent_text[pmid], self.pmid_dner[pmid] = self.find_DNER(self.pmid_abstracts[pmid])
@@ -98,20 +78,8 @@ class Pubmed:
             n_cluster += 1
         return n_cluster
 
-    def get_term_frequencies(self):
-        """
-        Get all term frequencies
-        :return:
-        """
-        for pmid in tqdm.tqdm(self.pmid_list):
-            self.fetch_abstract(pmid)
-            self.extract_DNER(pmid)
-
-        freq_list = Counter(self.total_dner)
-        return freq_list
-    
     # organize pmid into clusters from cluster analysis output (csv file)
-    def get_cluster_from_csv(self, gdsid_pmid_map, csvfilepath='../data/memb.csv'):
+    def get_cluster_from_csv(self, gdsid_pmid_map, csvfilepath):
         """
         Change read_csv path if csvfilepath changes in the future
         """
@@ -119,7 +87,19 @@ class Pubmed:
         cluster_names = cluster_res['cluster'].unique()
         for n in cluster_names:
             c_pmid = []
-            for g in cluster_res['gdsid'][cluster_res['cluster']==n]:
-                c_pmid.append(gdsid_pmid_map[g])
+            for g in cluster_res['gdsid'][cluster_res['cluster'] == n]:
+                c_pmid.append(gdsid_pmid_map[str(g)])
             self.pmid_clustered.append(c_pmid)
-        
+        return self.pmid_clustered
+
+    def get_term_frequencies(self, pmid_list):
+        """
+        Get all term frequencies
+        :return:
+        """
+        for pmid in tqdm.tqdm(pmid_list):
+            self.fetch_abstract(pmid)
+            self.extract_DNER(pmid)
+
+        freq_list = Counter(self.total_dner)
+        return freq_list

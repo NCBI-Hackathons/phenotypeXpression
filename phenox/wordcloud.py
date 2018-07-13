@@ -45,11 +45,11 @@ class WordcloudPlotter:
             wordcloud = WordCloud(background_color="white").generate_from_frequencies(freqs)
             if single_row:
                 axes[col].imshow(wordcloud, interpolation="bilinear")
-                axes[col].set_title('Group %i' % k)
+                axes[col].set_title('Cluster %i' % k)
                 axes[col].axis('on')
             else:
                 axes[row, col].imshow(wordcloud, interpolation="bilinear")
-                axes[row, col].set_title('Group %i' % k)
+                axes[row, col].set_title('Cluster %i' % k)
                 axes[row, col].axis('on')
 
         plt.savefig(output_file, bbox_inches='tight')
