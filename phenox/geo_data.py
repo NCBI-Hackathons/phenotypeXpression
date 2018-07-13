@@ -1,9 +1,9 @@
+import os
 import sys
 import logging
 import time
 import tqdm
 import random
-import math
 from typing import List, Dict, Tuple
 from collections import defaultdict
 import Bio.Entrez as Entrez
@@ -11,6 +11,7 @@ from urllib.error import HTTPError
 import pandas as pd
 
 import phenox.utils.base_utils as base_utils
+from phenox.paths import PhenoXPaths
 
 
 # class for querying GEO databases
@@ -21,6 +22,7 @@ class GEOQuery:
         self.efetch_batch = efetch_batch
         self.elink_batch = elink_batch
         self.db = 'geoprofiles'
+        self.paths = PhenoXPaths()
 
     @staticmethod
     def timing_tool():
@@ -221,16 +223,20 @@ class GEOQuery:
 
         return pids
 
-    def export_gds_to_csv(self,gds_dict):
+    def export_gds_to_csv(self, gds_dict):
+        """
+        Export GDS data to CSV file
+        :param gds_dict:
+        :return:
+        """
         pdd = pd.DataFrame(list(gds_dict.values()))
         pdd.index = gds_dict.keys()
         pdd = pdd.fillna(0)
-        pdd[pdd>1]=1
-        col_select = pdd.columns[pdd.sum()>1]
-        pdd = pdd.loc[:,col_select]
+        pdd[pdd > 1] = 1
+        col_select = pdd.columns[pdd.sum() > 1]
+        pdd = pdd.loc[:, col_select]
         pdd = pdd[pdd.sum(axis=1) > 1]
-        pdd.to_csv(os.path.join(self.paths.output_dir,"gds.gene.mat.csv"))
-        
+        pdd.to_csv(os.path.join(self.paths.output_dir, "gds.gene.mat.csv"))
         return
     
     def get_all_geo_data(self, mesh_term: str) -> List:
