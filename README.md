@@ -41,13 +41,14 @@ python run_phenox.py A.N.Other@example.com "Psoriasis"
 
 Should produce the following files:
 
-* Dendgrogram of GDS with bottstraps and cluster boxes
+* Dendgrogram of GDS with node P-values and cluster boxes
 * A word cloud for each cluster box
 * Heatmap of differentially expressed genes per GDS (columns)
 * A pairwise distance graph of GDS by differing gene set
 
 ### Dependencies
 
+python deps
 ```
 biopython
 spacy
@@ -56,6 +57,19 @@ json
 pickle
 collections
 tqdm
+```
+
+R libraries
+```
+igraph
+pvclust
+ape
+```
+
+Bioconductor R libraries
+```
+circlize
+ComplexHeatmap
 ```
 
 ## Details on Results...
