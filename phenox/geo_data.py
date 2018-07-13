@@ -8,6 +8,7 @@ from typing import List, Dict, Tuple
 from collections import defaultdict
 import Bio.Entrez as Entrez
 from urllib.error import HTTPError
+import pandas as pd
 
 import phenox.utils.base_utils as base_utils
 
@@ -220,6 +221,18 @@ class GEOQuery:
 
         return pids
 
+    def export_gds_to_csv(self,gds_dict):
+        pdd = pd.DataFrame(list(gds_dict.values()))
+        pdd.index = gds_dict.keys()
+        pdd = pdd.fillna(0)
+        pdd[pdd>1]=1
+        col_select = pdd.columns[pdd.sum()>1]
+        pdd = pdd.loc[:,col_select]
+        pdd = pdd[pdd.sum(axis=1) > 1]
+        pdd.to_csv(os.path.join(self.paths.output_dir,"gds.gene.mat.csv"))
+        
+        return
+    
     def get_all_geo_data(self, mesh_term: str) -> List:
         """
         Link all functions together to retrieve GEO data
@@ -230,7 +243,8 @@ class GEOQuery:
         gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
         pids = self.get_pubmed_ids(gds_dict)
         gene_dict = self.genedict_from_profile(query_results)
-
+        self.export_gds_to_csv(gds_dict)
+        
         def split_pids_into_clusters(pid_dict, num_clusters):
             groups = []
             pid_list = list(set(pid_dict.values()))
@@ -250,4 +264,5 @@ class GEOQuery:
         clusters = split_pids_into_clusters(pids, 2)
 
         return clusters
+    
 
