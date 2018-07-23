@@ -1,16 +1,13 @@
+import sys
 import tqdm
 import json
 import rdflib
 from rdflib import Namespace
 from rdflib.namespace import RDF, RDFS, OWL
 
-doid_path = '/Users/lwang/git/ontologies/doid.owl'
-hpo_path = '/Users/lwang/git/ontologies/hp.owl'
-
-doid_out_path = '/Users/lwang/git/phenotypeXpression/data/doid.json'
-hpo_out_path = '/Users/lwang/git/phenotypeXpression/data/hp.json'
 
 oboInOwl = Namespace('http://www.geneontology.org/formats/oboInOwl#')
+
 
 def owl_to_json(owl_file, json_file):
     ent_dict = dict()
@@ -26,5 +23,8 @@ def owl_to_json(owl_file, json_file):
     with open(json_file, 'wb') as f:
         f.write(json.dumps(ent_dict).encode('utf-8'))
 
-owl_to_json(doid_path, doid_out_path)
-owl_to_json(hpo_path, hpo_out_path)
+
+if __name__ == '__main__':
+    owl_file = sys.argv[1]
+    output_path = sys.argv[2]
+    owl_to_json(owl_file, output_path)
