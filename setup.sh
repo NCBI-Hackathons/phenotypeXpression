@@ -16,12 +16,14 @@ if ! (which conda); then
 	fi
 fi
 
-export PATH=$HOME/anaconda3/bin:$PATH
+CONDAPATH="$(which conda)"
+
+export PATH=$CONDAPATH:$PATH
 
 conda create -n ${CONDAENV} -y python==3.6 pip pytest || true
 
 echo "Activating Conda Environment ----->"
-source ~/anaconda3/bin/activate ${CONDAENV}
+source $CONDAPATH/activate ${CONDAENV}
 
 pip install -r requirements.txt
 
