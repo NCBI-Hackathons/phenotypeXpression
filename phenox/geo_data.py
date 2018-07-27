@@ -89,7 +89,8 @@ class GEOQuery:
         count = count1
 
         # sliding window of history list in batch size
-        for start in tqdm.tqdm(range(0, count, self.efetch_batch)):
+        for start in tqdm.tqdm(range(0, count, self.efetch_batch),
+                               desc="Document batches"):
             end = min(count, start + self.efetch_batch)
             logging.info("Going to download record {} to {}"
                          .format(start + 1, end))
@@ -172,7 +173,8 @@ class GEOQuery:
         gene_freq = defaultdict(int)
 
         for batch in query_results:
-            for docsum in tqdm.tqdm(batch['DocumentSummarySet']['DocumentSummary']):
+            for docsum in tqdm.tqdm(batch['DocumentSummarySet']['DocumentSummary'],
+                                    desc="GEO Datasets"):
                 gdsid = docsum['GDS']
                 gids = docsum['ENTREZ_GENE_ID'].split(";")
                 for gid in gids:

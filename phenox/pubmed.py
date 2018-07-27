@@ -5,7 +5,7 @@ Created on Wed Jul 11 15:34:02 2018
 @author: Xiaojun
 """
 
-
+import sys
 import tqdm
 import Bio.Entrez as Entrez
 import spacy
@@ -88,7 +88,11 @@ class Pubmed:
         for n in cluster_names:
             c_pmid = []
             for g in cluster_res['gdsid'][cluster_res['cluster'] == n]:
-                c_pmid.append(gdsid_pmid_map[str(g)])
+                try:
+                    c_pmid.append(gdsid_pmid_map[str(g)])
+                except KeyError:
+                    sys.stdout.write('Missing Pubmed key: {}\n'.format(g))
+                    continue
             self.pmid_clustered.append(c_pmid)
         return self.pmid_clustered
 
