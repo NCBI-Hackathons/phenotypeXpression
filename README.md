@@ -32,6 +32,10 @@ cd phenotypeXpression
 sh setup.sh
 ``` 
 
+If you are running OS X, you will also need to install developer tools. Type the following into the terminal:
+
+```xcode-select --install```
+
 Examples of each input file type are provided in the test subfolder. For instance:
 
 ```
