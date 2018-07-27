@@ -41,12 +41,29 @@ class Pubmed:
     def fetch_abstract(self, pmid):
         handle = Entrez.efetch(db='pubmed', id=pmid, retmode='xml')
         record = Entrez.read(handle)
+        abs_str = []
+        # abstract text
         try:
-            abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText'][0]
+            abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText']
+            for a in abstract:
+                abs_str.append(a)
         except:
-            abstract = ''
+            pass
+        # title
+        try:
+            title = record['PubmedArticle'][0]['MedlineCitation']['Article']['ArticleTitle']
+            abs_str.append(title)
+        except:
+            pass
+        # keyword list
+        try:
+            kwls = record['PubmedArticle'][0]['MedlineCitation']['KeywordList'][0]
+            for w in kwls:
+                abs_str.append(w)
+        except:
+            pass
 
-        self.pmid_abstracts[pmid] = str(abstract)
+        self.pmid_abstracts[pmid] = ' '.join(abs_str).strip()
         
     def extract_DNER(self, pmid):
         self.pmid_ent_text[pmid], self.pmid_dner[pmid] = self.find_DNER(self.pmid_abstracts[pmid])
