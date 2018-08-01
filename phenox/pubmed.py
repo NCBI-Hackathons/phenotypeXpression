@@ -76,8 +76,9 @@ class Pubmed:
         for ent in doc.ents:
             if ent.label_=='DO/HPO' and ent.__getitem__(0).is_stop==False:
                 kw.append(ent.text)
-                # convert recognized keyword to the main term (first item) in DO/HPO
-                dner.append(self.id2kw[self.kw2id[ent.text.lower()]][0])
+                if ent.text.lower() in self.kw2id:
+                    # convert recognized keyword to the main term (first item) in DO/HPO
+                    dner.append(self.id2kw[self.kw2id[ent.text.lower()]][0])
         self.total_dner.extend(dner)
         return Counter(kw), dner
     
