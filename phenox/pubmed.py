@@ -15,6 +15,7 @@ import pickle
 from collections import Counter
 from phenox.paths import PhenoXPaths
 import pandas as pd
+from geo_data import GEOQuery
 
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
@@ -126,3 +127,42 @@ class Pubmed:
 
         freq_list = Counter(self.total_dner)
         return freq_list
+    
+    
+class PubmedQuery(GEOQuery):
+    def get_ncbi_docsum(self, mesh_term, gene_name_list) -> List:
+        """
+        Get document summaries from NCBI database
+        :param mesh_term:
+        :param database:
+        :return:
+        """
+        start = self.timing_tool()
+        staging_list = []
+        query_results = []
+        
+        gene_list = ''
+        for i in range(len(gene_name_list)-1):
+            gene_list+='"{}" OR '.format(gene_name_list[i])
+        gene_list+='"{}"'.format(gene_name_list[-1])
+        search_term = '"{}"[MeSH Terms] AND ({})'.format(mesh_term, gene_list)
+
+        # First, esearch using mesh_term, and keep results on ePost history server
+        webenv1, query_key1, count1 = self.post_ncbi(
+            'esearch', db='pubmed', usehistory='y',
+            term=search_term)
+
+        # Then, efetch in batches of efetch_batch
+        self.batch_ncbi('efetch', staging_list, count1, db=database,
+                        rettype='docsum', retmax=self.efetch_batch, webenv=webenv1,
+                        query_key=query_key1)
+
+        # append to passed list
+        [query_results.append(batch) for batch in staging_list]
+
+        # stop timing and log
+        stop = self.timing_tool()
+        logging.info('Download time: {} min, Batches run -> {}'
+                     .format(((stop - start) / 60), len(query_results)))
+
+        return query_results
