@@ -146,7 +146,9 @@ class PubmedQuery(GEOQuery):
             gene_list+='"{}" OR '.format(gene_name_list[i])
         gene_list+='"{}"'.format(gene_name_list[-1])
         search_term = '"{}"[MeSH Terms] AND ({})'.format(mesh_term, gene_list)
-
+        if len(search_term)>4000:
+            print('Query term is longer than 4000 charaters!')
+        
         # First, esearch using mesh_term, and keep results on ePost history server
         webenv1, query_key1, count1 = self.post_ncbi(
             'esearch', db='pubmed', usehistory='y',
