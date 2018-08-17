@@ -27,7 +27,6 @@ class Pubmed:
         self.pmid_dner = {}
         # raw entity text
         self.pmid_ent_text = {}
-        self.pmid_clustered = [] # a list of list: cluster of pmids
         self.dner_cluster = {}
         self.total_dner = []
 
@@ -97,22 +96,24 @@ class Pubmed:
         return n_cluster
 
     # organize pmid into clusters from cluster analysis output (csv file)
-    def get_cluster_from_csv(self, gdsid_pmid_map, csvfilepath):
+    def get_clusters(self, gdsid_pmid_map, cluster_dict):
         """
         Change read_csv path if csvfilepath changes in the future
         """
-        cluster_res = pd.read_csv(csvfilepath)
-        cluster_names = cluster_res['cluster'].unique()
-        for n in cluster_names:
+        pmid_clustered = dict()
+
+        for cluster_name, cluster_genes in cluster_dict.items():
             c_pmid = []
-            for g in cluster_res['gdsid'][cluster_res['cluster'] == n]:
+            for gene_id in cluster_genes:
                 try:
-                    c_pmid.append(gdsid_pmid_map[str(g)])
+                    c_pmid.append(gdsid_pmid_map[gene_id])
                 except KeyError:
                     sys.stdout.write('Missing Pubmed key: {}\n'.format(g))
                     continue
-            self.pmid_clustered.append(c_pmid)
-        return self.pmid_clustered
+            pmid_clustered[cluster_name] = c_pmid
+
+        print(pmid_clustered)
+        return pmid_clustered
 
     def get_term_frequencies(self, pmid_list):
         """
