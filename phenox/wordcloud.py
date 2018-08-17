@@ -38,20 +38,23 @@ class WordcloudPlotter:
                     axes[i, j].get_yaxis().set_ticks([])
                     axes[i, j].axis('off')
 
+        clusters_sort = [(k, v) for k, v in clusters.items()]
+        clusters_sort.sort(key=lambda x: x[0])
+
         # plot clusters
-        for k, freqs in clusters.items():
-            row = int(math.floor((k - 1) / num_columns))
-            col = (k - 1) % num_columns
+        for i, cluster in enumerate(clusters_sort):
+            cluster_name, freqs = cluster
+            row = int(math.floor(i / num_columns))
+            col = i % num_columns
             wordcloud = WordCloud(background_color="white").generate_from_frequencies(freqs)
             if single_row:
                 axes[col].imshow(wordcloud, interpolation="bilinear")
-                axes[col].set_title('Cluster %i' % k)
+                axes[col].set_title('{}'.format(cluster_name))
                 axes[col].axis('on')
             else:
                 axes[row, col].imshow(wordcloud, interpolation="bilinear")
-                axes[row, col].set_title('Cluster %i' % k)
+                axes[row, col].set_title('{}'.format(cluster_name))
                 axes[row, col].axis('on')
 
         plt.savefig(output_file, bbox_inches='tight')
-        plt.show()
         print('Wordcloud saved to %s' % output_file)
