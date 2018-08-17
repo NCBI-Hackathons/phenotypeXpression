@@ -3,26 +3,54 @@ import sys
 import logging
 import time
 import tqdm
-import subprocess
 from typing import List, Dict, Tuple
 from collections import defaultdict
 import Bio.Entrez as Entrez
 from urllib.error import HTTPError
-import pandas as pd
 
-import phenox.utils.base_utils as base_utils
+import numpy as np
+import pandas as pd
+import pydendroheatmap as pdh
+
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.collections import LineCollection
+
+from sklearn import manifold
+from sklearn.metrics import euclidean_distances
+from sklearn.decomposition import PCA
+
+from rpy2.robjects import pandas2ri, default_converter
+from rpy2.robjects.conversion import Converter, localconverter
+from rpy2.robjects.packages import importr
+from rpy2 import rinterface
+
 from phenox.paths import PhenoXPaths
 
 
 # class for querying GEO databases
 class GEOQuery:
-    def __init__(self, email, tool="phenotypeXpression", efetch_batch=5000, elink_batch=100):
+    def __init__(self, term, email, tool="phenotypeXpression", efetch_batch=5000, elink_batch=100):
         Entrez.email = email
         Entrez.tool = tool
         self.efetch_batch = efetch_batch
         self.elink_batch = elink_batch
         self.db = 'geoprofiles'
-        self.paths = PhenoXPaths()
+
+        paths = PhenoXPaths()
+        term_name = term.replace(' ', '-')
+        self.hcluster_file = os.path.join(
+            paths.output_dir, "{}_GDS_hierarchical_clusters.pdf".format(term_name)
+        )
+        self.tree_file = os.path.join(
+            paths.output_dir, "{}_GDS_newick_tree.txt".format(term_name)
+        )
+        self.heatmap_file = os.path.join(
+            paths.output_dir, "{}_GDS_heatmap.pdf".format(term_name)
+        )
+        self.dist_graph_file = os.path.join(
+            paths.output_dir, "{}_GDS_dist_graph.pdf".format(term_name)
+        )
 
     @staticmethod
     def timing_tool():
@@ -238,23 +266,136 @@ class GEOQuery:
         col_select = pdd.columns[pdd.sum() > 1]
         pdd = pdd.loc[:, col_select]
         pdd = pdd[pdd.sum(axis=1) > 1]
-        pdd.to_csv(os.path.join(self.paths.output_dir, "gds.gene.mat.csv"))
-        return
+        return pdd
 
-    def call_r_clustering_script(self):
+    def _generate_heatmap(self, gds_py, clusters):
         """
-        Call R script
+        Generate heatmap from GDS data
+        :param gds_py:
         :return:
         """
-        r_script_path = os.path.join(self.paths.src_dir, 'cluster.R')
-        r_command_args = ['Rscript', r_script_path, '-d', self.paths.data_dir]
-        r_command = ' '.join(r_command_args)
-        r_process = subprocess.Popen(r_command, stdout=subprocess.PIPE, shell=True)
-        (output, err) = r_process.communicate()
-        p_status = r_process.wait()
+        # TODO: add dendrogram to heatmap; cannot currently convert R dendrogram to scipy format
+        gds_array = []
+
+        for cl_name, cl_members in clusters.items():
+            for mem in cl_members:
+                gds_array.append(gds_py.loc[[mem]])
+
+        gds_array = np.array(pd.concat(gds_array))
+        gds_array = gds_array.transpose()
+
+        heatmap = pdh.DendroHeatMap(heat_map_data=gds_array)
+        heatmap.title = "GDS clustering heatmap"
+        heatmap.export(self.heatmap_file)
+        print("Heatmap written to {}".format(self.heatmap_file))
         return
 
-    def get_all_geo_data(self, mesh_term: str) -> Dict:
+    def _generate_dist_graph(self, gds_py):
+        """
+        Generate a distance plot from GDS matrix
+        :param gds_py:
+        :return:
+        """
+        exp_list = list(gds_py.index)
+        gds_array = np.array(gds_py)
+        gds_array -= gds_array.mean()
+
+        similarities = euclidean_distances(gds_array)
+        mds = manifold.MDS(n_components=2, max_iter=100, eps=1e-9,
+                           dissimilarity="precomputed", n_jobs=1)
+        pos = mds.fit(similarities).embedding_
+
+        clf = PCA(n_components=2)
+        pos = clf.fit_transform(pos)
+
+        fig = plt.figure(1)
+        ax = plt.axes([0., 0., 1., 1.])
+
+        plt.scatter(pos[:, 0], pos[:, 1], color='navy', s=100, lw=0, label='MDS')
+        for i, txt in enumerate(exp_list):
+            ax.annotate(txt, (pos[i, 0] + 0.1, pos[i, 1] + 0.1), color='black')
+
+        segments = [[pos[i, :], pos[j, :]] for i in range(len(pos)) for j in range(len(pos))]
+        values = np.abs(similarities)
+        lc = LineCollection(segments,
+                            zorder=0, cmap=plt.cm.Blues,
+                            norm=plt.Normalize(0, values.max()))
+        lc.set_array(similarities.flatten())
+        lc.set_linewidths(0.5 * np.ones(len(segments)))
+        ax.add_collection(lc)
+
+        xmin, xmax = plt.xlim()
+        plt.xlim((xmin, xmax + 0.5))
+
+        ymin, ymax = plt.ylim()
+        plt.ylim((ymin - 1., ymax + 1.))
+
+        fig.suptitle("Distances")
+        fig.savefig(self.dist_graph_file, bbox_inches='tight')
+        print("Distance graph written to {}".format(self.dist_graph_file))
+        return
+
+    def call_r_clustering(self, gds_py):
+        """
+        Call R script
+        :param gds: dataframe with GDS data
+        :return:
+        """
+        # load all R libraries
+        base = importr("base")
+        pvclust = importr("pvclust")
+        graphics = importr("graphics")
+        grdevices = importr("grDevices")
+        ape = importr("ape")
+
+        # convert pandas df to R df
+        with localconverter(default_converter + pandas2ri.converter) as cv:
+            gds = pandas2ri.py2ri(gds_py)
+
+        matrix = base.as_matrix(gds)
+        mat_trans = matrix.transpose()
+
+        # cluster over studies
+        print("Clustering on Studies...")
+        fit = pvclust.pvclust(mat_trans, nboot=1000, method_hclust="ward.D2", method_dist="euclidean")
+
+        # write clustering output to pdf
+        grdevices.pdf(self.hcluster_file, paper="a4")
+        graphics.plot(fit)
+        pvclust.pvrect(fit, alpha=.95)
+        grdevices.dev_off()
+        print("Clustering diagram written to {}".format(self.hcluster_file))
+
+        # write cluster tree output to tree file
+        hc = fit.rx2("hclust")
+        tree = ape.as_phylo(hc)
+        ape.write_tree(phy=tree, file=self.tree_file)
+        print("Cluster tree written to {}".format(self.tree_file))
+
+        # extract cluster membership
+        pvp = pvclust.pvpick(fit)
+        clusters = pvp.rx2("clusters")
+
+        cluster_members = defaultdict(list)
+
+        if clusters[0] == rinterface.NULL:
+            print("WARNING: Only one cluster!")
+            cluster_members['cluster0'] = list(gds_py.index)
+        else:
+            for i, clust in enumerate(clusters):
+                clust_name = "cluster{}".format(i)
+                for pmid in clust:
+                    cluster_members[clust_name].append(pmid)
+
+        # generate heatmap
+        self._generate_heatmap(gds_py, cluster_members)
+
+        # generate distance graph
+        self._generate_dist_graph(gds_py)
+
+        return cluster_members
+
+    def get_all_geo_data(self, mesh_term: str) -> Tuple:
         """
         Link all functions together to retrieve GEO data
         :param mesh_term:
@@ -264,7 +405,7 @@ class GEOQuery:
         gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
         pids = self.get_pubmed_ids(gds_dict)
         gene_dict = self.genedict_from_profile(query_results)
-        self.export_gds_to_csv(gds_dict)
-        self.call_r_clustering_script()
-        return pids
+        gds = self.export_gds_to_csv(gds_dict)
+        clusters = self.call_r_clustering(gds)
+        return pids, clusters
 

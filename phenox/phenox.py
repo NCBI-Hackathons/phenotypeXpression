@@ -38,28 +38,27 @@ class PhenoX:
         :return:
         """
         sys.stdout.write("Retrieving matching GEO datasets...\n")
-        geo = GEOQuery(email=self.email)
+        geo = GEOQuery(term=mesh_term, email=self.email)
         pubmed_dict = geo.get_all_geo_data(mesh_term)
         return pubmed_dict
 
-    def _fetch_pubmed_abstracts(self, pubmed_dict: Dict) -> Dict:
+    def _fetch_pubmed_abstracts(self, pubmed_dict: Dict, cluster_dict: Dict) -> Dict:
         """
         Retrieve Pubmed abstracts from list of Pubmed IDs in the GEO data dict
-        :param geo_data_dict:
+        :param pubmed_dict: key=cluster_ids, value=list of pubmed ids
+        :param cluster_dict: key=cluster_ids, value=list of gene ids
         :return:
         """
         sys.stdout.write("Retrieving matching PubMed abstracts...\n")
 
-        cluster_csv_file = os.path.join(self.paths.data_dir, 'memb.csv')
-
         pubmed = Pubmed(self.email)
-        pubmed_ids = pubmed.get_cluster_from_csv(pubmed_dict, cluster_csv_file)
+        pubmed_ids = pubmed.get_clusters(pubmed_dict, cluster_dict)
 
         wordcloud_data = dict()
 
-        for i, id_list in enumerate(pubmed_ids):
-            term_freq = pubmed.get_term_frequencies(id_list)
-            wordcloud_data[i + 1] = term_freq
+        for cluster_name, cluster_ids in pubmed_ids.items():
+            term_freq = pubmed.get_term_frequencies(cluster_ids)
+            wordcloud_data[cluster_name] = term_freq
 
         return wordcloud_data
 
@@ -69,9 +68,10 @@ class PhenoX:
         :param clusters:
         :return:
         """
-        heatmap_file = os.path.join(self.paths.data_dir, 'heatmap.pdf')
-        os.system(heatmap_file)
-        output_file = os.path.join(self.paths.output_dir, 'wordcloud.png')
+        output_file = os.path.join(
+            self.paths.output_dir,
+            '{}_GDS_wordcloud.png'.format(self.query_str.replace(' ', '-'))
+        )
         plotter = WordcloudPlotter()
         plotter.generate_wordclouds(clusters, output_file)
         return
@@ -86,10 +86,10 @@ class PhenoX:
 
         # retrieve GEO datasets, generate clusters, visualize in R,
         # and output clustered pubmed abstracts
-        pubmed_dict = self._get_geo_datasets(mesh_term['name'])
+        pubmed_dict, cluster_dict = self._get_geo_datasets(mesh_term['name'])
 
         # NER and count term frequency in pubmed clusters
-        term_frequency = self._fetch_pubmed_abstracts(pubmed_dict)
+        term_frequency = self._fetch_pubmed_abstracts(pubmed_dict, cluster_dict)
 
         # visualize everything
         self._visualize(term_frequency)
