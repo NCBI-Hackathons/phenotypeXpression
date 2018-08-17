@@ -25,6 +25,17 @@ conda create -n ${CONDAENV} -y python==3.6 pip pytest || true
 echo "Activating Conda Environment ----->"
 source $CONDAPATH/activate ${CONDAENV}
 
+echo "Installing required Python libraries ----->"
 pip install -r requirements.txt
+conda install matplotlib
 
+echo "Installing required R libraries ----->"
+conda install -c r r-base
+conda install rpy2
+conda install -c r r-pvclust r-ape r-circlize
+
+echo "Installing phenoX ----->"
 python setup.py develop
+
+echo "Installing SpaCy en ----->"
+python -m spacy download en
