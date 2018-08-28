@@ -54,13 +54,16 @@ Should produce the following files:
 
 python deps
 ```
-biopython
-spacy
-spacy-lookup
-json
-pickle
-collections
-tqdm
+biopython==1.72
+spacy==2.0.12
+spacy-lookup==0.0.2
+tqdm==4.23.4
+numpy==1.14.5
+pandas==0.23.3
+wordcloud==1.4.1
+scikit-learn==0.19.2
+pydendroheatmap==1.5
+scipy==1.1.0
 ```
 
 R libraries
