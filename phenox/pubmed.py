@@ -130,29 +130,20 @@ class Pubmed:
     
     
 class PubmedQuery(GEOQuery):
-    def get_ncbi_docsum(self, mesh_term, gene_name_list) -> List:
+    def get_ncbi_docsum(self, mesh_term, query_term) -> List:
         """
         Get document summaries from NCBI database
-        :param mesh_term:
-        :param database:
+        :param query_term:
         :return:
         """
         start = self.timing_tool()
         staging_list = []
         query_results = []
-        
-        gene_list = ''
-        for i in range(len(gene_name_list)-1):
-            gene_list+='"{}" OR '.format(gene_name_list[i])
-        gene_list+='"{}"'.format(gene_name_list[-1])
-        search_term = '"{}"[MeSH Terms] AND ({})'.format(mesh_term, gene_list)
-        if len(search_term)>4000:
-            print('Query term is longer than 4000 charaters!')
-        
+                
         # First, esearch using mesh_term, and keep results on ePost history server
         webenv1, query_key1, count1 = self.post_ncbi(
             'esearch', db='pubmed', usehistory='y',
-            term=search_term)
+            term=query_term)
 
         # Then, efetch in batches of efetch_batch
         self.batch_ncbi('efetch', staging_list, count1, db=database,
@@ -168,3 +159,21 @@ class PubmedQuery(GEOQuery):
                      .format(((stop - start) / 60), len(query_results)))
 
         return query_results
+    
+    def construct_query_term(mesh_term, gene_name_list):
+        """
+        Construct a list of query terms to make sure each term does not exceed
+        4000 characters.
+        """
+        query_term_list = []
+        search_term = mesh_term+" AND ("
+        for gene_name in gene_name_list:
+            if len(search_term+gene_name)>4000:
+                search_term = search_term[:-4]+")"
+                query_term_list.append(search_term)
+                search_term = mesh_term+" AND ("
+            else:
+                search_term = search_term+gene_name+" OR "
+        search_term = search_term[:-4]+")"
+        query_term_list.append(search_term)
+        return query_term_list
