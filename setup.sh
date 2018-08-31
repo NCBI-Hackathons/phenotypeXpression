@@ -23,7 +23,7 @@ export PATH=$CONDAPATH:$PATH
 conda create -n ${CONDAENV} -y python==3.6 pip pytest || true
 
 echo "Activating Conda Environment ----->"
-source $CONDAPATH/activate ${CONDAENV}
+conda $CONDAPATH/activate ${CONDAENV}
 
 echo "Installing required Python libraries ----->"
 pip install -r requirements.txt
