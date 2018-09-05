@@ -30,9 +30,9 @@ pip install -r requirements.txt
 conda install matplotlib
 
 echo "Installing required R libraries ----->"
-conda install -c r r-base
+conda install -c r r-base r-ape
 conda install rpy2
-conda install -c r r-pvclust r-ape r-circlize
+conda install -c conda-forge r-pvclust r-circlize
 
 echo "Installing phenoX ----->"
 python setup.py develop
