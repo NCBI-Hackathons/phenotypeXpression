@@ -24,15 +24,10 @@ class BatchEffect:
         qout = Entrez.read(Entrez.esummary(db="gds", id=",".join(gds_list)))
         return {sm['Id']:[sm['n_samples'],sm['PubMedIds'],sm['GPL'],datetime.strptime(sm['PDAT'],'%Y/%m/%d').timestamp()] for sm in qout}
 
-    # Check GPL (Platform) types
-    def GPL_types():
-        ####do something to check all GPL types across metadict
-        pass
-
     # For chi-squared test of platform types different from overall
-    def generate_chi(self, meta_dict):
+    def generate_t_test(self, meta_dict):
         """
-        Generate chi squared test for categorical batch effects
+        Generate t-test for sample_n/date batch effects
         :param meta_dict dict of meta_from_gds:
         :adds chi-square stat & pvalue to meta_dict:
         :return clust_stats dict:
@@ -42,15 +37,11 @@ class BatchEffect:
         for cluster in self.clusters:
             clust_frame = pd.DataFrame()
             ####do something to count categories for platform
-            chi_sq, p_val = stats.chisquare(f_obs=clust_count, f_exp=overall_count)
+            test_stat, p_val = stats.chisquare(f_obs=clust_count, f_exp=overall_count)
             clust_stats[cluster] = {'GPL': [chi_sq, p_val]}
             if p_val <= 0.05:
                 print('{} is significantly different from overall platform distribution'.format(cluster))
         return clust_stats
-    
-    # For t-test of sample_n, date different from overall
-    def generate_t_test(self, meta_dict):
-        pass
     
     
     
