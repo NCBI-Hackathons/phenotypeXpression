@@ -132,11 +132,12 @@ class GEOQuery:
             fetch_handle.close()
         return
 
-    def get_ncbi_docsum(self, mesh_term, database) -> List:
+    def get_ncbi_docsum(self, mesh_term, database, query_term='"up down genes"[filter]') -> List:
         """
         Get document summaries from NCBI database
         :param mesh_term:
         :param database:
+        :param query_term:
         :return:
         """
         start = self.timing_tool()
@@ -146,7 +147,7 @@ class GEOQuery:
         # First, esearch using mesh_term, and keep results on ePost history server
         webenv1, query_key1, count1 = self.post_ncbi(
             'esearch', db=database, usehistory='y',
-            term='"up down genes"[filter] AND "{}"'.format(mesh_term)
+            term='{} AND {}'.format(mesh_term, query_term)
         )
 
         # Then, efetch in batches of efetch_batch
@@ -195,7 +196,7 @@ class GEOQuery:
         """
         Generate GDS data dict from profile data
         :param query_results:
-        :return:
+        :return: gds_dict (k=geo_exp_id, v=gene_id), gene_freq(k=gene_id, v=freq)
         """
         gds_dict = dict()
         gene_freq = defaultdict(int)
@@ -253,9 +254,9 @@ class GEOQuery:
 
         return pids
 
-    def export_gds_to_csv(self, gds_dict):
+    def gds_to_pd_dataframe(self, gds_dict):
         """
-        Export GDS data to CSV file
+        Convert GDS to pandas dataframe
         :param gds_dict:
         :return:
         """
@@ -401,11 +402,23 @@ class GEOQuery:
         :param mesh_term:
         :return:
         """
+        # query GEO using MeSH term and retrieve datasets
         query_results = self.get_ncbi_docsum(mesh_term, self.db)
+
+        # Map GEO datasets to genes and count gene frequency
         gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
-        pids = self.get_pubmed_ids(gds_dict)
-        gene_dict = self.genedict_from_profile(query_results)
-        gds = self.export_gds_to_csv(gds_dict)
+
+        # Map GEO datasets to Pubmed IDs
+        geo_to_pid_dict = self.get_pubmed_ids(gds_dict)
+
+        # Retrieve gene names from GEO gene profiles
+        gid_to_gname_dict = self.genedict_from_profile(query_results)
+
+        # Export GDS
+        gds = self.gds_to_pd_dataframe(gds_dict)
+
+        # Run clustering algorithm
         clusters = self.call_r_clustering(gds)
-        return pids, clusters
+
+        return gid_to_gname_dict, geo_to_pid_dict, gds_dict, clusters
 
