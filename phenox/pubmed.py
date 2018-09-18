@@ -10,12 +10,14 @@ import tqdm
 import Bio.Entrez as Entrez
 import spacy
 import os
+import logging
 from spacy_lookup import Entity
 import pickle
 from collections import Counter
+from typing import List
+
 from phenox.paths import PhenoXPaths
-import pandas as pd
-from geo_data import GEOQuery
+from phenox.geo_data import GEOQuery
 
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
@@ -127,53 +129,34 @@ class Pubmed:
 
         freq_list = Counter(self.total_dner)
         return freq_list
-    
-    
-class PubmedQuery(GEOQuery):
-    def get_ncbi_docsum(self, mesh_term, query_term) -> List:
-        """
-        Get document summaries from NCBI database
-        :param query_term:
-        :return:
-        """
-        start = self.timing_tool()
-        staging_list = []
-        query_results = []
-                
-        # First, esearch using mesh_term, and keep results on ePost history server
-        webenv1, query_key1, count1 = self.post_ncbi(
-            'esearch', db='pubmed', usehistory='y',
-            term=query_term)
 
-        # Then, efetch in batches of efetch_batch
-        self.batch_ncbi('efetch', staging_list, count1, db=database,
-                        rettype='docsum', retmax=self.efetch_batch, webenv=webenv1,
-                        query_key=query_key1)
-
-        # append to passed list
-        [query_results.append(batch) for batch in staging_list]
-
-        # stop timing and log
-        stop = self.timing_tool()
-        logging.info('Download time: {} min, Batches run -> {}'
-                     .format(((stop - start) / 60), len(query_results)))
-
-        return query_results
-    
-    def construct_query_term(mesh_term, gene_name_list):
+    def construct_query_terms(self, mesh_term, gene_name_list):
         """
         Construct a list of query terms to make sure each term does not exceed
-        4000 characters.
+        4000 characters. Returns a list of query strings.
         """
         query_term_list = []
-        search_term = mesh_term+" AND ("
+
+        # initialize search term
+        search_prefix = mesh_term + " AND "
+        search_term = "("
+
+        # iterate through gene name list
         for gene_name in gene_name_list:
-            if len(search_term+gene_name)>4000:
-                search_term = search_term[:-4]+")"
+            if len(search_prefix + search_term + gene_name) > 4000:
+                # remove trailing " OR " and append ")"
+                search_term = search_term[:-4] + ")"
+                # append to query term list
                 query_term_list.append(search_term)
-                search_term = mesh_term+" AND ("
+                # reinitialize search term
+                search_term = "("
             else:
-                search_term = search_term+gene_name+" OR "
-        search_term = search_term[:-4]+")"
-        query_term_list.append(search_term)
+                # append gene name to search term
+                search_term += gene_name + " OR "
+
+        # add final search term if present
+        if search_term != "(":
+            search_term = search_term[:-4] + ")"
+            query_term_list.append(search_term)
+
         return query_term_list
