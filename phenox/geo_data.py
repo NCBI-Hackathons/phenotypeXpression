@@ -166,7 +166,7 @@ class GEOQuery:
 
     def batch_local(self, query_type, id_list, **kwargs) -> Dict:
         """
-        Batch local
+        Batch local for elink,einfo queries w/ no retstart parameter
         :param query_type:
         :param id_list:
         :param kwargs:
