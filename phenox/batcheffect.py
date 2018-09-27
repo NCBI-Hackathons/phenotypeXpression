@@ -112,7 +112,9 @@ class BatchEffect:
         columns.extend([' '.join([self.meta_list[2], j]) for j in stat_list[4:]])
         
         # transfer dict to dataframe
-        ###
+        out_tbl = pd.DataFrame.from_dict(clust_stats, orient='index', columns=columns)
+        #index column label
+        #to_csv na='.'
         return
 
     def cluster_stats(self):
