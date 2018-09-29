@@ -8,14 +8,14 @@ from phenox.paths import PhenoXPaths
 
 
 class BatchEffect:
-    def __init__(self, clusters: Dict, meta_dict: Dict) -> None:
+    def __init__(self, clusters: Dict, meta_dict: Dict, outprefix: str) -> None:
         """
         Initialize class
         :param clusters: key=cluster_ids, value=list of gds_ids
         :param meta_dict: key=gds_ids, value=list of gds metrics (n_samples, pmids, GPLs, dates)
         :param meta_list: index list of gds categories
         """
-        self.paths = PhenoXPaths()
+        self.paths = PhenoXPaths(outprefix)
         self.clusters = clusters
         self.num_clusters = len(clusters)
         self.meta_dict = meta_dict
@@ -104,6 +104,7 @@ class BatchEffect:
         :param clust_stats: pass mutable dict for recursive additions
             key=cluster_ids, value=ordered list of stats for all gds metrics
             (KS/chi-stat, p-value, mean/mode, s.d./category_n)
+        :param outprefix: 
         :return:
         """
         # define order for column labels
@@ -113,8 +114,8 @@ class BatchEffect:
         
         # transfer dict to dataframe
         out_tbl = pd.DataFrame.from_dict(clust_stats, orient='index', columns=columns)
-        #index column label
-        #to_csv na='.'
+        outfile = os.path.join(self.paths.output_dir, '{}_cluster_stats.txt'.format(self.paths.outprefix))
+        out_tbl.to_csv(outfile, sep='\t', na_rep='.', index_label='Cluster ID')
         return
 
     def cluster_stats(self):

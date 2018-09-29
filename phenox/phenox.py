@@ -13,12 +13,12 @@ from phenox.wordcloud import WordcloudPlotter
 
 # class for linking differential gene expression to disease
 class PhenoX:
-    def __init__(self, email: str, query_str: str) -> None:
+    def __init__(self, email: str, query_str: str, outprefix: str) -> None:
         """
         Initialize class
         :param gene_list:
         """
-        self.paths = PhenoXPaths()
+        self.paths = PhenoXPaths(outprefix)
         self.query_str = query_str
         self.email = email
 
@@ -38,7 +38,7 @@ class PhenoX:
         :return:
         """
         sys.stdout.write("Retrieving matching GEO datasets...\n")
-        geo = GEOQuery(term=mesh_term, email=self.email)
+        geo = GEOQuery(outprefix=self.paths.outprefix, term=mesh_term, email=self.email)
         pubmed_dict = geo.get_all_geo_data(mesh_term)
         return pubmed_dict
 
