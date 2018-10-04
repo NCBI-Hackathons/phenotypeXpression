@@ -92,7 +92,9 @@ class PhenoX:
             sys.stdout.write('Querying PubMed for genes from {}\n'.format(clust))
             for query_term in tqdm.tqdm(query_terms, desc='PubMed batches'):
                 pubmed_clust += geo.get_ncbi_docsum(mesh_term['name'], "pubmed", query_term)
-            pubmed_ids[clust] += base_utils.flatten(pubmed_clust)
+            ids_to_add = base_utils.flatten(pubmed_clust)
+            ids_to_add = [entry['Id'] for entry in ids_to_add]
+            pubmed_ids[clust] += ids_to_add
 
         # perform wordcloud NER
         wordcloud_data = dict()
