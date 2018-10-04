@@ -10,11 +10,14 @@ import tqdm
 import Bio.Entrez as Entrez
 import spacy
 import os
+import logging
 from spacy_lookup import Entity
 import pickle
 from collections import Counter
+from typing import List
+
 from phenox.paths import PhenoXPaths
-import pandas as pd
+from phenox.geo_data import GEOQuery
 
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
@@ -126,3 +129,34 @@ class Pubmed:
 
         freq_list = Counter(self.total_dner)
         return freq_list
+
+    def construct_query_terms(self, mesh_term, gene_name_list):
+        """
+        Construct a list of query terms to make sure each term does not exceed
+        4000 characters. Returns a list of query strings.
+        """
+        query_term_list = []
+
+        # initialize search term
+        search_prefix = mesh_term + " AND "
+        search_term = "("
+
+        # iterate through gene name list
+        for gene_name in gene_name_list:
+            if len(search_prefix + search_term + gene_name) > 4000:
+                # remove trailing " OR " and append ")"
+                search_term = search_term[:-4] + ")"
+                # append to query term list
+                query_term_list.append(search_term)
+                # reinitialize search term
+                search_term = "("
+            else:
+                # append gene name to search term
+                search_term += gene_name + " OR "
+
+        # add final search term if present
+        if search_term != "(":
+            search_term = search_term[:-4] + ")"
+            query_term_list.append(search_term)
+
+        return query_term_list
