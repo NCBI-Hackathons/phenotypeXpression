@@ -1,6 +1,7 @@
 import os
 import sys
 import math
+import tqdm
 from typing import List, Dict, Tuple
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
@@ -88,7 +89,8 @@ class PhenoX:
         for clust, gene_names in cluster_to_gene_name.items():
             query_terms = pubmed.construct_query_terms(mesh_term['name'], gene_names)
             pubmed_clust = []
-            for query_term in query_terms:
+            sys.stdout.write('Querying PubMed for genes from {}\n'.format(clust))
+            for query_term in tqdm.tqdm(query_terms, desc='PubMed batches'):
                 pubmed_clust += geo.get_ncbi_docsum(mesh_term['name'], "pubmed", query_term)
             pubmed_ids[clust] += base_utils.flatten(pubmed_clust)
 
