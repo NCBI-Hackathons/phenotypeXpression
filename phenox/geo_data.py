@@ -117,8 +117,7 @@ class GEOQuery:
         count = count1
 
         # sliding window of history list in batch size
-        for start in tqdm.tqdm(range(0, count, self.efetch_batch),
-                               desc="Document batches"):
+        for start in range(0, count, self.efetch_batch):
             end = min(count, start + self.efetch_batch)
             logging.info("Going to download record {} to {}"
                          .format(start + 1, end))
