@@ -20,9 +20,9 @@ from phenox.paths import PhenoXPaths
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
 class Pubmed:
-    def __init__(self, email):
+    def __init__(self, email: str, outprefix: str):
         Entrez.email = email
-        self.paths = PhenoXPaths()
+        self.paths = PhenoXPaths(outprefix)
         self.pmid_abstracts = dict()
         # disease and human phenotype NER
         self.pmid_dner = {}

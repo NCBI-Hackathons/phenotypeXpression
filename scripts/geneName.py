@@ -1,6 +1,8 @@
 from datetime import datetime
+from typing import List, Dict, Tuple
 
-def meta_from_gds(self,gds_list: list) -> Dict:
+
+def meta_from_gds(self, gds_list: list) -> Dict:
     """
     Get meta information, such as gds submission time, n_samples, platform from gds.
     gds_list is from gdsdict.keys()

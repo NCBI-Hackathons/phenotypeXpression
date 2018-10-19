@@ -30,26 +30,26 @@ from phenox.paths import PhenoXPaths
 
 # class for querying GEO databases
 class GEOQuery:
-    def __init__(self, term, email, tool="phenotypeXpression", efetch_batch=5000, elink_batch=100):
+    def __init__(self, outprefix, term, email, tool="phenotypeXpression", efetch_batch=5000, elink_batch=100):
         Entrez.email = email
         Entrez.tool = tool
         self.efetch_batch = efetch_batch
         self.elink_batch = elink_batch
         self.db = 'geoprofiles'
 
-        paths = PhenoXPaths()
+        paths = PhenoXPaths(outprefix)
         term_name = term.replace(' ', '-')
         self.hcluster_file = os.path.join(
-            paths.output_dir, "{}_GDS_hierarchical_clusters.pdf".format(term_name)
+            paths.output_dir, "{}_{}_hierarchical_clusters.pdf".format(paths.outprefix, term_name)
         )
         self.tree_file = os.path.join(
-            paths.output_dir, "{}_GDS_newick_tree.txt".format(term_name)
+            paths.output_dir, "{}_{}_newick_tree.txt".format(paths.outprefix, term_name)
         )
         self.heatmap_file = os.path.join(
-            paths.output_dir, "{}_GDS_heatmap.pdf".format(term_name)
+            paths.output_dir, "{}_{}_heatmap.pdf".format(paths.outprefix, term_name)
         )
         self.dist_graph_file = os.path.join(
-            paths.output_dir, "{}_GDS_dist_graph.pdf".format(term_name)
+            paths.output_dir, "{}_{}_dist_graph.pdf".format(paths.outprefix, term_name)
         )
 
     @staticmethod
@@ -166,7 +166,7 @@ class GEOQuery:
 
     def batch_local(self, query_type, id_list, **kwargs) -> Dict:
         """
-        Batch local
+        Batch local for elink,einfo queries w/ no retstart parameter
         :param query_type:
         :param id_list:
         :param kwargs:
