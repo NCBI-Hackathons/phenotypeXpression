@@ -29,7 +29,7 @@ class PhenoX:
         Retrieve the best MeSH term from search query
         :return:
         """
-        mesh = MeshSearcher()
+        mesh = MeshSearcher(outprefix=self.paths.outprefix)
         mesh_entry = mesh.lookup(self.query_str)
         return mesh_entry, [mesh.mesh[c]['name'] for c in mesh_entry['children']]
 
