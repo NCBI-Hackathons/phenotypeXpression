@@ -6,8 +6,8 @@ from phenox.paths import PhenoXPaths
 
 
 class WordcloudPlotter:
-    def __init__(self):
-        self.paths = PhenoXPaths()
+    def __init__(self, outprefix: str):
+        self.paths = PhenoXPaths(outprefix)
 
     def generate_wordclouds(self, clusters, output_file):
         """
