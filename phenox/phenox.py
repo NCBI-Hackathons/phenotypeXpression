@@ -29,7 +29,7 @@ class PhenoX:
         Retrieve the best MeSH term from search query
         :return:
         """
-        mesh = MeshSearcher()
+        mesh = MeshSearcher(outprefix=self.paths.outprefix)
         mesh_entry = mesh.lookup(self.query_str)
         return mesh_entry, [mesh.mesh[c]['name'] for c in mesh_entry['children']]
 
@@ -76,7 +76,7 @@ class PhenoX:
         sys.stdout.write("Retrieving matching PubMed abstracts...\n")
 
         # initialize pubmed clusters
-        pubmed = Pubmed(self.email)
+        pubmed = Pubmed(self.email, outprefix=self.paths.outprefix)
         pubmed_ids = pubmed.get_clusters(pubmed_dict, cluster_dict)
 
         sys.stdout.write("Retrieving matching PubMed abstracts for genes...\n")
@@ -115,7 +115,7 @@ class PhenoX:
             self.paths.output_dir,
             '{}_GDS_wordcloud.png'.format(self.query_str.replace(' ', '-'))
         )
-        plotter = WordcloudPlotter()
+        plotter = WordcloudPlotter(outprefix=self.paths.outprefix)
         plotter.generate_wordclouds(clusters, output_file)
         return
 

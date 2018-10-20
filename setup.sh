@@ -27,10 +27,9 @@ conda $CONDAPATH/activate ${CONDAENV}
 
 echo "Installing required Python libraries ----->"
 pip install -r requirements.txt
-conda install matplotlib
 
 echo "Installing required R libraries ----->"
-conda install -c conda-forge r r-base rpy2 r-ape r-pvclust r-circlize
+conda install -c conda-forge r r-base rpy2 r-ape r-pvclust r-circlize matplotlib readline
 
 echo "Installing phenoX ----->"
 python setup.py develop
