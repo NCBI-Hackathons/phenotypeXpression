@@ -27,7 +27,6 @@ from rpy2.robjects.packages import importr
 from rpy2 import rinterface
 
 from phenox.paths import PhenoXPaths
-from phenox.batcheffect import BatchEffect
 
 
 # class for querying GEO databases
@@ -440,7 +439,6 @@ class GEOQuery:
         
         # Batch effect data
         meta_dict = self.meta_from_gds(gds_dict)
-        BatchEffect(clusters, meta_dict, self.paths.outprefix)
 
-        return gid_to_gname_dict, geo_to_pid_dict, gds_dict, clusters
+        return gid_to_gname_dict, geo_to_pid_dict, gds_dict, clusters, meta_dict
 

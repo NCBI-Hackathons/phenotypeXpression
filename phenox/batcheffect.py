@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
@@ -28,7 +29,7 @@ class BatchEffect:
             set: n_samples, dates, GPLs)
         """
         total_stats = [[] for i in range(3)]
-        [[total_stats[i].append(self.meta_dict[gds][i]) for gds in meta_dict] for i in range(3)]
+        [[total_stats[i].append(self.meta_dict[gds][i]) for gds in self.meta_dict] for i in range(3)]
         return total_stats
 
     def _generate_ks_test(self, meta_value: int, total_dist: List, clust_stats=None) -> Dict:
@@ -50,8 +51,8 @@ class BatchEffect:
         clust_stats['Overall'].extend([None, None, np.mean(total_array), np.std(total_array, ddof=1)])    
         
         #per cluster outputs
-        for cluster_id in self.clusters:
-            cluster_dist = [self.meta_dict[gds][meta_value] for gds in cluster_id]
+        for cluster_id, cluster_list in self.clusters.items():
+            cluster_dist = [self.meta_dict[gds][meta_value] for gds in cluster_list]
             clust_array = np.array(cluster_dist)
             KS_stat, p_val = stats.ks_2samp(clust_array, total_array)
             clust_stats[cluster_id].extend([KS_stat, p_val, np.mean(clust_array), np.std(clust_array, ddof=1)])
@@ -74,9 +75,9 @@ class BatchEffect:
         clust_stats['Overall'].extend([None, None, total_frame[0].idxmax(), len(total_frame.index)]) 
         
         # per cluster counts
-        for cluster_id in self.clusters:
-            cluster_dist = [self.meta_dict[gds][2] for gds in cluster_id] # GPL index in meta_list is 2
-            clust_frame = pd.DataFrame.from_dict(Counter(cluster_dist, orient='index'))
+        for cluster_id, cluster_list in self.clusters.items():
+            cluster_dist = [self.meta_dict[gds][2] for gds in cluster_list] # GPL index in meta_list is 2
+            clust_frame = pd.DataFrame.from_dict(Counter(cluster_dist), orient='index')
             chi_frame = clust_frame.merge(total_frame, how='right', right_index=True, left_index=True).fillna(0)
             chi_stat, p_val = stats.chisquare(f_obs=chi_frame['0_x'], f_exp=chi_frame['0_y'])
             clust_stats[cluster_id].extend([chi_stat, p_val, clust_frame[0].idxmax(), len(clust_frame.index)])
@@ -95,7 +96,7 @@ class BatchEffect:
         """
         # define order for column labels
         stat_list = ('KS-stat', 'P-value', 'Mean', 'Std Dev', 'Chi-stat', 'P-value', 'Mode', 'Category N')
-        columns = [' '.join([i, j]) for i in (self.meta_list[0], self.meta_list[3]) for j in stat_list[:4]]
+        columns = [' '.join([i, j]) for i in (self.meta_list[0], self.meta_list[1]) for j in stat_list[:4]]
         columns.extend([' '.join([self.meta_list[2], j]) for j in stat_list[4:]])
         
         # transfer dict to dataframe
@@ -109,13 +110,14 @@ class BatchEffect:
         Run pipeline
         :return:
         """
-        total_stats = self._total_stats(meta_dict)
+        total_stats = self._total_stats()
+        clust_stats = defaultdict(list)
         
         # For n_samples and date, populate clust_stats recursively
-        clust_stats = [self._generate_ks_test(meta_dict, i, total_stats[i], clust_stats) for i in range(2)]
+        [self._generate_ks_test(i, total_stats[i], clust_stats) for i in range(2)]
         
         # For GPL, chi squared stats in clust_stats
-        clust_stats = self._generate_chisq_test(total_stats[2], clust_stats)
+        self._generate_chisq_test(total_stats[2], clust_stats)
         
         #generate outfile
         self._stat_outfile(clust_stats)
