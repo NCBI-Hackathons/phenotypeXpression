@@ -10,21 +10,19 @@ import tqdm
 import Bio.Entrez as Entrez
 import spacy
 import os
-import logging
+import json
 from spacy_lookup import Entity
 import pickle
 from collections import Counter
-from typing import List
 
 from phenox.paths import PhenoXPaths
-from phenox.geo_data import GEOQuery
 
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
 class Pubmed:
-    def __init__(self, email):
+    def __init__(self, email: str, outprefix: str):
         Entrez.email = email
-        self.paths = PhenoXPaths()
+        self.paths = PhenoXPaths(outprefix)
         self.pmid_abstracts = dict()
         # disease and human phenotype NER
         self.pmid_dner = {}
@@ -38,34 +36,45 @@ class Pubmed:
         self.kw2id = pickle.load(open(os.path.join(self.paths.data_dir, 'kw2id_dict.pkl'), 'rb'))
         entity = Entity(keywords_list=list(self.kw2id.keys()), label='DO/HPO')
         self.nlp.add_pipe(entity, last=True)
+
+        # read synonyms from HGNC
+        with open(os.path.join(self.paths.data_dir, 'hgnc_synonyms.json'), 'r') as f:
+            hgnc_syn = f.read()
+            self.hgnc = json.loads(hgnc_syn)
         
     # fetch abstract from a single pmid    
     def fetch_abstract(self, pmid):
-        handle = Entrez.efetch(db='pubmed', id=pmid, retmode='xml')
-        record = Entrez.read(handle)
-        abs_str = []
-        # abstract text
-        try:
-            abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText']
-            for a in abstract:
-                abs_str.append(a)
-        except:
-            pass
-        # title
-        try:
-            title = record['PubmedArticle'][0]['MedlineCitation']['Article']['ArticleTitle']
-            abs_str.append(title)
-        except:
-            pass
-        # keyword list
-        try:
-            kwls = record['PubmedArticle'][0]['MedlineCitation']['KeywordList'][0]
-            for w in kwls:
-                abs_str.append(w)
-        except:
-            pass
 
-        self.pmid_abstracts[pmid] = ' '.join(abs_str).strip()
+        self.pmid_abstracts[pmid] = ''
+
+        try:
+            handle = Entrez.efetch(db='pubmed', id=pmid, retmode='xml')
+            record = Entrez.read(handle)
+            abs_str = []
+            # abstract text
+            try:
+                abstract = record['PubmedArticle'][0]['MedlineCitation']['Article']['Abstract']['AbstractText']
+                for a in abstract:
+                    abs_str.append(a)
+            except:
+                pass
+            # title
+            try:
+                title = record['PubmedArticle'][0]['MedlineCitation']['Article']['ArticleTitle']
+                abs_str.append(title)
+            except:
+                pass
+            # keyword list
+            try:
+                kwls = record['PubmedArticle'][0]['MedlineCitation']['KeywordList'][0]
+                for w in kwls:
+                    abs_str.append(w)
+            except:
+                pass
+
+            self.pmid_abstracts[pmid] = ' '.join(abs_str).strip()
+        except:
+            pass
         
     def extract_DNER(self, pmid):
         self.pmid_ent_text[pmid], self.pmid_dner[pmid] = self.find_DNER(self.pmid_abstracts[pmid])
@@ -74,16 +83,21 @@ class Pubmed:
     def find_DNER(self, abstract_text):
         kw = []
         dner = []
-        doc = self.nlp(abstract_text)
-        for ent in doc.ents:
-            if ent.label_=='DO/HPO' and ent.__getitem__(0).is_stop==False:
-                kw.append(ent.text)
-                if ent.text.lower() in self.kw2id:
-                    # convert recognized keyword to the main term (first item) in DO/HPO
-                    dner.append(self.id2kw[self.kw2id[ent.text.lower()]][0])
-        self.total_dner.extend(dner)
-        return Counter(kw), dner
-    
+        try:
+            doc = self.nlp(abstract_text)
+            for ent in doc.ents:
+                if ent.label_=='DO/HPO' and ent.__getitem__(0).is_stop==False:
+                    kw.append(ent.text)
+                    if ent.text.lower() in self.kw2id:
+                        # convert recognized keyword to the main term (first item) in DO/HPO
+                        dner.append(self.id2kw[self.kw2id[ent.text.lower()]][0])
+            self.total_dner.extend(dner)
+            return Counter(kw), dner
+        except KeyboardInterrupt:
+            raise
+        except Exception:
+            return Counter([]), []
+
     # count word frequencies based on clustering results
     def cluster_count(self, cluster):
         '''
@@ -115,7 +129,6 @@ class Pubmed:
                     continue
             pmid_clustered[cluster_name] = c_pmid
 
-        print(pmid_clustered)
         return pmid_clustered
 
     def get_term_frequencies(self, pmid_list):
@@ -128,6 +141,7 @@ class Pubmed:
             self.extract_DNER(pmid)
 
         freq_list = Counter(self.total_dner)
+
         return freq_list
 
     def construct_query_terms(self, mesh_term, gene_name_list):
@@ -141,8 +155,15 @@ class Pubmed:
         search_prefix = mesh_term + " AND "
         search_term = "("
 
-        # iterate through gene name list
+        # generate gene name synonym list from HGNC
+        gene_syn_list = []
         for gene_name in gene_name_list:
+            gene_syn_list.append(gene_name)
+            if gene_name in self.hgnc:
+                gene_syn_list += self.hgnc[gene_name]['names'] + self.hgnc[gene_name]['aliases']
+
+        # iterate through gene name list
+        for gene_name in tqdm.tqdm(gene_syn_list):
             if len(search_prefix + search_term + gene_name) > 4000:
                 # remove trailing " OR " and append ")"
                 search_term = search_term[:-4] + ")"

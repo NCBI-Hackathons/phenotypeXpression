@@ -8,11 +8,11 @@ from phenox.paths import PhenoXPaths
 
 
 class MeshSearcher:
-    def __init__(self):
+    def __init__(self, outprefix: str):
         """
         Initialize MeSH search tool
         """
-        paths = PhenoXPaths()
+        paths = PhenoXPaths(outprefix)
         mesh_json_path = os.path.join(paths.data_dir, 'mesh.json')
         self.mesh = dict()
 

@@ -9,7 +9,7 @@ __version__ = '0.1.0'
 
 def run(args):
     print('Input query: %s' % args.query_str)
-    phenox = PhenoX(args.email, args.query_str)
+    phenox = PhenoX(args.email, args.query_str, args.outprefix)
     phenox.subtype()
 
 
