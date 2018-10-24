@@ -195,24 +195,23 @@ class GEOQuery:
     def gdsdict_from_profile(self, query_results) -> Tuple:
         """
         Generate GDS data dict from profile data
+        using <gene name> as dict key
         :param query_results:
-        :return: gds_dict (k=geo_exp_id, v=gene_id), gene_freq(k=gene_id, v=freq)
+        :return:
         """
         gds_dict = dict()
         gene_freq = defaultdict(int)
 
         for batch in query_results:
-            for docsum in tqdm.tqdm(batch['DocumentSummarySet']['DocumentSummary'],
-                                    desc="GEO Datasets"):
+            for docsum in tqdm.tqdm(batch['DocumentSummarySet']['DocumentSummary'],desc="GEO Datasets"):
                 gdsid = docsum['GDS']
-                gids = docsum['ENTREZ_GENE_ID'].split(";")
-                for gid in gids:
+                gnamelist = docsum['geneName'].split("<:>")
+                for gid in gnamelist:
                     if len(gid) > 0:
-                        gene_freq[gid] += 1
+                        gene_freq[gid.upper()] += 1
                         if gdsid not in gds_dict:
                             gds_dict[gdsid] = defaultdict(int)
-                        gds_dict[gdsid][gid] += 1
-
+                        gds_dict[gdsid][gid.upper()] += 1
         return gds_dict, gene_freq
 
     def genedict_from_profile(self, query_results) -> Dict:
@@ -269,27 +268,27 @@ class GEOQuery:
         pdd = pdd[pdd.sum(axis=1) > 1]
         return pdd
 
-    def _generate_heatmap(self, gds_py, clusters):
-        """
-        Generate heatmap from GDS data
-        :param gds_py:
-        :return:
-        """
-        # TODO: add dendrogram to heatmap; cannot currently convert R dendrogram to scipy format
-        gds_array = []
-
-        for cl_name, cl_members in clusters.items():
-            for mem in cl_members:
-                gds_array.append(gds_py.loc[[mem]])
-
-        gds_array = np.array(pd.concat(gds_array))
-        gds_array = gds_array.transpose()
-
-        heatmap = pdh.DendroHeatMap(heat_map_data=gds_array)
-        heatmap.title = "GDS clustering heatmap"
-        heatmap.export(self.heatmap_file)
-        print("Heatmap written to {}".format(self.heatmap_file))
-        return
+#    def _generate_heatmap(self, gds_py, clusters):
+#        """
+#        Generate heatmap from GDS data
+#        :param gds_py:
+#        :return:
+#        """
+#        # TODO: add dendrogram to heatmap; cannot currently convert R dendrogram to scipy format
+#        gds_array = []
+#
+#        for cl_name, cl_members in clusters.items():
+#            for mem in cl_members:
+#                gds_array.append(gds_py.loc[[mem]])
+#
+#        gds_array = np.array(pd.concat(gds_array))
+#        gds_array = gds_array.transpose()
+#
+#        heatmap = pdh.DendroHeatMap(heat_map_data=gds_array)
+#        heatmap.title = "GDS clustering heatmap"
+#        heatmap.export(self.heatmap_file)
+#        print("Heatmap written to {}".format(self.heatmap_file))
+#        return
 
     def _generate_dist_graph(self, gds_py):
         """
@@ -348,6 +347,7 @@ class GEOQuery:
         graphics = importr("graphics")
         grdevices = importr("grDevices")
         ape = importr("ape")
+        gplots = importr("gplots")
 
         # convert pandas df to R df
         with localconverter(default_converter + pandas2ri.converter) as cv:
@@ -366,6 +366,13 @@ class GEOQuery:
         pvclust.pvrect(fit, alpha=.95)
         grdevices.dev_off()
         print("Clustering diagram written to {}".format(self.hcluster_file))
+
+        # write heatmap with pvclust to pdf 
+        grdevices.pdf(self.heatmap_file, paper="a4")
+        gplots.heatmap_2(mat_trans,Rowv = fit,dendrogram = "col",col=gplots.bluered(100), labRow = False, trace="none")
+        grdevices.dev_off()
+        print("Heatmap written to {}".format(self.heatmap_file))
+
 
         # write cluster tree output to tree file
         hc = fit.rx2("hclust")
@@ -389,12 +396,12 @@ class GEOQuery:
                     cluster_members[clust_name].append(pmid)
 
         # generate heatmap
-        self._generate_heatmap(gds_py, cluster_members)
+        # self._generate_heatmap(gds_py, cluster_members)
 
         # generate distance graph
         self._generate_dist_graph(gds_py)
 
-        return cluster_members
+    return cluster_members
 
     def get_all_geo_data(self, mesh_term: str) -> Tuple:
         """
@@ -405,7 +412,7 @@ class GEOQuery:
         # query GEO using MeSH term and retrieve datasets
         query_results = self.get_ncbi_docsum(mesh_term, self.db)
 
-        # Map GEO datasets to genes and count gene frequency
+        # Map GEO datasets to genes names and count gene frequency
         gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
 
         # Map GEO datasets to Pubmed IDs
