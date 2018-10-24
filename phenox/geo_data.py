@@ -11,6 +11,7 @@ from urllib.error import HTTPError
 import numpy as np
 import pandas as pd
 import pydendroheatmap as pdh
+from datetime import datetime
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -26,6 +27,7 @@ from rpy2.robjects.packages import importr
 from rpy2 import rinterface
 
 from phenox.paths import PhenoXPaths
+from phenox.batcheffect import BatchEffect
 
 
 # class for querying GEO databases
@@ -37,19 +39,19 @@ class GEOQuery:
         self.elink_batch = elink_batch
         self.db = 'geoprofiles'
 
-        paths = PhenoXPaths(outprefix)
+        self.paths = PhenoXPaths(outprefix)
         term_name = term.replace(' ', '-')
         self.hcluster_file = os.path.join(
-            paths.output_dir, "{}_{}_hierarchical_clusters.pdf".format(paths.outprefix, term_name)
+            self.paths.output_dir, "{}_{}_hierarchical_clusters.pdf".format(self.paths.outprefix, term_name)
         )
         self.tree_file = os.path.join(
-            paths.output_dir, "{}_{}_newick_tree.txt".format(paths.outprefix, term_name)
+            self.paths.output_dir, "{}_{}_newick_tree.txt".format(self.paths.outprefix, term_name)
         )
         self.heatmap_file = os.path.join(
-            paths.output_dir, "{}_{}_heatmap.pdf".format(paths.outprefix, term_name)
+            self.paths.output_dir, "{}_{}_heatmap.pdf".format(self.paths.outprefix, term_name)
         )
         self.dist_graph_file = os.path.join(
-            paths.output_dir, "{}_{}_dist_graph.pdf".format(paths.outprefix, term_name)
+            self.paths.output_dir, "{}_{}_dist_graph.pdf".format(self.paths.outprefix, term_name)
         )
 
     @staticmethod
@@ -231,6 +233,23 @@ class GEOQuery:
 
         return gene_dict
 
+    # from geneName.py -> to get metadata
+    def meta_from_gds(self, gds_dict: Dict) -> Dict:
+        """
+        Get meta information, such as gds submission time, n_samples, platform from gds.
+        :param gds_list: list of gds_ids
+        # :return: pids (k=gds_id, v=pmid)
+        :return: meta_dict: key=gds_ids, value=list of gds metrics (n_samples, dates, GPLs)
+        """
+        gds_list = list(gds_dict.keys())
+        qout = Entrez.read(Entrez.esummary(db="gds", id=",".join(gds_list)))
+        meta_dict = {sm['Id']:[sm['n_samples'],
+                               datetime.strptime(sm['PDAT'],'%Y/%m/%d').timestamp(),
+                               sm['GPL']]
+                     for sm in qout}
+        # pids = {sm['Id']: sm['PubMedIds'] for sm in qout}
+        return meta_dict
+
     def get_pubmed_ids(self, data_dict) -> Dict:
         """
         Fetch PubMed terms from GDS data
@@ -238,21 +257,21 @@ class GEOQuery:
         :return:
         """
         gds_list = list(data_dict.keys())
-
+    
         # elink gds to pid
         pid_list = Entrez.read(
             Entrez.elink(
                 id=gds_list, db='pubmed', dbfrom='gds', linkname='gds_pubmed'
             )
         )
-
+    
         # extract pubmed IDs
         pids = {
             el['IdList'][0]: el['LinkSetDb'][0]['Link'][0]['Id'] for el in pid_list
         }
-
+    
         return pids
-
+    
     def gds_to_pd_dataframe(self, gds_dict):
         """
         Convert GDS to pandas dataframe
@@ -418,6 +437,10 @@ class GEOQuery:
 
         # Run clustering algorithm
         clusters = self.call_r_clustering(gds)
+        
+        # Batch effect data
+        meta_dict = self.meta_from_gds(gds_dict)
+        BatchEffect(clusters, meta_dict, self.paths.outprefix)
 
         return gid_to_gname_dict, geo_to_pid_dict, gds_dict, clusters
 

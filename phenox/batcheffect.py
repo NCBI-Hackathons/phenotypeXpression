@@ -8,42 +8,27 @@ from phenox.paths import PhenoXPaths
 
 
 class BatchEffect:
-    def __init__(self, clusters: Dict, meta_dict: Dict, outprefix: str) -> None:
+    def __init__(self, cluster_dict: Dict, meta_dict: Dict, outprefix: str) -> None:
         """
         Initialize class
-        :param clusters: key=cluster_ids, value=list of gds_ids
-        :param meta_dict: key=gds_ids, value=list of gds metrics (n_samples, pmids, GPLs, dates)
+        :param cluster_dict: key=cluster_ids, value=list of GDS ids
+        :param meta_dict: key=gds_ids, value=list of gds metrics (n_samples, dates, GPLs)
         :param meta_list: index list of gds categories
         """
         self.paths = PhenoXPaths(outprefix)
-        self.clusters = clusters
-        self.num_clusters = len(clusters)
+        self.clusters = cluster_dict
+        self.num_clusters = len(cluster_dict)
         self.meta_dict = meta_dict
-        self.meta_list = ('Sample N', 'pmids', 'GPL', 'Submission Age')
+        self.meta_list = ('Sample N', 'Submission Age', 'GPL')
     
-    # #from geneName.py -> to be sent to geo_data.py
-    # def meta_from_gds(self, gds_list: list) -> Dict:
-    #     """
-    #     Get meta information, such as gds submission time, n_samples, platform from gds.
-    #     gds_list is from gdsdict.keys()
-    #     - This can replace the get_pubmed_ids()
-    #     concerns:
-    #     >> do not know how to get rid of the IntergerElement
-    #     >> now the publication time is in seconds, we can convert to days or years?
-    #     """
-    #     qout = Entrez.read(Entrez.esummary(db="gds", id=",".join(gds_list)))
-    #     return {sm['Id']:[sm['n_samples'],sm['PubMedIds'],sm['GPL'],datetime.strptime(sm['PDAT'],'%Y/%m/%d').timestamp()] for sm in qout}
-
-    # For chi-squared test of platform types different from overall
-
     def _total_stats(self) -> List:
         """
         Generate total distributions for each gds metadata value
         :return total_stats: list of lists (distributions of all gds for each
-            set: n_samples, pmids, GPLs, dates)
+            set: n_samples, dates, GPLs)
         """
-        total_stats = [[] for i in range(4)]
-        [[total_stats[i].append(self.meta_dict[gds][i]) for gds in meta_dict] for i in range(4)]
+        total_stats = [[] for i in range(3)]
+        [[total_stats[i].append(self.meta_dict[gds][i]) for gds in meta_dict] for i in range(3)]
         return total_stats
 
     def _generate_ks_test(self, meta_value: int, total_dist: List, clust_stats=None) -> Dict:
@@ -74,6 +59,7 @@ class BatchEffect:
                 print('{}\'s {} sample is drawn from a significantly different distribution than the overall sample'.format(cluster_id, self.meta_list[meta_value]))
         return
     
+    # For chi-squared test of platform types different from overall
     def _generate_chisq_test(self, total_dist: List, clust_stats: Dict) -> Dict:
         """
         Chi Squared test for cluster distribution independence from total dist
@@ -126,7 +112,7 @@ class BatchEffect:
         total_stats = self._total_stats(meta_dict)
         
         # For n_samples and date, populate clust_stats recursively
-        clust_stats = [self._generate_ks_test(meta_dict, i, total_stats[i], clust_stats) for i in [0, 3]]
+        clust_stats = [self._generate_ks_test(meta_dict, i, total_stats[i], clust_stats) for i in range(2)]
         
         # For GPL, chi squared stats in clust_stats
         clust_stats = self._generate_chisq_test(total_stats[2], clust_stats)
