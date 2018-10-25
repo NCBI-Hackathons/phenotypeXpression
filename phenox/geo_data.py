@@ -417,8 +417,7 @@ class GEOQuery:
 
         # generate distance graph
         self._generate_dist_graph(gds_py)
-
-    return cluster_members
+        return cluster_members
 
     def get_all_geo_data(self, mesh_term: str) -> Tuple:
         """
