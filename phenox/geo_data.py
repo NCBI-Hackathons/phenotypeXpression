@@ -375,7 +375,7 @@ class GEOQuery:
 
         # cluster over studies
         print("Clustering on Studies...")
-        fit = pvclust.pvclust(mat_trans, nboot=1000, method_hclust="ward.D2", method_dist="euclidean")
+        fit = pvclust.pvclust(mat_trans, nboot=5000, method_hclust="ward.D2", method_dist="euclidean")
 
         # write clustering output to pdf
         grdevices.pdf(self.hcluster_file, paper="a4")

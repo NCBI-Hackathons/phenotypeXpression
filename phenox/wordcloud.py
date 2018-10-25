@@ -18,7 +18,7 @@ class WordcloudPlotter:
         num_clusters = len(clusters)
         num_columns = 3
         num_rows = int(math.ceil(num_clusters/num_columns))
-        fig, axes = plt.subplots(num_rows, num_columns, figsize=(18, 5*num_rows), dpi= 80)
+        fig, axes = plt.subplots(num_rows, num_columns, figsize=(18, 5*num_rows), dpi= 200)
         fig.subplots_adjust(hspace=0, wspace=0)
 
         single_row = False
