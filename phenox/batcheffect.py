@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
+import itertools
 from typing import List, Dict, Tuple
 from collections import Counter, defaultdict
 
@@ -28,8 +29,13 @@ class BatchEffect:
         :return total_stats: list of lists (distributions of all gds for each
             set: n_samples, dates, GPLs)
         """
+        # generate total list of gds for clusters
+        gds_in_cluster = list(itertools.chain.from_iterable(self.clusters.values()))
+        # print(gds_in_cluster)
+        
+        # generate total stats dict
         total_stats = [[] for i in range(3)]
-        [[total_stats[i].append(self.meta_dict[gds][i]) for gds in self.meta_dict] for i in range(3)]
+        [[total_stats[i].append(self.meta_dict[gds][i]) for gds in gds_in_cluster] for i in range(3)]
         return total_stats
 
     def _generate_ks_test(self, meta_value: int, total_dist: List, clust_stats=None) -> Dict:
@@ -49,10 +55,12 @@ class BatchEffect:
         #total output values
         total_array = np.array(total_dist)
         clust_stats['Overall'].extend([None, None, np.mean(total_array), np.std(total_array, ddof=1)])    
+        # print(total_dist)
         
         #per cluster outputs
         for cluster_id, cluster_list in self.clusters.items():
             cluster_dist = [self.meta_dict[gds][meta_value] for gds in cluster_list]
+            # print(cluster_list)
             clust_array = np.array(cluster_dist)
             KS_stat, p_val = stats.ks_2samp(clust_array, total_array)
             clust_stats[cluster_id].extend([KS_stat, p_val, np.mean(clust_array), np.std(clust_array, ddof=1)])
@@ -102,6 +110,7 @@ class BatchEffect:
         # transfer dict to dataframe
         out_tbl = pd.DataFrame.from_dict(clust_stats, orient='index', columns=columns)
         outfile = os.path.join(self.paths.output_dir, '{}_cluster_stats.txt'.format(self.paths.outprefix))
+        print('Writing batch statistics to {}'.format(outfile))
         out_tbl.to_csv(outfile, sep='\t', na_rep='.', index_label='Cluster ID')
         return
 
