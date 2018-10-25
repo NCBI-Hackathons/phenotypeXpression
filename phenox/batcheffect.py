@@ -64,7 +64,7 @@ class BatchEffect:
             clust_array = np.array(cluster_dist)
             KS_stat, p_val = stats.ks_2samp(clust_array, total_array)
             clust_stats[cluster_id].extend([KS_stat, p_val, np.mean(clust_array), np.std(clust_array, ddof=1)])
-            if p_val <= 0.05:
+            if p_val <= 0.01:
                 print('{}\'s {} sample is drawn from a significantly different distribution than the overall sample'.format(cluster_id, self.meta_list[meta_value]))
         return
     
@@ -89,7 +89,7 @@ class BatchEffect:
             chi_frame = clust_frame.merge(total_frame, how='right', right_index=True, left_index=True).fillna(0)
             chi_stat, p_val = stats.chisquare(f_obs=chi_frame['0_x'], f_exp=chi_frame['0_y'])
             clust_stats[cluster_id].extend([chi_stat, p_val, clust_frame[0].idxmax(), len(clust_frame.index)])
-            if p_val <= 0.05:
+            if p_val <= 0.01:
                 print('{}\'s platform distribution is significantly different from the overall distribution'.format(cluster_id))
         return
 
