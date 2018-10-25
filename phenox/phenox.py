@@ -11,6 +11,7 @@ from phenox.mesh_lookup import MeshSearcher
 from phenox.geo_data import GEOQuery
 from phenox.pubmed import Pubmed
 from phenox.wordcloud import WordcloudPlotter
+from phenox.batcheffect import BatchEffect
 import phenox.utils.base_utils as base_utils
 
 # class for linking differential gene expression to disease
@@ -41,7 +42,11 @@ class PhenoX:
         """
         sys.stdout.write("Retrieving matching GEO datasets...\n")
         geo = GEOQuery(outprefix=self.paths.outprefix, term=mesh_term, email=self.email)
-        gene_dict, pubmed_dict, gds_dict, cluster_dict = geo.get_all_geo_data(mesh_term)
+        gene_dict, pubmed_dict, gds_dict, cluster_dict, meta_dict = geo.get_all_geo_data(mesh_term)
+        
+        # geo clustering batch effect checking
+        batch = BatchEffect(cluster_dict, meta_dict, self.paths.outprefix)
+        batch.cluster_stats()
         return geo, gene_dict, pubmed_dict, gds_dict, cluster_dict
 
     def _fetch_pubmed_abstracts(
