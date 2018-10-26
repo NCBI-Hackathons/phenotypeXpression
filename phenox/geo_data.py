@@ -192,51 +192,48 @@ class GEOQuery:
                 result_dict[el['IdList'][0]] = el['LinkSetDb'][0]['Link'][0]['Id']
         return result_dict
 
-    def gdsdict_from_profile(self, query_results) -> Tuple:
+    def gdsdict_from_profile(self, query_results) -> Dict:
         """
         Generate GDS data dict from profile data
         using <gene name> as dict key
-        :param query_results:
-        :return:
+        :param query_results: Dict from ncbi query
+        :return gds_dict: k=gds_id, v={k=geneName, v=gene freq}
         """
         gds_dict = dict()
-        gene_freq = defaultdict(int)
 
         for batch in query_results:
             for docsum in tqdm.tqdm(batch['DocumentSummarySet']['DocumentSummary'],desc="GEO Datasets"):
                 gdsid = docsum['GDS']
                 gnamelist = docsum['geneName'].split("<:>")
-                for gid in gnamelist:
-                    if len(gid) > 0:
-                        gene_freq[gid.upper()] += 1
+                for gname in gnamelist:
+                    if len(gname) > 0:
                         if gdsid not in gds_dict:
                             gds_dict[gdsid] = defaultdict(int)
-                        gds_dict[gdsid][gid.upper()] += 1
-        return gds_dict, gene_freq
+                        gds_dict[gdsid][gname.upper()] += 1
+        return gds_dict
 
-    def genedict_from_profile(self, query_results) -> Dict:
-        """
-        Generate gene data dict from profile data
-        :param query_results:
-        :return:
-        """
-        gene_dict = dict()
-
-        for batch in query_results:
-            for docsum in batch['DocumentSummarySet']['DocumentSummary']:
-                gid_list = docsum['ENTREZ_GENE_ID'].split(";")
-                gname_list = docsum['geneName'].split("<:>")
-                for (x, y) in zip(gid_list, gname_list):
-                    gene_dict[x] = y
-
-        return gene_dict
-
+    # def genedict_from_profile(self, query_results) -> Dict:
+    #     """
+    #     Generate gene data dict from profile data
+    #     :param query_results:
+    #     :return:
+    #     """
+    #     gene_dict = dict()
+    # 
+    #     for batch in query_results:
+    #         for docsum in batch['DocumentSummarySet']['DocumentSummary']:
+    #             gid_list = docsum['ENTREZ_GENE_ID'].split(";")
+    #             gname_list = docsum['geneName'].split("<:>")
+    #             for (x, y) in zip(gid_list, gname_list):
+    #                 gene_dict[x] = y
+    # 
+    #     return gene_dict
+    # 
     # from geneName.py -> to get metadata
     def meta_from_gds(self, gds_dict: Dict) -> Dict:
         """
         Get meta information, such as gds submission time, n_samples, platform from gds.
-        :param gds_list: list of gds_ids
-        # :return: pids (k=gds_id, v=pmid)
+        :param gds_dict: k=gds_id, v={k=geneName, v=gene freq}
         :return: meta_dict: key=gds_ids, value=list of gds metrics (n_samples, dates, GPLs)
         """
         gds_list = list(gds_dict.keys())
@@ -245,14 +242,13 @@ class GEOQuery:
                                datetime.strptime(sm['PDAT'],'%Y/%m/%d').timestamp(),
                                sm['GPL']]
                      for sm in qout}
-        # pids = {sm['Id']: sm['PubMedIds'] for sm in qout}
         return meta_dict
 
     def get_pubmed_ids(self, data_dict) -> Dict:
         """
         Fetch PubMed terms from GDS data
-        :param gds_dict:
-        :return:
+        :param gds_dict: k=gds_id, v={k=geneName, v=gene freq}
+        :return pids:
         """
         gds_list = list(data_dict.keys())
     
@@ -270,11 +266,11 @@ class GEOQuery:
     
         return pids
     
-    def gds_to_pd_dataframe(self, gds_dict):
+    def gds_to_pd_dataframe(self, gds_dict: Dict):
         """
         Convert GDS to pandas dataframe
-        :param gds_dict:
-        :return:
+        :param gds_dict: k=gds_id, v={k=geneName, v=gene freq}
+        :return pdd:
         """
         pdd = pd.DataFrame(list(gds_dict.values()))
         pdd.index = gds_dict.keys()
@@ -429,13 +425,13 @@ class GEOQuery:
         query_results = self.get_ncbi_docsum(mesh_term, self.db)
 
         # Map GEO datasets to genes names and count gene frequency
-        gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
+        gds_dict = self.gdsdict_from_profile(query_results)
 
         # Map GEO datasets to Pubmed IDs
         geo_to_pid_dict = self.get_pubmed_ids(gds_dict)
 
         # Retrieve gene names from GEO gene profiles
-        gid_to_gname_dict = self.genedict_from_profile(query_results)
+        # gid_to_gname_dict = self.genedict_from_profile(query_results)
 
         # Export GDS
         gds = self.gds_to_pd_dataframe(gds_dict)
@@ -446,5 +442,5 @@ class GEOQuery:
         # Batch effect data
         meta_dict = self.meta_from_gds(gds_dict)
 
-        return gid_to_gname_dict, geo_to_pid_dict, gds_dict, clusters, meta_dict
+        return geo_to_pid_dict, gds_dict, clusters, meta_dict
 
