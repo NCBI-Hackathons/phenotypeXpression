@@ -43,7 +43,10 @@ class Pubmed:
             self.hgnc = json.loads(hgnc_syn)
         
     # fetch abstract from a single pmid    
-    def fetch_abstract(self, pmid):
+    def fetch_abstract(self, pmid: str) -> None:
+        """
+        Fetch abstract from a single pmid   
+        """
 
         self.pmid_abstracts[pmid] = ''
 
