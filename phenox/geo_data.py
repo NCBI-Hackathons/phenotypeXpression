@@ -11,6 +11,7 @@ from urllib.error import HTTPError
 import numpy as np
 import pandas as pd
 import pydendroheatmap as pdh
+from datetime import datetime
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -30,26 +31,26 @@ from phenox.paths import PhenoXPaths
 
 # class for querying GEO databases
 class GEOQuery:
-    def __init__(self, term, email, tool="phenotypeXpression", efetch_batch=5000, elink_batch=100):
+    def __init__(self, outprefix, term, email, tool="phenotypeXpression", efetch_batch=5000, elink_batch=100):
         Entrez.email = email
         Entrez.tool = tool
         self.efetch_batch = efetch_batch
         self.elink_batch = elink_batch
         self.db = 'geoprofiles'
 
-        paths = PhenoXPaths()
+        self.paths = PhenoXPaths(outprefix)
         term_name = term.replace(' ', '-')
         self.hcluster_file = os.path.join(
-            paths.output_dir, "{}_GDS_hierarchical_clusters.pdf".format(term_name)
+            self.paths.output_dir, "{}_{}_hierarchical_clusters.pdf".format(self.paths.outprefix, term_name)
         )
         self.tree_file = os.path.join(
-            paths.output_dir, "{}_GDS_newick_tree.txt".format(term_name)
+            self.paths.output_dir, "{}_{}_newick_tree.txt".format(self.paths.outprefix, term_name)
         )
         self.heatmap_file = os.path.join(
-            paths.output_dir, "{}_GDS_heatmap.pdf".format(term_name)
+            self.paths.output_dir, "{}_{}_heatmap.pdf".format(self.paths.outprefix, term_name)
         )
         self.dist_graph_file = os.path.join(
-            paths.output_dir, "{}_GDS_dist_graph.pdf".format(term_name)
+            self.paths.output_dir, "{}_{}_dist_graph.pdf".format(self.paths.outprefix, term_name)
         )
 
     @staticmethod
@@ -117,8 +118,7 @@ class GEOQuery:
         count = count1
 
         # sliding window of history list in batch size
-        for start in tqdm.tqdm(range(0, count, self.efetch_batch),
-                               desc="Document batches"):
+        for start in range(0, count, self.efetch_batch):
             end = min(count, start + self.efetch_batch)
             logging.info("Going to download record {} to {}"
                          .format(start + 1, end))
@@ -167,7 +167,7 @@ class GEOQuery:
 
     def batch_local(self, query_type, id_list, **kwargs) -> Dict:
         """
-        Batch local
+        Batch local for elink,einfo queries w/ no retstart parameter
         :param query_type:
         :param id_list:
         :param kwargs:
@@ -192,73 +192,85 @@ class GEOQuery:
                 result_dict[el['IdList'][0]] = el['LinkSetDb'][0]['Link'][0]['Id']
         return result_dict
 
-    def gdsdict_from_profile(self, query_results) -> Tuple:
+    def gdsdict_from_profile(self, query_results) -> Dict:
         """
         Generate GDS data dict from profile data
-        :param query_results:
-        :return: gds_dict (k=geo_exp_id, v=gene_id), gene_freq(k=gene_id, v=freq)
+        using <gene name> as dict key
+        :param query_results: Dict from ncbi query
+        :return gds_dict: k=gds_id, v={k=geneName, v=gene freq}
         """
         gds_dict = dict()
-        gene_freq = defaultdict(int)
 
         for batch in query_results:
-            for docsum in tqdm.tqdm(batch['DocumentSummarySet']['DocumentSummary'],
-                                    desc="GEO Datasets"):
+            for docsum in tqdm.tqdm(batch['DocumentSummarySet']['DocumentSummary'],desc="GEO Datasets"):
                 gdsid = docsum['GDS']
-                gids = docsum['ENTREZ_GENE_ID'].split(";")
-                for gid in gids:
-                    if len(gid) > 0:
-                        gene_freq[gid] += 1
+                gnamelist = docsum['geneName'].split("<:>")
+                for gname in gnamelist:
+                    if len(gname) > 0:
                         if gdsid not in gds_dict:
                             gds_dict[gdsid] = defaultdict(int)
-                        gds_dict[gdsid][gid] += 1
+                        gds_dict[gdsid][gname.upper()] += 1
+        return gds_dict
 
-        return gds_dict, gene_freq
-
-    def genedict_from_profile(self, query_results) -> Dict:
+    # def genedict_from_profile(self, query_results) -> Dict:
+    #     """
+    #     Generate gene data dict from profile data
+    #     :param query_results:
+    #     :return:
+    #     """
+    #     gene_dict = dict()
+    # 
+    #     for batch in query_results:
+    #         for docsum in batch['DocumentSummarySet']['DocumentSummary']:
+    #             gid_list = docsum['ENTREZ_GENE_ID'].split(";")
+    #             gname_list = docsum['geneName'].split("<:>")
+    #             for (x, y) in zip(gid_list, gname_list):
+    #                 gene_dict[x] = y
+    # 
+    #     return gene_dict
+    # 
+    # from geneName.py -> to get metadata
+    def meta_from_gds(self, gds_dict: Dict) -> Dict:
         """
-        Generate gene data dict from profile data
-        :param query_results:
-        :return:
+        Get meta information, such as gds submission time, n_samples, platform from gds.
+        :param gds_dict: k=gds_id, v={k=geneName, v=gene freq}
+        :return: meta_dict: key=gds_ids, value=list of gds metrics (n_samples, dates, GPLs)
         """
-        gene_dict = dict()
-
-        for batch in query_results:
-            for docsum in batch['DocumentSummarySet']['DocumentSummary']:
-                gid_list = docsum['ENTREZ_GENE_ID'].split(";")
-                gname_list = docsum['geneName'].split("<:>")
-                for (x, y) in zip(gid_list, gname_list):
-                    gene_dict[x] = y
-
-        return gene_dict
+        gds_list = list(gds_dict.keys())
+        qout = Entrez.read(Entrez.esummary(db="gds", id=",".join(gds_list)))
+        meta_dict = {sm['Id']:[sm['n_samples'],
+                               datetime.strptime(sm['PDAT'],'%Y/%m/%d').timestamp(),
+                               sm['GPL']]
+                     for sm in qout}
+        return meta_dict
 
     def get_pubmed_ids(self, data_dict) -> Dict:
         """
         Fetch PubMed terms from GDS data
-        :param gds_dict:
-        :return:
+        :param gds_dict: k=gds_id, v={k=geneName, v=gene freq}
+        :return pids:
         """
         gds_list = list(data_dict.keys())
-
+    
         # elink gds to pid
         pid_list = Entrez.read(
             Entrez.elink(
                 id=gds_list, db='pubmed', dbfrom='gds', linkname='gds_pubmed'
             )
         )
-
+    
         # extract pubmed IDs
         pids = {
             el['IdList'][0]: el['LinkSetDb'][0]['Link'][0]['Id'] for el in pid_list
         }
-
+    
         return pids
-
-    def gds_to_pd_dataframe(self, gds_dict):
+    
+    def gds_to_pd_dataframe(self, gds_dict: Dict):
         """
         Convert GDS to pandas dataframe
-        :param gds_dict:
-        :return:
+        :param gds_dict: k=gds_id, v={k=geneName, v=gene freq}
+        :return pdd:
         """
         pdd = pd.DataFrame(list(gds_dict.values()))
         pdd.index = gds_dict.keys()
@@ -269,27 +281,27 @@ class GEOQuery:
         pdd = pdd[pdd.sum(axis=1) > 1]
         return pdd
 
-    def _generate_heatmap(self, gds_py, clusters):
-        """
-        Generate heatmap from GDS data
-        :param gds_py:
-        :return:
-        """
-        # TODO: add dendrogram to heatmap; cannot currently convert R dendrogram to scipy format
-        gds_array = []
-
-        for cl_name, cl_members in clusters.items():
-            for mem in cl_members:
-                gds_array.append(gds_py.loc[[mem]])
-
-        gds_array = np.array(pd.concat(gds_array))
-        gds_array = gds_array.transpose()
-
-        heatmap = pdh.DendroHeatMap(heat_map_data=gds_array)
-        heatmap.title = "GDS clustering heatmap"
-        heatmap.export(self.heatmap_file)
-        print("Heatmap written to {}".format(self.heatmap_file))
-        return
+#    def _generate_heatmap(self, gds_py, clusters):
+#        """
+#        Generate heatmap from GDS data
+#        :param gds_py:
+#        :return:
+#        """
+#        # TODO: add dendrogram to heatmap; cannot currently convert R dendrogram to scipy format
+#        gds_array = []
+#
+#        for cl_name, cl_members in clusters.items():
+#            for mem in cl_members:
+#                gds_array.append(gds_py.loc[[mem]])
+#
+#        gds_array = np.array(pd.concat(gds_array))
+#        gds_array = gds_array.transpose()
+#
+#        heatmap = pdh.DendroHeatMap(heat_map_data=gds_array)
+#        heatmap.title = "GDS clustering heatmap"
+#        heatmap.export(self.heatmap_file)
+#        print("Heatmap written to {}".format(self.heatmap_file))
+#        return
 
     def _generate_dist_graph(self, gds_py):
         """
@@ -348,6 +360,7 @@ class GEOQuery:
         graphics = importr("graphics")
         grdevices = importr("grDevices")
         ape = importr("ape")
+        gplots = importr("gplots")
 
         # convert pandas df to R df
         with localconverter(default_converter + pandas2ri.converter) as cv:
@@ -358,7 +371,7 @@ class GEOQuery:
 
         # cluster over studies
         print("Clustering on Studies...")
-        fit = pvclust.pvclust(mat_trans, nboot=1000, method_hclust="ward.D2", method_dist="euclidean")
+        fit = pvclust.pvclust(mat_trans, nboot=5000, method_hclust="ward.D2", method_dist="euclidean")
 
         # write clustering output to pdf
         grdevices.pdf(self.hcluster_file, paper="a4")
@@ -366,6 +379,13 @@ class GEOQuery:
         pvclust.pvrect(fit, alpha=.95)
         grdevices.dev_off()
         print("Clustering diagram written to {}".format(self.hcluster_file))
+
+        # write heatmap with pvclust to pdf 
+        grdevices.pdf(self.heatmap_file, paper="a4")
+        gplots.heatmap_2(mat_trans,Rowv = fit,dendrogram = "col",col=gplots.bluered(100), labRow = False, trace="none")
+        grdevices.dev_off()
+        print("Heatmap written to {}".format(self.heatmap_file))
+
 
         # write cluster tree output to tree file
         hc = fit.rx2("hclust")
@@ -389,11 +409,10 @@ class GEOQuery:
                     cluster_members[clust_name].append(pmid)
 
         # generate heatmap
-        self._generate_heatmap(gds_py, cluster_members)
+        # self._generate_heatmap(gds_py, cluster_members)
 
         # generate distance graph
         self._generate_dist_graph(gds_py)
-
         return cluster_members
 
     def get_all_geo_data(self, mesh_term: str) -> Tuple:
@@ -405,20 +424,23 @@ class GEOQuery:
         # query GEO using MeSH term and retrieve datasets
         query_results = self.get_ncbi_docsum(mesh_term, self.db)
 
-        # Map GEO datasets to genes and count gene frequency
-        gds_dict, gene_freq = self.gdsdict_from_profile(query_results)
+        # Map GEO datasets to genes names and count gene frequency
+        gds_dict = self.gdsdict_from_profile(query_results)
 
         # Map GEO datasets to Pubmed IDs
         geo_to_pid_dict = self.get_pubmed_ids(gds_dict)
 
         # Retrieve gene names from GEO gene profiles
-        gid_to_gname_dict = self.genedict_from_profile(query_results)
+        # gid_to_gname_dict = self.genedict_from_profile(query_results)
 
         # Export GDS
         gds = self.gds_to_pd_dataframe(gds_dict)
 
         # Run clustering algorithm
         clusters = self.call_r_clustering(gds)
+        
+        # Batch effect data
+        meta_dict = self.meta_from_gds(gds_dict)
 
-        return gid_to_gname_dict, geo_to_pid_dict, gds_dict, clusters
+        return geo_to_pid_dict, gds_dict, clusters, meta_dict
 

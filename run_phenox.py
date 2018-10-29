@@ -4,12 +4,12 @@ import argparse
 from phenox.phenox import PhenoX
 
 
-__version__ = '0.1.0'
+__version__ = '0.2.1'
 
 
 def run(args):
     print('Input query: %s' % args.query_str)
-    phenox = PhenoX(args.email, args.query_str)
+    phenox = PhenoX(args.email, args.query_str, args.outprefix)
     phenox.subtype()
 
 
