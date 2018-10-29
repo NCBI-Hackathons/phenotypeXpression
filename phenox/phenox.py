@@ -122,6 +122,17 @@ class PhenoX:
         )
         plotter = WordcloudPlotter(self.paths.outprefix)
         plotter.generate_wordclouds(clusters, output_file)
+
+        wc_text_file = os.path.join(
+            self.paths.output_dir,
+            '{}_term_frequencies.txt'.format(self.query_str.replace(' ', '-'))
+        )
+        with open(wc_text_file, 'w') as outf:
+            for cluster_name, cluster_content in clusters.items():
+                outf.write('---{}---\n'.format(cluster_name))
+                for ne, count in cluster_content.items():
+                    outf.write('{}\t{}\n'.format(ne, count))
+                outf.write('\n')
         return
 
     def subtype(self):
