@@ -85,6 +85,8 @@ class GEOQuery:
                     time.sleep(15)
                 else:
                     raise
+            except KeyboardInterrupt:
+                raise KeyboardInterrupt()
             else:
                 break
         else:
@@ -212,24 +214,6 @@ class GEOQuery:
                         gds_dict[gdsid][gname.upper()] += 1
         return gds_dict
 
-    # def genedict_from_profile(self, query_results) -> Dict:
-    #     """
-    #     Generate gene data dict from profile data
-    #     :param query_results:
-    #     :return:
-    #     """
-    #     gene_dict = dict()
-    # 
-    #     for batch in query_results:
-    #         for docsum in batch['DocumentSummarySet']['DocumentSummary']:
-    #             gid_list = docsum['ENTREZ_GENE_ID'].split(";")
-    #             gname_list = docsum['geneName'].split("<:>")
-    #             for (x, y) in zip(gid_list, gname_list):
-    #                 gene_dict[x] = y
-    # 
-    #     return gene_dict
-    # 
-    # from geneName.py -> to get metadata
     def meta_from_gds(self, gds_dict: Dict) -> Dict:
         """
         Get meta information, such as gds submission time, n_samples, platform from gds.
@@ -280,28 +264,6 @@ class GEOQuery:
         pdd = pdd.loc[:, col_select]
         pdd = pdd[pdd.sum(axis=1) > 1]
         return pdd
-
-#    def _generate_heatmap(self, gds_py, clusters):
-#        """
-#        Generate heatmap from GDS data
-#        :param gds_py:
-#        :return:
-#        """
-#        # TODO: add dendrogram to heatmap; cannot currently convert R dendrogram to scipy format
-#        gds_array = []
-#
-#        for cl_name, cl_members in clusters.items():
-#            for mem in cl_members:
-#                gds_array.append(gds_py.loc[[mem]])
-#
-#        gds_array = np.array(pd.concat(gds_array))
-#        gds_array = gds_array.transpose()
-#
-#        heatmap = pdh.DendroHeatMap(heat_map_data=gds_array)
-#        heatmap.title = "GDS clustering heatmap"
-#        heatmap.export(self.heatmap_file)
-#        print("Heatmap written to {}".format(self.heatmap_file))
-#        return
 
     def _generate_dist_graph(self, gds_py):
         """
@@ -407,9 +369,6 @@ class GEOQuery:
                 clust_name = "cluster{}".format(i)
                 for pmid in clust:
                     cluster_members[clust_name].append(pmid)
-
-        # generate heatmap
-        # self._generate_heatmap(gds_py, cluster_members)
 
         # generate distance graph
         self._generate_dist_graph(gds_py)
