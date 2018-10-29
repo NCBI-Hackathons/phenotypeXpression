@@ -22,7 +22,10 @@ from phenox.geo_data import GEOQuery
 
 # class for retrieving pubmed abstracts and finding disease/phenotype entities
 class Pubmed:
-    def __init__(self, email):
+    def __init__(self, email: str) -> None:
+        """
+        Initialize class
+        """
         Entrez.email = email
         self.paths = PhenoXPaths()
         self.pmid_abstracts = dict()
@@ -40,7 +43,11 @@ class Pubmed:
         self.nlp.add_pipe(entity, last=True)
         
     # fetch abstract from a single pmid    
-    def fetch_abstract(self, pmid):
+    def fetch_abstract(self, pmid: str) -> None:
+        """
+        Fetch abstract from a single pmid
+        :param pmid:
+        """
         handle = Entrez.efetch(db='pubmed', id=pmid, retmode='xml')
         record = Entrez.read(handle)
         abs_str = []
@@ -67,11 +74,20 @@ class Pubmed:
 
         self.pmid_abstracts[pmid] = ' '.join(abs_str).strip()
         
-    def extract_DNER(self, pmid):
+    def extract_DNER(self, pmid: str) -> None:
+        """
+        Store dner count and dner associated with each pmid
+        :param pmid:
+        """
         self.pmid_ent_text[pmid], self.pmid_dner[pmid] = self.find_DNER(self.pmid_abstracts[pmid])
     
     # find disease and phenotype NER
-    def find_DNER(self, abstract_text):
+    def find_DNER(self, abstract_text: str) -> tuple:
+        """
+        Identify disease and phenotype NER from abstract text
+        :param abstract_text:
+        :return:
+        """
         kw = []
         dner = []
         doc = self.nlp(abstract_text)
@@ -85,10 +101,11 @@ class Pubmed:
         return Counter(kw), dner
     
     # count word frequencies based on clustering results
-    def cluster_count(self, cluster):
-        '''
-        cluster dtype: list of list
-        '''
+    def cluster_count(self, cluster: list) -> int:
+        """
+        :param cluster: list (number of clusters) of list (member of each cluster)
+        :return:
+        """
         n_cluster = 0
         for c in cluster:
             dner_cluster_list = []
@@ -99,9 +116,11 @@ class Pubmed:
         return n_cluster
 
     # organize pmid into clusters from cluster analysis output (csv file)
-    def get_clusters(self, gdsid_pmid_map, cluster_dict):
+    def get_clusters(self, gdsid_pmid_map: dict, cluster_dict: dict) -> dict:
         """
-        Change read_csv path if csvfilepath changes in the future
+        Organize pmid into clusters from cluster analysis output
+        :param gdsid_pmid_map:
+        :param cluster_dict:
         """
         pmid_clustered = dict()
 
@@ -118,7 +137,7 @@ class Pubmed:
         print(pmid_clustered)
         return pmid_clustered
 
-    def get_term_frequencies(self, pmid_list):
+    def get_term_frequencies(self, pmid_list: list) -> dict:
         """
         Get all term frequencies
         :return:
@@ -130,10 +149,13 @@ class Pubmed:
         freq_list = Counter(self.total_dner)
         return freq_list
 
-    def construct_query_terms(self, mesh_term, gene_name_list):
+    def construct_query_terms(self, mesh_term: str, gene_name_list: list) -> list:
         """
         Construct a list of query terms to make sure each term does not exceed
-        4000 characters. Returns a list of query strings.
+        4000 characters. 
+        :param mesh_term:
+        :param gene_name_list: list of gene names
+        :return query_term_list: a list of query strings.
         """
         query_term_list = []
 
