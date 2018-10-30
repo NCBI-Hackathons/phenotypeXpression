@@ -11,9 +11,10 @@ import Bio.Entrez as Entrez
 import spacy
 import os
 import json
-from spacy_lookup import Entity
 import pickle
+from spacy_lookup import Entity
 from collections import Counter
+from typing import List, Dict, Tuple
 
 from phenox.paths import PhenoXPaths
 
@@ -87,7 +88,7 @@ class Pubmed:
         self.pmid_ent_text[pmid], self.pmid_dner[pmid] = self.find_DNER(self.pmid_abstracts[pmid])
     
     # find disease and phenotype NER
-    def find_DNER(self, abstract_text: str) -> tuple:
+    def find_DNER(self, abstract_text: str) -> Tuple:
         """
         Identify disease and phenotype NER from abstract text
         :param abstract_text:
@@ -111,7 +112,7 @@ class Pubmed:
             return Counter([]), []
 
     # count word frequencies based on clustering results
-    def cluster_count(self, cluster: list) -> int:
+    def cluster_count(self, cluster: List) -> int:
         """
         :param cluster: list (number of clusters) of list (member of each cluster)
         :return:
@@ -126,7 +127,7 @@ class Pubmed:
         return n_cluster
 
     # organize pmid into clusters from cluster analysis output (csv file)
-    def get_clusters(self, gdsid_pmid_map: dict, cluster_dict: dict) -> dict:
+    def get_clusters(self, gdsid_pmid_map: Dict, cluster_dict: Dict) -> Dict:
         """
         Organize pmid into clusters from cluster analysis output
         :param gdsid_pmid_map:
@@ -146,7 +147,7 @@ class Pubmed:
 
         return pmid_clustered
 
-    def get_term_frequencies(self, pmid_list: list) -> dict:
+    def get_term_frequencies(self, pmid_list: List) -> Dict:
         """
         Get all term frequencies
         :return:
@@ -159,7 +160,7 @@ class Pubmed:
 
         return freq_list
 
-    def construct_query_terms(self, mesh_term: str, gene_name_list: list) -> list:
+    def construct_query_terms(self, mesh_term: str, gene_name_list: List) -> List:
         """
         Construct a list of query terms to make sure each term does not exceed
         4000 characters. 
