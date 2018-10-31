@@ -344,7 +344,7 @@ class GEOQuery:
 
         # write heatmap with pvclust to pdf 
         grdevices.pdf(self.heatmap_file, paper="a4")
-        gplots.heatmap_2(mat_trans,Rowv = fit,dendrogram = "col",col=gplots.bluered(100), labRow = False, trace="none")
+        gplots.heatmap_2(mat_trans,Rowv = fit,dendrogram = "col",col=gplots.bluered(100), labRow = False, trace="none",key=False)
         grdevices.dev_off()
         print("Heatmap written to {}".format(self.heatmap_file))
 
