@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1311475.svg)](https://doi.org/10.5281/zenodo.1311475)
 
-<div style="text-align:center"><img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/PhenoX.png" width="300"/></div>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/PhenoX.png" width="400"/>
 
 # phenotypeXpression
 
@@ -98,6 +98,10 @@ GEO profiles matching the MeSH term are filtered using the “up down genes” f
 <img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/phenox_Psoriasis_dist_graph.png" width="600" align="middle"/>
 
 A pairwise distance graph showing the GDS datasets based on absoulte difference in number of genes per GDS is also produced. Based on the gene sets defined above.
+
+## Publication
+
+For more information on the function of PhenoX, please see our upcoming bioRxiv publication.
 
 ## Authors
 
