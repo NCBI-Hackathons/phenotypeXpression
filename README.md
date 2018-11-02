@@ -52,18 +52,6 @@ The primary inputs are a MeSH term and your email. The MeSH term should specify 
 
 The user can specify a prefix with `-o` in addition to the automatic MeSH term prefix at the beginning of each output file.
 
-### Output
-
-This should produce the following files in the phenotypeXpression/output directory:
-
-* Dendgrogram of GDS with node P-values and cluster boxes.
-* A word cloud for each cluster box.
-* Heatmap of differentially expressed genes per GDS (columns).
-* A pairwise distance graph of each GDS by absolute difference in gene sets.
-* A newick tree file
-* A cluster batch statistics text file.
-* A cluster HPO/DOID term frequency text file.
-
 ### Dependencies
 
 python dependencies
@@ -90,6 +78,18 @@ matplotlib
 readline
 r-gplots
 ```
+
+### Output
+
+This should produce the following files in the phenotypeXpression/output directory:
+
+* Dendgrogram of GDS with node P-values and cluster boxes.
+* A word cloud for each cluster box.
+* Heatmap of differentially expressed genes per GDS (columns).
+* A pairwise distance graph of each GDS by absolute difference in gene sets.
+* A newick tree file
+* A cluster batch statistics text file.
+* A cluster HPO/DOID term frequency text file.
 
 ## Motivation
 
