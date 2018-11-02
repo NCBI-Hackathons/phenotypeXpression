@@ -4,23 +4,11 @@
 
 # phenotypeXpression
 
-### Subclassification of disease states using public gene expression data and literature
+## Subclassification of disease states using public gene expression data and literature
 
 PhenotypeXpression (PhenoX) is a proof of principle precision medicine tool for clinicians to quickly discover potential subtypes of known diseases. PhenoX rapidly aggregates gene expression data from multiple public studies, and then mines PubMed literature to develop novel disease subclassifications and expression profiles. By combining literature occurrences of subtype HPO and DOID information with GEO dataset expression profiles, each sub-classification of a disease is given a characteristic terminology fingerprint. Here we demonstrate the use of this tool for a common disease—Psoriasis—and identify two clusters with unique gene expression profiles.
 
 <img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/2018-11-02_Phenox_Fig1.png" width="1000" align="middle"/>
-
-### Minimum Inputs
-
-The primary inputs are a MeSH term and your email. The MeSH term should specify the parent condition for which you would like to derive subgroup information. The email is required to batch query NCBI databases.
-
-### Optional Arguments
-
-Additional arguements include a specification of and output file prefix (-o).
-
-## Motivation
-
-Before personalized medicine can be fully implemented, disease classification ontologies will need to gain many orders of magnitude. However, this then complicates the role of clinicians seeking to use a more tailored diagnosis. Differential expression within a disease set, its subtypes, can have a significant impact on treatment effect. In many cases, the subtypes for complex diseases have yet to be defined or named. These subtypes can be defined by gene expression profiles or phenotypic traits. This project aims to produce a quantitative and qualitative description of subtypes of common diseases, using gene expression signatures from the NCBI Gene Expression Omnibus (GEO), as well as phenotypic traits mined from the literature.
 
 ## Installation
 
@@ -39,7 +27,17 @@ source activate phenoX
 python run_phenox.py -e A.N.Other@example.com "Psoriasis"
 ```
 
-Should produce the following files in the phenotypeXpression/output directory:
+### Minimum Inputs
+
+The primary inputs are a MeSH term and your email. The MeSH term should specify the parent condition for which you would like to derive subgroup information. The email is required to batch query NCBI databases.
+
+### Optional Arguments
+
+The user can specify a prefix with `-o` in addition to the automatic MeSH term prefix at the beginning of each output file.
+
+### Output
+
+This should produce the following files in the phenotypeXpression/output directory:
 
 * Dendgrogram of GDS with node P-values and cluster boxes.
 * A word cloud for each cluster box.
@@ -75,6 +73,12 @@ matplotlib
 readline
 r-gplots
 ```
+
+## Motivation
+
+Personalized medicine promises an almost limitless subdivision of clinical phenotypes. Accordingly, treatments can be tailored to individuals based on the specifics of their disease presentation (Mirnezami et al, 2012). In an effort to define and organize the rapid expansion of phenotypes and related conditions, a number of ontological systems have been developed, including the Online Mendelian Inheritance in Man (OMIM) (Hamosh et al, 2002), Orphanet (Weinreich et al, 2008), Human Phenotype Ontology (HPO) (Robinson et al, 2010), Human Disease Ontology (DOID) (Schriml et al, 2012), MedGen (Landrum et al, 2014), and others. These resources attempt to reach a consensus hierarchy for disease and a shared nomenclature. While unique identifiers are useful for resolving semantic differences, they do not provide an adequate description of the phenotype itself.
+
+There has also been a steady increase in the amount of publicly available genetic expression data as public resources have scaled. The NCBI’s Gene Expression Omnibus (GEO) collects over 4000 gene expression datasets (Edgar et al, 2002). Several additional resources have been developed for expression data, such as the Human Cell Atlas (Regev et al, 2017),the Gene Expression Atlas (Kapushesky et al, 2010), the Cancer Genome Atlas (Weinstein et al, 2013), GTEx (Lonsdale et al, 2013), and others. These resources provide promising opportunities to aggregate and share expression data across multiple projects and for identifying novel phenotypes.
 
 ## Details on Results
 
