@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1311475.svg)](https://doi.org/10.5281/zenodo.1311475)
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/PhenoX.png" width="300" align= "middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/PhenoX.png" width="300" align="middle"/>
 
 # phenotypeXpression
 
@@ -24,7 +24,7 @@ Before personalized medicine can be fully implemented, disease classification on
 
 ## Installation
 
-Implemented in Python 3.6 and R. For simplicity, the install script setup.sh utilizes a conda environment and rpy2 for a self contained environment. Tested environments include Anaconda3 4.3 and Anaconda3 4.4. To install:
+Implemented in Python 3.6 and R. For simplicity, the install script setup.sh utilizes a conda environment for a self contained environment. Tested environments include Anaconda3 4.3 and Anaconda3 4.4. To install:
 
 ```
 git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
@@ -39,7 +39,7 @@ source activate phenoX
 python run_phenox.py -e A.N.Other@example.com "Psoriasis"
 ```
 
-Should produce the following files in the output directory:
+Should produce the following files in the phenotypeXpression/output directory:
 
 * Dendgrogram of GDS with node P-values and cluster boxes.
 * A word cloud for each cluster box.
@@ -76,7 +76,7 @@ readline
 r-gplots
 ```
 
-## Details on Results...
+## Details on Results
 
 For the given MeSH term, PhenoX will attempt to generate all subclassifications of the condition based on the available expression data in the NCBI Gene Expression Omnibus. Each subclass will have two major features, a word cloud of phenotypic terms associated with the seach term via a literature search, and a gene expression profile of differentially expressed genes. The output will include several file types described in detail below: 
 
@@ -101,8 +101,8 @@ A pairwise distance graph showing the GDS datasets based on absoulte difference 
 
 ## Authors
 
-Agnes Bao  
-Robert R Butler III  
-Huaiying Lin  
-Subhajit Sengupta  
 Lucy Lu Wang  
+Huaiying Lin  
+Agnes Bao  
+Subhajit Sengupta  
+Robert R Butler III  
