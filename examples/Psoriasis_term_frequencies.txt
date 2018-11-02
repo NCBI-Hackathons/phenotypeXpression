@@ -1,0 +1,2576 @@
+---cluster0---
+Psoriasiform dermatitis	14085
+Transient	53
+disease	2917
+Chronic	1343
+Autoimmunity	242
+skin disease	467
+aortic valve stenosis	488
+Neoplasm	1283
+Heterogeneous	113
+Moderate	628
+Frequency	300
+Clinical course	20
+Inflammatory abnormality of the skin	440
+Atopic dermatitis	714
+Alzheimer's disease	592
+Dry skin	11
+Immune dysregulation	9
+urethral intrinsic sphincter deficiency	33
+Immunodeficiency	30
+keratoconjunctivitis sicca	79
+Epidermal acanthosis	56
+Melanoma	97
+Localized	111
+Central	166
+Netherton syndrome	12
+cancer	279
+Fatigue	41
+Skin rash	5
+Colitis	45
+Carcinoma	14
+Triggered by	43
+Generalized	170
+fungal infectious disease	2
+Hyperkeratosis	35
+All	216
+Severity	999
+Dilatation	8
+dermatitis	179
+psoriatic arthritis	1649
+Osteoarthritis	59
+Gout	22
+Rheumatoid arthritis	789
+Arthritis	650
+Hepatitis	20
+exanthem	42
+Pruritus	131
+Vitiligo	121
+rosacea	33
+Alopecia	57
+Alopecia areata	55
+Poliosis	3
+Nail dystrophy	10
+Atherosclerosis	93
+Obesity	136
+Synovitis	105
+Acute	271
+allergic hypersensitivity disease	60
+Verrucae	23
+Cutaneous melanoma	2
+Peripheral	677
+atopic dermatitis	105
+allergic contact dermatitis	54
+pityriasis rosea	9
+lichen planus	100
+Recurrent	88
+Hypertension	85
+Overweight	15
+syndrome	266
+spondyloarthropathy	52
+Tender	46
+Pain	123
+ankylosing spondylitis	307
+Axial	111
+multiple sclerosis	135
+mycosis fungoides	156
+Mitochondrial inheritance	52
+Epidermal thickening	21
+systemic scleroderma	36
+Proximal	27
+Mild	166
+Asthma	111
+Severe	985
+Ulcerative colitis	85
+Crohn's disease	252
+Systemic lupus erythematosus	107
+Edema	86
+lymphoproliferative disease	5
+Myeloproliferative disorder	4
+Osteopenia	5
+cutaneous T cell lymphoma	18
+Productive cough	3
+Edema of the lower limbs	3
+Clubbing of fingers	3
+cutaneous mastocytosis	13
+Acne	75
+Right	35
+Cheilitis	2
+Osteoporosis	32
+Frequent	137
+Acute promyelocytic leukemia	2
+skin cancer	64
+Kaposi's sarcoma	6
+Cutaneous T-cell lymphoma	34
+Type II diabetes mellitus	25
+Severe combined immunodeficiency	7
+tuberculosis	121
+ichthyosis	4
+Pustule	49
+Refractory	67
+Hypertriglyceridemia	5
+Hypercholesterolemia	4
+Central hypothyroidism	2
+Headache	25
+Acute pancreatitis	1
+chronic obstructive pulmonary disease	9
+heart valve disease	3
+Epistaxis	7
+factor XIII deficiency	1
+Nevus	18
+Myocardial infarction	41
+Stroke	44
+thrombosis	23
+Scaling skin	23
+Onset	493
+Arteritis	1
+Chronic obstructive pulmonary disease	31
+Abnormal cell proliferation	3
+Type I diabetes mellitus	28
+irritable bowel syndrome	188
+inflammatory bowel disease	200
+allergic asthma	3
+Prolonged	61
+viral infectious disease	15
+Recurrent skin infections	26
+keratosis follicularis	8
+Obligate	4
+lung cancer	13
+contact dermatitis	51
+rheumatism	15
+Bronchitis	2
+Pericarditis	6
+sarcoidosis	32
+Progressive	53
+Blau syndrome	7
+Diabetes mellitus	30
+familial Mediterranean fever	11
+idiopathic pulmonary fibrosis	3
+Episodic	4
+Flushing	12
+lymphocytic choriomeningitis	2
+vaccinia	6
+Pyoderma gangrenosum	22
+Erythema nodosum	13
+Ductal carcinoma in situ	10
+Breast carcinoma	47
+Mode of inheritance	14
+CINCA Syndrome	1
+Multifocal	6
+Osteomyelitis	29
+Chronic lung disease	1
+Venous thrombosis	1
+retinal disease	3
+Miles-Carpenter syndrome	11
+Gliosis	2
+polycythemia vera	1
+leukocyte adhesion deficiency 1	2
+Gingivitis	1
+Periodontitis	11
+Leukocytosis	7
+Neutrophilia	6
+Neoplasm of the skin	14
+complex genetic disease	5
+Profound	30
+Position	58
+Squamous cell carcinoma	71
+lupus erythematosus	56
+ischemia	15
+Glomerulonephritis	11
+Vasculitis	30
+Acute kidney injury	4
+squamous cell carcinoma	8
+Respiratory distress	3
+coronary artery disease	16
+Acute tubular necrosis	2
+Anemia	18
+Borderline	3
+Leukemia	21
+Excluded	35
+Comedo	2
+Secondary hyperparathyroidism	3
+severe combined immunodeficiency	65
+Peritonitis	3
+Renal insufficiency	6
+Parakeratosis	40
+Palmoplantar pustulosis	123
+Focal	77
+diabetic retinopathy	7
+Age-related macular degeneration	3
+Aggressive behavior	2
+Hypercalcemia	7
+cholera	6
+Erythema	103
+Skin vesicle	38
+T-cell lymphoma	13
+hypomyelinating leukodystrophy 6	2
+Basal cell carcinoma	44
+Osteosarcoma	7
+pemphigus vulgaris	5
+metastatic squamous cell carcinoma	1
+keratosis	9
+Epidermal nevus	8
+Ichthyosis	34
+Congenital ichthyosiform erythroderma	4
+congenital ichthyosiform erythroderma	16
+autosomal recessive congenital ichthyosis	2
+Kawasaki disease	12
+Mycobacterium infectious disease	9
+pachyonychia congenita	1
+disease by infectious agent	6
+Bilateral	27
+Lymphadenopathy	11
+Salmonella gastroenteritis	5
+cryptococcosis	5
+penicilliosis	3
+histoplasmosis	2
+Scarring	7
+hard palate cancer	3
+Porokeratosis	4
+epidermolysis bullosa simplex	3
+Autosomal dominant inheritance	5
+epidermolytic palmoplantar keratoderma	3
+Palmoplantar hyperkeratosis	1
+Trichilemmal cyst	1
+Trichilemmoma	2
+Keratoacanthoma	6
+Epidermoid cyst	1
+Actinic keratosis	14
+eccrine porocarcinoma	1
+Sebaceous gland carcinoma	1
+pityriasis rubra pilaris	18
+Left	37
+exostosis	1
+essential hypertension	7
+heart disease	10
+Proteinuria	16
+Nephropathy	5
+Elevated serum creatinine	2
+Tubular atrophy	2
+Huntington's disease-like 2	1
+Cholestasis	1
+group B streptococcal pneumonia	27
+chronic rejection of renal transplant	4
+Membranoproliferative glomerulonephritis	6
+Antinuclear antibody positivity	13
+Scleroderma	10
+polymyositis	2
+connective tissue disease	1
+Graves' disease	9
+Plethora	2
+type 1 diabetes mellitus	14
+autonomic neuropathy	3
+fibromyalgia	20
+primary biliary cirrhosis	8
+Parkinson's disease	9
+Celiac disease	32
+colorectal cancer	14
+Acute myeloid leukemia	7
+Lymphoma	41
+anaplastic large cell lymphoma	2
+Chronic myelogenous leukemia	7
+Neoplasm of the liver	3
+primary sclerosing cholangitis	7
+Cholangitis	3
+autoimmune thyroiditis	15
+Strabismus	1
+Dystonia	3
+Acne inversa	21
+Eczema	96
+Abnormality of the eye	2
+Hashimoto thyroiditis	10
+progeria	2
+skin squamous cell carcinoma	2
+Anorexia	2
+Cough	3
+Sinusitis	2
+neurodegenerative disease	1
+encephalomyelitis	6
+Endometriosis	33
+progressive multifocal leukoencephalopathy	7
+Herpes simplex encephalitis	1
+colon carcinoma	2
+Myocarditis	11
+Thyroiditis	9
+Uveitis	55
+myasthenia gravis	16
+Fibrosarcoma	2
+Diffuse	33
+Distal	57
+Visual field defect	1
+Folliculitis	11
+Seborrheic dermatitis	16
+papilloma	6
+reactive arthritis	21
+Arthralgia	27
+acquired immunodeficiency syndrome	13
+mixed connective tissue disease	1
+Claustrophobia	1
+diphtheria	4
+Polyarticular arthritis	1
+human immunodeficiency virus infectious disease	15
+persistent generalized lymphadenopathy	1
+Weight loss	17
+Enthesitis	118
+Ameliorated by	16
+Behcet's disease	6
+Septic arthritis	1
+secondary syphilis	2
+Late onset	15
+Sepsis	18
+spongiotic dermatitis	4
+bullous pemphigoid	27
+dermatomyositis	21
+Diarrhea	16
+Nausea	21
+nasopharyngitis	12
+Respiratory tract infection	18
+Anterior uveitis	25
+adenosine deaminase deficiency	57
+Shock	32
+hypotrichosis 1	2
+Depressivity	69
+Sensory impairment	2
+Paresthesia	3
+Juvenile rheumatoid arthritis	47
+Hypothyroidism	4
+Hyperthyroidism	4
+polyradiculoneuropathy	4
+somatosensory disorder	2
+Muscle weakness	3
+alcoholic cardiomyopathy	1
+Arthropathy	55
+Alopecia universalis	7
+Interstitial pulmonary abnormality	8
+interstitial lung disease	2
+Temporal pattern	2
+kidney disease	12
+Fever	35
+Melanocytic nevus	9
+Chagas disease	1
+Synovial hypertrophy	1
+hepatitis B	6
+Sjogren's syndrome	9
+spondylitis	45
+Sacroiliac arthritis	76
+Ankylosis	6
+Transient ischemic attack	2
+intermediate coronary syndrome	2
+peripheral vascular disease	2
+Cryoglobulinemia	2
+Non-Hodgkin lymphoma	2
+Autoimmune hemolytic anemia	3
+Chronic infection	2
+liver disease	24
+polymyalgia rheumatica	7
+Purpura	5
+Insulin resistance	31
+Decreased liver function	2
+Accelerated atherosclerosis	1
+Hyperostosis	17
+bone inflammation disease	28
+SAPHO syndrome	25
+liver cirrhosis	7
+Sporadic	24
+nail disease	25
+Onycholysis	10
+Back pain	22
+hepatitis C	25
+candidiasis	2
+autosomal recessive Robinow syndrome	7
+Xerostomia	4
+Mastocytosis	5
+systemic mastocytosis	1
+erythema elevatum diutinum	1
+Oligoarthritis	43
+Pharyngitis	1
+gastroenteritis	2
+Rhinitis	2
+Osteolysis	16
+B-cell lymphoma	6
+Cellulitis	20
+Sharp	9
+Enterocolitis	2
+Low back pain	13
+Elevated erythrocyte sedimentation rate	6
+gastric adenocarcinoma	3
+Stomach cancer	7
+Peripheral demyelination	8
+Opportunistic infection	3
+Neutropenia	7
+Huntington's disease	34
+streptococcal pharyngitis	8
+Achalasia	1
+Acral	9
+Periodic	15
+Increased inflammatory response	4
+Multiple lentigines	1
+rheumatic disease	16
+Vitamin D deficiency	8
+Vulvodynia	6
+mastocytosis	1
+lipid metabolism disorder	16
+parapsoriasis	11
+Morphea	10
+Seborrheic keratosis	10
+Erythroderma	31
+Allergy	20
+Abnormal blistering of the skin	12
+demyelinating disease	6
+diffuse large B-cell lymphoma	2
+autoimmune lymphoproliferative syndrome	3
+Pneumonia	8
+Anxiety	38
+metastatic melanoma	5
+ichthyosis vulgaris	12
+herpes zoster	24
+syphilis	11
+skin sarcoidosis	6
+marginal zone B-cell lymphoma	3
+Erysipelas	4
+Arrhythmia	2
+Optic neuritis	4
+Peripheral neuropathy	2
+Charcot-Marie-Tooth disease	1
+nasopharynx carcinoma	2
+Uterine leiomyoma	1
+Hyperactivity	6
+dengue shock syndrome	9
+lupus nephritis	15
+Hematuria	1
+neuropathy	17
+pseudosarcomatous fibromatosis	2
+Chronic mucocutaneous candidiasis	4
+Subperiosteal bone formation	2
+Irritability	2
+Dysphagia	1
+Failure to thrive	2
+Thrombocytosis	1
+Asthenia	1
+Urethritis	5
+balanitis	2
+Keloids	3
+Patchy alopecia	2
+Alopecia totalis	1
+Hodgkin lymphoma	11
+Laryngeal carcinoma	4
+Abnormality of the vasculature	2
+Hyperlipidemia	6
+multicentric Castleman disease	22
+Cirrhosis	7
+Abdominal pain	8
+bronchopneumonia	1
+chickenpox	7
+Cerebral palsy	19
+Aortic stiffness	5
+Onychomycosis	26
+norwegian scabies	1
+Stage 5 chronic kidney disease	11
+toxic shock syndrome	9
+lymphosarcoma	4
+contagious pustular dermatitis	1
+Sezary's disease	3
+Nephrotic syndrome	6
+pompholyx	1
+Prostate cancer	11
+Keratoconjunctivitis	3
+Autism	6
+Schnitzler syndrome	2
+Pyoderma	8
+Panniculitis	1
+Muckle-Wells syndrome	1
+Abnormal T cell activation	1
+transient myeloproliferative syndrome	4
+influenza	6
+Allergic rhinitis	7
+enthesopathy	13
+genetic disorder	5
+hidradenitis	4
+Adult onset	2
+Aspiration	6
+Hepatic steatosis	14
+Viral hepatitis	2
+irritant dermatitis	8
+Eosinophilia	8
+Stevens-Johnson syndrome	4
+spindle cell hemangioma	1
+Thickened skin	2
+Cholecystitis	1
+Cholelithiasis	1
+IgA glomerulonephritis	6
+Fanconi anemia complementation group E	27
+Unilateral	12
+pemphigus	12
+epidermolysis bullosa dystrophica	3
+alcoholic hepatitis	5
+Abnormality of metabolism/homeostasis	3
+systemic inflammatory response syndrome	3
+pertussis	8
+Migratory	7
+lice infestation	1
+listeriosis	2
+nocardiosis	2
+typhoid fever	2
+herpes simplex	3
+pneumocystosis	6
+invasive aspergillosis	2
+leishmaniasis	2
+Cholesteatoma	36
+cutaneous lupus erythematosus	7
+Cutaneous photosensitivity	6
+Aggravated by	9
+acne	12
+spinal disease	7
+Urticaria	18
+Hyperhidrosis	8
+oral squamous cell carcinoma	2
+Chediak-Higashi syndrome	17
+Thrombocytopenia	14
+vascular disease	5
+chlamydia	15
+Conjunctivitis	6
+Iritis	3
+dysentery	1
+Interstitial pneumonitis	1
+Sensory neuropathy	2
+mucocutaneous leishmaniasis	1
+cutaneous leishmaniasis	5
+Amyloidosis	6
+alcoholic liver cirrhosis	2
+Hepatocellular carcinoma	3
+androgenic alopecia	2
+oculocutaneous albinism type II	1
+measles	11
+Schizophrenia	12
+amnestic disorder	3
+Menorrhagia	4
+Papule	8
+granulomatous dermatitis	4
+Cachexia	3
+Chest pain	1
+Generalized muscle weakness	1
+Tachycardia	1
+Tachypnea	1
+Respiratory failure	2
+Lipoma	3
+Atrial septal defect	3
+molluscum contagiosum	5
+Bronchiolitis obliterans organizing pneumonia	1
+Achilles tendonitis	4
+Hypoalbuminemia	2
+Pyuria	2
+malaria	5
+Red hair	2
+Generalized hypopigmentation	1
+Subacute	14
+Acanthoma	2
+Myelodysplasia	3
+Inflammatory abnormality of the eye	4
+Scleritis	3
+birdshot chorioretinopathy	1
+Cystoid macular edema	1
+acrodermatitis	14
+extrapulmonary tuberculosis	2
+Prolonged neonatal jaundice	1
+commensal Escherichia coli infectious disease	1
+Chills	5
+Myalgia	3
+congenital myasthenic syndrome 5	9
+autoimmune thrombocytopenic purpura	5
+Oral ulcer	3
+Pleural effusion	2
+Iridocyclitis	1
+Paralysis	1
+Recurrent pneumonia	3
+interstitial cystitis	1
+cystitis	5
+Multiple myeloma	9
+Abnormal intestine morphology	4
+X-linked inheritance	4
+Congestive heart failure	10
+Malnutrition	2
+Lymphopenia	5
+autoimmune hepatitis	1
+Recurrent infections	4
+lung disease	9
+Joint swelling	5
+relapsing-remitting multiple sclerosis	3
+Mania	5
+Tonsillitis	19
+obstructive sleep apnea	2
+hemochromatosis	4
+Autosomal recessive inheritance	3
+iron metabolism disease	1
+Abnormality of the thyroid gland	9
+Graves disease	3
+Slow progression	2
+Neuroblastoma	1
+Colon cancer	2
+alcohol use disorder	3
+chronic kidney disease	2
+Spatial pattern	2
+Reduced natural killer cell activity	1
+osteoarthritis	1
+Hypergranulosis	2
+adult-onset Still's disease	2
+Lateral	15
+cutaneous fibrous histiocytoma	2
+Insidious onset	2
+colorectal carcinoma	1
+Thromboembolism	7
+Discoid lupus rash	10
+Lymphadenitis	6
+Abnormality of the skin	5
+Very rare	5
+aggressive systemic mastocytosis	20
+Castleman disease	4
+Cardiac myxoma	2
+Polygenic inheritance	1
+Papilloma	9
+skin papilloma	2
+tonsillitis	3
+Carious teeth	1
+IgE deficiency	1
+Leber congenital amaurosis	4
+Juvenile onset	6
+mammary Paget's disease	2
+pancreatic carcinoma	1
+Occasional	8
+Lymphoproliferative disorder	5
+Congenital bullous ichthyosiform erythroderma	5
+Progressive alopecia	1
+clear cell acanthoma	8
+benign neoplasm	1
+erythema multiforme	5
+dermatitis herpetiformis	8
+Circulating immune complexes	4
+seborrheic dermatitis	5
+pityriasis versicolor	3
+Retinopathy	3
+Nonprogressive	3
+Portal hypertension	7
+Acanthosis nigricans	3
+Skin tags	5
+myeloid neoplasm	4
+Increased IgE level	1
+sporotrichosis	1
+aortic valve insufficiency	2
+tetanus	1
+Nail pits	1
+Kyphosis	1
+Autoimmune thrombocytopenia	6
+factor VIII deficiency	2
+Tendonitis	3
+Aortic regurgitation	2
+Spinal rigidity	2
+Dermatomal	1
+poliomyelitis	1
+Gluten intolerance	1
+tropical sprue	6
+collagenous colitis	1
+Overgrowth	2
+Lymphocytosis	3
+Vomiting	5
+Decreased antibody level in blood	1
+Agammaglobulinemia	1
+Splenomegaly	3
+Acute colitis	2
+Pulmonary fibrosis	2
+Rickets	2
+Anaphylactic shock	5
+Refsum disease	1
+neutral lipid storage disease	1
+Bradycardia	1
+Psychosis	8
+pernicious anemia	1
+Non-small cell lung carcinoma	5
+adult T-cell leukemia	2
+diabetic nephropathy	1
+proliferative diabetic retinopathy	2
+Chronic kidney disease	6
+holocarboxylase synthetase deficiency	1
+Lichenification	3
+Geographic tongue	1
+dermatophytosis	7
+tinea pedis	4
+tinea corporis	1
+tinea cruris	3
+tinea capitis	1
+tinea manuum	1
+tinea	4
+tinea unguium	3
+type 2 diabetes mellitus	9
+impetigo herpetiformis	6
+mast cell neoplasm	3
+congenital bile acid synthesis defect	1
+Ovarian carcinoma	1
+Abdominal obesity	2
+Hyperuricemia	1
+Obstructive sleep apnea	1
+Hyperglycemia	2
+immune dysregulation-polyendocrinopathy-enteropathy-X-linked syndrome	6
+primary cutaneous amyloidosis	6
+Atrial fibrillation	12
+Alexithymia	15
+Abnormality of the cardiovascular system	1
+Bacterial endocarditis	4
+brain infarction	2
+Recurrent upper respiratory tract infections	3
+Neoplasm of the breast	1
+eye disease	1
+Keratitis	3
+Encephalitis	9
+mucosal melanoma	1
+Myositis	1
+Variable expressivity	1
+Phenotypic variability	1
+nonalcoholic fatty liver disease	2
+Yersinia pseudotuberculosis infectious disease	7
+Fragile nails	1
+Superficial spreading melanoma	1
+MALT lymphoma	11
+Sleep apnea	1
+Snoring	1
+Neck pain	1
+cerebrovascular disease	2
+Renal fibrosis	2
+Falls	2
+Chronic pain	3
+gray platelet syndrome	16
+Pancytopenia	5
+Limited elbow movement	1
+hematologic cancer	1
+Down syndrome	3
+Hailey-Hailey disease	1
+vulvar disease	2
+autosomal recessive congenital ichthyosis 4B	1
+Increased serum leptin	1
+Coronary artery atherosclerosis	1
+Behavioral abnormality	2
+mental disorder	3
+congenital heart disease	2
+Chronic idiopathic urticaria	2
+Acantholysis	5
+Subarachnoid hemorrhage	2
+Primary adrenal insufficiency	4
+thyrotoxicosis	2
+Maculopapular exanthema	1
+Dowling-Degos disease	1
+Fox-Fordyce disease	1
+Hearing impairment	1
+interstitial keratitis	1
+Nephritis	4
+Steatocystoma multiplex	1
+Growth hormone excess	8
+mastitis	1
+Lymphedema	4
+elephantiasis	1
+demyelinating polyneuropathy	1
+polyradiculopathy	4
+Takayasu's arteritis	2
+bronchiolitis obliterans	1
+cystic fibrosis	12
+Dermal atrophy	4
+Bursitis	7
+Polyneuropathy	3
+Gait disturbance	1
+tenosynovitis	2
+Turner syndrome	1
+septooptic dysplasia	11
+Synostosis of joints	2
+DNA repair deficiency	1
+Periostosis	1
+disease of metabolism	2
+porokeratosis	2
+Chronic sinusitis	1
+pain disorder	1
+peeling skin syndrome	1
+Angioedema	2
+impetigo	1
+Cutis marmorata	1
+Erythematous plaque	1
+Periostitis	3
+pulmonary tuberculosis	2
+vaginal discharge	1
+Dyspareunia	1
+bone disease	3
+Fulminant hepatic failure	2
+hypertension	2
+hemophilia	11
+xeroderma pigmentosum	3
+Lentigo maligna melanoma	1
+Neural tube defect	1
+Cognitive impairment	2
+Poor wound healing	1
+peripheral enthesopathy	2
+chondrocalcinosis	2
+epidermolysis bullosa acquisita	2
+geographic tongue	2
+superficial basal cell carcinoma	1
+amelanotic melanoma	1
+Angiosarcoma	2
+Acute hepatitis	2
+Splenic abscess	1
+toxic encephalopathy	1
+Antiphospholipid antibody positivity	1
+localized scleroderma	2
+Deep venous thrombosis	1
+Lupus anticoagulant	1
+cerebral infarction	1
+Knee osteoarthritis	1
+Tooth abscess	1
+Mandibular osteomyelitis	4
+Hepatic fibrosis	1
+chronic fatigue syndrome	19
+Syncope	3
+invasive lobular carcinoma	2
+Somatic mutation	1
+epidermodysplasia verruciformis	1
+Hypernatremia	1
+Amniotic constriction ring	3
+Autoamputation	1
+Chronic otitis media	1
+primary syphilis	1
+signet ring cell adenocarcinoma	1
+Gastritis	1
+stomach carcinoma	1
+Arteriosclerosis	1
+leprosy	1
+generalized anxiety disorder	1
+Abnormality of the lower limb	1
+chronic myeloid leukemia	4
+Posterior blepharitis	1
+Hypogonadism	3
+Palmoplantar keratoderma	3
+Reticular hyperpigmentation	1
+neoplastic disease	1
+lymphoblastic lymphoma	2
+Nausea and vomiting	1
+Sclerosing cholangitis	8
+Histiocytosis	1
+Sarcoma	1
+Reduced bone mineral density	1
+xeroderma pigmentosum group D	7
+Paronychia	1
+Migraine	29
+genetic disease	2
+Cervical lymphadenopathy	1
+melioidosis	1
+Hypocalcemia	4
+Hypoparathyroidism	2
+Red eye	1
+Infertility	1
+Increased IgA level	1
+Striae distensae	2
+Glioblastoma multiforme	2
+glioblastoma multiforme	6
+brain cancer	1
+celiac disease	2
+pulmonary alveolar proteinosis	5
+Trichoepithelioma	1
+pilomatrixoma	2
+Fanconi anemia	2
+Ehlers-Danlos syndrome	1
+Civatte bodies	1
+Morbilliform	1
+necrobiosis lipoidica	1
+Dermatographic urticaria	2
+hypereosinophilic syndrome	1
+Peptic ulcer	1
+Abdominal distention	1
+Barrett's esophagus	25
+hairy cell leukemia	1
+Chronic lymphatic leukemia	1
+macroglobulinemia	1
+adrenoleukodystrophy	1
+breast fibroadenoma	1
+Leiomyosarcoma	1
+isolated ectopia lentis	7
+Vasculitis in the skin	4
+leukopenia	2
+polyarteritis nodosa	2
+epithelial carcinoma	2
+chronic granulomatous disease	1
+Hyperparakeratosis	2
+Small cell lung carcinoma	4
+diabetic neuropathy	1
+Leukopenia	1
+Loss of consciousness	1
+Polyneuritis	2
+Tubulointerstitial nephritis	2
+Bone pain	2
+Abnormality of coagulation	1
+Hypotension	4
+capillary leak syndrome	1
+Albuminuria	6
+Wegener's granulomatosis	3
+Skin plaque	2
+Confusion	1
+chikungunya	1
+Fatty streak	1
+hyperhomocysteinemia	1
+aortitis	4
+Wilson disease	1
+Left ventricular hypertrophy	2
+Noonan syndrome	1
+ovarian cancer	2
+Hyperlipoproteinemia	1
+Peripheral edema	1
+Microalbuminuria	3
+Venous occlusion	2
+Arteriovenous fistula	1
+Hypercapnia	1
+Focal segmental glomerulosclerosis	2
+Renal amyloidosis	1
+proliferative glomerulonephritis	1
+hereditary spherocytosis type 1	4
+hereditary spherocytosis type 2	4
+Decreased glomerular filtration rate	1
+Heavy proteinuria	1
+Chronic recurrent multifocal osteomyelitis	2
+chronic recurrent multifocal osteomyelitis	10
+Recurrent urinary tract infections	2
+Emphysema	3
+autoimmune uveitis	1
+head and neck cancer	1
+Hodgkin's lymphoma	4
+Hyperparathyroidism	3
+Bipolar affective disorder	3
+Abnormality of the cerebellum	1
+Coma	1
+Diabetes insipidus	2
+Parathyroid adenoma	1
+adenoma	1
+renal osteodystrophy	1
+Macular degeneration	1
+Growth abnormality	1
+Abnormal glycosylation	1
+chromoblastomycosis	8
+eumycotic mycetoma	8
+Ventricular arrhythmia	3
+Prolonged QT interval	1
+Hemiplegia	2
+metal allergy	1
+hereditary multiple exostoses	2
+Pseudoarthrosis	1
+Vertebral fusion	1
+discitis	1
+Sleep disturbance	1
+cataract 8 multiple types	2
+Telangiectasia	1
+Epidermal hyperkeratosis	1
+Pyelonephritis	1
+Pallor	1
+Abdominal mass	1
+Hydronephrosis	1
+xanthogranulomatous pyelonephritis	2
+epilepsy	57
+Lactose intolerance	1
+Constipation	2
+Enuresis	2
+Encopresis	1
+attention deficit hyperactivity disorder	2
+autism spectrum disorder	1
+learning disability	1
+tuberous sclerosis	3
+Incomplete penetrance	1
+early myoclonic encephalopathy	1
+Ragged-red muscle fibers	1
+Myopathy	1
+autosomal recessive congenital ichthyosis 11	1
+Elevated hepatic transaminases	1
+Lethargy	1
+Seizures	17
+Chronic bronchitis	1
+focal epilepsy	1
+antiphospholipid syndrome	3
+Self-injurious behavior	11
+substance abuse	1
+anterograde amnesia	1
+Calcinosis	2
+Cerebral calcification	1
+Pseudohypoparathyroidism	1
+Hyperphosphatemia	1
+Epigastric pain	2
+Facial paralysis	1
+Dementia	1
+Migraine without aura	1
+Migraine with aura	2
+Chronic rhinitis	1
+allergic rhinitis	1
+Insomnia	1
+Atrophic scars	1
+tendinitis	5
+atopic dermatitis and related conditions	1
+eczematous skin disease	1
+noninfectious dermatoses of eyelid	1
+temporal lobe epilepsy	5
+acute myocardial infarction	2
+Varicose veins	1
+Morbus Scheuermann	1
+idiopathic scoliosis	1
+Glaucoma	1
+phenylketonuria	1
+placental insufficiency	1
+skin carcinoma	1
+Gingival overgrowth	1
+Glucose intolerance	1
+Precocious atherosclerosis	1
+temporal arteritis	1
+common cold	1
+vesicular exanthema of swine	1
+peste des petits ruminants infectious disease	4
+Perifolliculitis	1
+Cartilage destruction	1
+non-small cell lung carcinoma	5
+Abnormality of mitochondrial metabolism	1
+drug-induced lupus erythematosus	3
+miliary tuberculosis	2
+monoclonal gammopathy of uncertain significance	1
+Panic attack	1
+Psoriasiform lesion	1
+Epstein-Barr virus encephalitis	1
+Legionnaires' disease	2
+Borrelia infectious disease	1
+Hypoglycemia	5
+myocardial infarction	3
+Arterial thrombosis	1
+Chilblain lupus	1
+Hypertrichosis	2
+Short stature	1
+brain ischemia	1
+Carcinoid tumor	1
+VIPoma	1
+Glucagonoma	1
+Insulinoma	1
+gastrinoma	1
+short bowel syndrome	1
+dumping syndrome	1
+Orthostatic hypotension	1
+
+---cluster1---
+Psoriasiform dermatitis	32289
+Transient	128
+disease	6103
+Chronic	3083
+Autoimmunity	634
+skin disease	983
+aortic valve stenosis	927
+Neoplasm	2419
+Heterogeneous	234
+Moderate	1413
+Frequency	658
+Clinical course	59
+Inflammatory abnormality of the skin	876
+Atopic dermatitis	1377
+Alzheimer's disease	1227
+Dry skin	56
+Immune dysregulation	24
+urethral intrinsic sphincter deficiency	87
+Immunodeficiency	76
+keratoconjunctivitis sicca	168
+Epidermal acanthosis	139
+Melanoma	249
+Localized	290
+Central	338
+Netherton syndrome	29
+cancer	555
+Fatigue	60
+Skin rash	13
+Colitis	86
+Carcinoma	43
+Triggered by	105
+Generalized	475
+fungal infectious disease	4
+Hyperkeratosis	80
+All	508
+Severity	2432
+Dilatation	17
+dermatitis	387
+psoriatic arthritis	2944
+Osteoarthritis	119
+Gout	63
+Rheumatoid arthritis	1538
+Arthritis	1283
+Hepatitis	49
+exanthem	106
+Pruritus	410
+Vitiligo	386
+rosacea	54
+Alopecia	112
+Alopecia areata	121
+Poliosis	4
+Nail dystrophy	22
+Atherosclerosis	232
+Obesity	385
+Synovitis	190
+Acute	578
+allergic hypersensitivity disease	222
+Verrucae	61
+Cutaneous melanoma	6
+Peripheral	1221
+atopic dermatitis	263
+allergic contact dermatitis	122
+pityriasis rosea	17
+lichen planus	225
+Recurrent	199
+Hypertension	253
+Overweight	47
+syndrome	762
+spondyloarthropathy	107
+Tender	72
+Pain	253
+ankylosing spondylitis	531
+Axial	205
+multiple sclerosis	356
+mycosis fungoides	321
+Mitochondrial inheritance	84
+Epidermal thickening	44
+systemic scleroderma	91
+Proximal	63
+Mild	494
+Asthma	268
+Severe	2271
+Ulcerative colitis	198
+Crohn's disease	493
+Systemic lupus erythematosus	312
+Edema	157
+lymphoproliferative disease	7
+Myeloproliferative disorder	4
+Osteopenia	13
+cutaneous T cell lymphoma	25
+Productive cough	3
+Edema of the lower limbs	4
+Clubbing of fingers	3
+cutaneous mastocytosis	52
+Acne	180
+Right	105
+Cheilitis	6
+Osteoporosis	87
+Frequent	360
+Acute promyelocytic leukemia	5
+skin cancer	179
+Kaposi's sarcoma	25
+Cutaneous T-cell lymphoma	75
+Type II diabetes mellitus	246
+Severe combined immunodeficiency	12
+tuberculosis	214
+ichthyosis	27
+Pustule	136
+Refractory	142
+Hypertriglyceridemia	18
+Hypercholesterolemia	7
+Central hypothyroidism	4
+Headache	45
+Acute pancreatitis	1
+chronic obstructive pulmonary disease	19
+heart valve disease	3
+Epistaxis	8
+factor XIII deficiency	1
+Nevus	30
+Myocardial infarction	115
+Stroke	74
+thrombosis	33
+Scaling skin	71
+Onset	1152
+Arteritis	1
+Chronic obstructive pulmonary disease	71
+Abnormal cell proliferation	7
+Type I diabetes mellitus	167
+irritable bowel syndrome	425
+inflammatory bowel disease	421
+allergic asthma	10
+Prolonged	110
+viral infectious disease	37
+Recurrent skin infections	52
+keratosis follicularis	21
+Obligate	8
+lung cancer	35
+contact dermatitis	103
+rheumatism	28
+Bronchitis	2
+Pericarditis	7
+sarcoidosis	87
+Progressive	115
+Blau syndrome	9
+Diabetes mellitus	137
+familial Mediterranean fever	12
+idiopathic pulmonary fibrosis	4
+Episodic	10
+Flushing	18
+lymphocytic choriomeningitis	2
+vaccinia	14
+Pyoderma gangrenosum	46
+Erythema nodosum	24
+Ductal carcinoma in situ	12
+Breast carcinoma	85
+Mode of inheritance	46
+CINCA Syndrome	2
+Multifocal	11
+Osteomyelitis	53
+Chronic lung disease	2
+Venous thrombosis	3
+retinal disease	4
+Miles-Carpenter syndrome	18
+Gliosis	2
+polycythemia vera	2
+leukocyte adhesion deficiency 1	4
+Gingivitis	5
+Periodontitis	30
+Leukocytosis	9
+Neutrophilia	12
+Neoplasm of the skin	34
+complex genetic disease	8
+Profound	63
+Position	101
+Squamous cell carcinoma	155
+lupus erythematosus	153
+ischemia	29
+Glomerulonephritis	19
+Vasculitis	94
+Acute kidney injury	7
+squamous cell carcinoma	16
+Respiratory distress	4
+coronary artery disease	42
+Acute tubular necrosis	4
+Anemia	51
+Borderline	8
+Leukemia	60
+Excluded	94
+Comedo	2
+Secondary hyperparathyroidism	9
+severe combined immunodeficiency	101
+Peritonitis	7
+Renal insufficiency	20
+Parakeratosis	92
+Palmoplantar pustulosis	235
+Focal	143
+diabetic retinopathy	17
+Age-related macular degeneration	5
+Aggressive behavior	6
+Hypercalcemia	20
+cholera	9
+Erythema	405
+Skin vesicle	62
+T-cell lymphoma	28
+hypomyelinating leukodystrophy 6	2
+Basal cell carcinoma	107
+Osteosarcoma	9
+pemphigus vulgaris	25
+metastatic squamous cell carcinoma	3
+keratosis	28
+Epidermal nevus	24
+Ichthyosis	91
+Congenital ichthyosiform erythroderma	17
+congenital ichthyosiform erythroderma	36
+autosomal recessive congenital ichthyosis	10
+Kawasaki disease	25
+Mycobacterium infectious disease	11
+pachyonychia congenita	4
+disease by infectious agent	17
+Bilateral	51
+Lymphadenopathy	23
+Salmonella gastroenteritis	6
+cryptococcosis	6
+penicilliosis	3
+histoplasmosis	2
+Scarring	24
+hard palate cancer	6
+Porokeratosis	9
+epidermolysis bullosa simplex	4
+Autosomal dominant inheritance	16
+epidermolytic palmoplantar keratoderma	6
+Palmoplantar hyperkeratosis	5
+Trichilemmal cyst	1
+Trichilemmoma	2
+Keratoacanthoma	12
+Epidermoid cyst	2
+Actinic keratosis	34
+eccrine porocarcinoma	1
+Sebaceous gland carcinoma	1
+pityriasis rubra pilaris	71
+Left	103
+exostosis	1
+essential hypertension	7
+heart disease	25
+Proteinuria	29
+Nephropathy	17
+Elevated serum creatinine	3
+Tubular atrophy	3
+Huntington's disease-like 2	1
+Cholestasis	5
+group B streptococcal pneumonia	42
+chronic rejection of renal transplant	11
+Membranoproliferative glomerulonephritis	6
+Antinuclear antibody positivity	33
+Scleroderma	54
+polymyositis	10
+connective tissue disease	9
+Graves' disease	23
+Plethora	10
+type 1 diabetes mellitus	84
+autonomic neuropathy	4
+fibromyalgia	27
+primary biliary cirrhosis	24
+Parkinson's disease	25
+Celiac disease	93
+colorectal cancer	25
+Acute myeloid leukemia	10
+Lymphoma	96
+anaplastic large cell lymphoma	3
+Chronic myelogenous leukemia	13
+Neoplasm of the liver	4
+primary sclerosing cholangitis	24
+Cholangitis	14
+autoimmune thyroiditis	41
+Strabismus	3
+Dystonia	6
+Acne inversa	50
+Eczema	289
+Abnormality of the eye	4
+Hashimoto thyroiditis	33
+progeria	3
+skin squamous cell carcinoma	4
+Anorexia	7
+Cough	9
+Sinusitis	4
+neurodegenerative disease	2
+encephalomyelitis	25
+Endometriosis	42
+progressive multifocal leukoencephalopathy	8
+Herpes simplex encephalitis	1
+colon carcinoma	6
+Myocarditis	20
+Thyroiditis	21
+Uveitis	121
+myasthenia gravis	39
+Fibrosarcoma	5
+Diffuse	83
+Distal	136
+Visual field defect	2
+Folliculitis	32
+Seborrheic dermatitis	36
+papilloma	20
+reactive arthritis	62
+Arthralgia	56
+acquired immunodeficiency syndrome	77
+mixed connective tissue disease	2
+Claustrophobia	1
+diphtheria	8
+Polyarticular arthritis	4
+human immunodeficiency virus infectious disease	48
+persistent generalized lymphadenopathy	3
+Weight loss	65
+Enthesitis	155
+Ameliorated by	38
+Behcet's disease	12
+Septic arthritis	3
+secondary syphilis	7
+Late onset	45
+Sepsis	35
+spongiotic dermatitis	15
+bullous pemphigoid	94
+dermatomyositis	51
+Diarrhea	29
+Nausea	43
+nasopharyngitis	19
+Respiratory tract infection	28
+Anterior uveitis	44
+adenosine deaminase deficiency	74
+Shock	61
+hypotrichosis 1	2
+Depressivity	171
+Sensory impairment	2
+Paresthesia	5
+Juvenile rheumatoid arthritis	84
+Hypothyroidism	13
+Hyperthyroidism	7
+polyradiculoneuropathy	6
+somatosensory disorder	3
+Muscle weakness	5
+alcoholic cardiomyopathy	1
+Arthropathy	143
+Alopecia universalis	8
+Interstitial pulmonary abnormality	19
+interstitial lung disease	4
+Temporal pattern	2
+kidney disease	17
+Fever	68
+Melanocytic nevus	17
+Chagas disease	4
+Synovial hypertrophy	1
+hepatitis B	24
+Sjogren's syndrome	26
+spondylitis	71
+Sacroiliac arthritis	109
+Ankylosis	13
+Transient ischemic attack	2
+intermediate coronary syndrome	2
+peripheral vascular disease	7
+Cryoglobulinemia	10
+Non-Hodgkin lymphoma	11
+Autoimmune hemolytic anemia	9
+Chronic infection	6
+liver disease	48
+polymyalgia rheumatica	14
+Purpura	11
+Insulin resistance	108
+Decreased liver function	7
+Accelerated atherosclerosis	3
+Hyperostosis	43
+bone inflammation disease	48
+SAPHO syndrome	52
+liver cirrhosis	17
+Sporadic	46
+nail disease	45
+Onycholysis	33
+Back pain	42
+hepatitis C	48
+candidiasis	14
+autosomal recessive Robinow syndrome	12
+Xerostomia	8
+Mastocytosis	13
+systemic mastocytosis	2
+erythema elevatum diutinum	2
+Oligoarthritis	69
+Pharyngitis	4
+gastroenteritis	2
+Rhinitis	4
+Osteolysis	20
+B-cell lymphoma	13
+Cellulitis	32
+Sharp	12
+Enterocolitis	3
+Low back pain	14
+Elevated erythrocyte sedimentation rate	8
+gastric adenocarcinoma	3
+Stomach cancer	15
+Peripheral demyelination	14
+Opportunistic infection	8
+Neutropenia	8
+Huntington's disease	42
+streptococcal pharyngitis	14
+Achalasia	2
+Acral	23
+Periodic	28
+Increased inflammatory response	11
+Multiple lentigines	1
+rheumatic disease	33
+Vitamin D deficiency	36
+Vulvodynia	12
+mastocytosis	2
+lipid metabolism disorder	55
+parapsoriasis	29
+Morphea	22
+Seborrheic keratosis	21
+Erythroderma	111
+Allergy	68
+Abnormal blistering of the skin	31
+demyelinating disease	7
+diffuse large B-cell lymphoma	4
+autoimmune lymphoproliferative syndrome	3
+Pneumonia	15
+Anxiety	78
+metastatic melanoma	10
+ichthyosis vulgaris	20
+herpes zoster	43
+syphilis	17
+skin sarcoidosis	11
+marginal zone B-cell lymphoma	9
+Erysipelas	6
+Arrhythmia	5
+Optic neuritis	8
+Peripheral neuropathy	14
+Charcot-Marie-Tooth disease	1
+nasopharynx carcinoma	2
+Uterine leiomyoma	1
+Hyperactivity	11
+dengue shock syndrome	19
+lupus nephritis	26
+Hematuria	1
+neuropathy	26
+pseudosarcomatous fibromatosis	2
+Chronic mucocutaneous candidiasis	11
+Subperiosteal bone formation	3
+Irritability	8
+Dysphagia	1
+Failure to thrive	3
+Thrombocytosis	2
+Asthenia	1
+Urethritis	7
+balanitis	6
+Keloids	6
+Patchy alopecia	2
+Alopecia totalis	1
+Hodgkin lymphoma	19
+Laryngeal carcinoma	6
+Abnormality of the vasculature	3
+Hyperlipidemia	47
+multicentric Castleman disease	60
+Cirrhosis	37
+Abdominal pain	11
+bronchopneumonia	1
+chickenpox	12
+Cerebral palsy	45
+Aortic stiffness	5
+Onychomycosis	77
+norwegian scabies	6
+Stage 5 chronic kidney disease	18
+toxic shock syndrome	17
+lymphosarcoma	5
+contagious pustular dermatitis	1
+Sezary's disease	13
+Nephrotic syndrome	20
+pompholyx	4
+Prostate cancer	18
+Keratoconjunctivitis	7
+Autism	19
+Schnitzler syndrome	2
+Pyoderma	13
+Panniculitis	5
+Muckle-Wells syndrome	1
+Abnormal T cell activation	1
+transient myeloproliferative syndrome	4
+influenza	11
+Allergic rhinitis	19
+enthesopathy	17
+genetic disorder	7
+hidradenitis	7
+Adult onset	5
+Aspiration	7
+Hepatic steatosis	40
+Viral hepatitis	6
+irritant dermatitis	36
+Eosinophilia	21
+Stevens-Johnson syndrome	8
+spindle cell hemangioma	6
+Thickened skin	5
+Cholecystitis	1
+Cholelithiasis	4
+IgA glomerulonephritis	8
+Fanconi anemia complementation group E	68
+Unilateral	27
+pemphigus	59
+epidermolysis bullosa dystrophica	4
+alcoholic hepatitis	8
+Abnormality of metabolism/homeostasis	5
+systemic inflammatory response syndrome	13
+pertussis	11
+Migratory	21
+lice infestation	6
+listeriosis	3
+nocardiosis	3
+typhoid fever	3
+herpes simplex	28
+pneumocystosis	9
+invasive aspergillosis	4
+leishmaniasis	5
+Cholesteatoma	47
+cutaneous lupus erythematosus	14
+Cutaneous photosensitivity	31
+Aggravated by	22
+acne	24
+spinal disease	9
+Urticaria	49
+Hyperhidrosis	29
+oral squamous cell carcinoma	3
+Chediak-Higashi syndrome	41
+Thrombocytopenia	25
+vascular disease	14
+chlamydia	24
+Conjunctivitis	12
+Iritis	4
+dysentery	2
+Interstitial pneumonitis	2
+Sensory neuropathy	3
+mucocutaneous leishmaniasis	1
+cutaneous leishmaniasis	5
+Amyloidosis	30
+alcoholic liver cirrhosis	2
+Hepatocellular carcinoma	7
+androgenic alopecia	8
+oculocutaneous albinism type II	1
+measles	23
+Schizophrenia	26
+amnestic disorder	5
+Menorrhagia	6
+Papule	33
+granulomatous dermatitis	6
+Cachexia	3
+Chest pain	2
+Generalized muscle weakness	1
+Tachycardia	3
+Tachypnea	1
+Respiratory failure	4
+Lipoma	5
+Atrial septal defect	3
+molluscum contagiosum	13
+Bronchiolitis obliterans organizing pneumonia	1
+Achilles tendonitis	4
+Hypoalbuminemia	2
+Pyuria	2
+malaria	9
+Red hair	9
+Generalized hypopigmentation	6
+Subacute	23
+Acanthoma	4
+Myelodysplasia	7
+Inflammatory abnormality of the eye	7
+Scleritis	4
+birdshot chorioretinopathy	1
+Cystoid macular edema	1
+acrodermatitis	35
+extrapulmonary tuberculosis	2
+Prolonged neonatal jaundice	1
+commensal Escherichia coli infectious disease	1
+Chills	8
+Myalgia	9
+congenital myasthenic syndrome 5	9
+autoimmune thrombocytopenic purpura	10
+Oral ulcer	3
+Pleural effusion	2
+Iridocyclitis	7
+Paralysis	2
+Recurrent pneumonia	3
+interstitial cystitis	5
+cystitis	11
+Multiple myeloma	14
+Abnormal intestine morphology	8
+X-linked inheritance	11
+Congestive heart failure	25
+Malnutrition	4
+Lymphopenia	13
+autoimmune hepatitis	13
+Recurrent infections	8
+lung disease	9
+Joint swelling	7
+relapsing-remitting multiple sclerosis	9
+Mania	9
+Tonsillitis	31
+obstructive sleep apnea	3
+hemochromatosis	4
+Autosomal recessive inheritance	21
+iron metabolism disease	1
+Abnormality of the thyroid gland	39
+Graves disease	8
+Slow progression	2
+Neuroblastoma	7
+Colon cancer	10
+alcohol use disorder	12
+chronic kidney disease	14
+Spatial pattern	2
+Reduced natural killer cell activity	1
+osteoarthritis	5
+Hypergranulosis	8
+adult-onset Still's disease	5
+Lateral	25
+cutaneous fibrous histiocytoma	5
+Insidious onset	3
+colorectal carcinoma	1
+Thromboembolism	11
+Discoid lupus rash	24
+Lymphadenitis	14
+Abnormality of the skin	17
+Very rare	19
+aggressive systemic mastocytosis	46
+Castleman disease	4
+Cardiac myxoma	2
+Polygenic inheritance	2
+Papilloma	26
+skin papilloma	3
+tonsillitis	7
+Carious teeth	2
+IgE deficiency	1
+Leber congenital amaurosis	12
+Juvenile onset	8
+mammary Paget's disease	4
+pancreatic carcinoma	1
+Occasional	18
+Lymphoproliferative disorder	6
+Congenital bullous ichthyosiform erythroderma	10
+Progressive alopecia	1
+clear cell acanthoma	20
+benign neoplasm	2
+erythema multiforme	13
+dermatitis herpetiformis	16
+Circulating immune complexes	21
+seborrheic dermatitis	21
+pityriasis versicolor	5
+Retinopathy	6
+Nonprogressive	14
+Portal hypertension	11
+Acanthosis nigricans	16
+Skin tags	12
+myeloid neoplasm	5
+Increased IgE level	1
+sporotrichosis	2
+aortic valve insufficiency	2
+tetanus	1
+Nail pits	5
+Kyphosis	1
+Autoimmune thrombocytopenia	11
+factor VIII deficiency	2
+Tendonitis	3
+Aortic regurgitation	5
+Spinal rigidity	2
+Dermatomal	1
+poliomyelitis	1
+Gluten intolerance	8
+tropical sprue	6
+collagenous colitis	1
+Overgrowth	5
+Lymphocytosis	3
+Vomiting	10
+Decreased antibody level in blood	1
+Agammaglobulinemia	2
+Splenomegaly	7
+Acute colitis	2
+Pulmonary fibrosis	3
+Rickets	14
+Anaphylactic shock	9
+Refsum disease	2
+neutral lipid storage disease	2
+Bradycardia	1
+Psychosis	9
+pernicious anemia	9
+Non-small cell lung carcinoma	13
+adult T-cell leukemia	5
+diabetic nephropathy	2
+proliferative diabetic retinopathy	2
+Chronic kidney disease	17
+holocarboxylase synthetase deficiency	1
+Lichenification	5
+Geographic tongue	20
+dermatophytosis	13
+tinea pedis	12
+tinea corporis	5
+tinea cruris	4
+tinea capitis	5
+tinea manuum	2
+tinea	18
+tinea unguium	4
+type 2 diabetes mellitus	93
+impetigo herpetiformis	12
+mast cell neoplasm	6
+congenital bile acid synthesis defect	3
+Ovarian carcinoma	1
+Abdominal obesity	22
+Hyperuricemia	10
+Obstructive sleep apnea	5
+Hyperglycemia	12
+immune dysregulation-polyendocrinopathy-enteropathy-X-linked syndrome	13
+primary cutaneous amyloidosis	7
+Atrial fibrillation	29
+Alexithymia	17
+Abnormality of the cardiovascular system	1
+Bacterial endocarditis	4
+brain infarction	2
+Recurrent upper respiratory tract infections	5
+Neoplasm of the breast	1
+eye disease	3
+Keratitis	4
+Encephalitis	16
+mucosal melanoma	1
+Myositis	3
+Variable expressivity	2
+Phenotypic variability	3
+nonalcoholic fatty liver disease	23
+Yersinia pseudotuberculosis infectious disease	9
+Fragile nails	1
+Superficial spreading melanoma	2
+MALT lymphoma	26
+Sleep apnea	6
+Snoring	7
+Neck pain	2
+cerebrovascular disease	7
+Renal fibrosis	3
+Falls	4
+Chronic pain	4
+gray platelet syndrome	18
+Pancytopenia	8
+Limited elbow movement	1
+hematologic cancer	4
+Down syndrome	8
+Hailey-Hailey disease	10
+vulvar disease	2
+autosomal recessive congenital ichthyosis 4B	3
+Increased serum leptin	1
+Coronary artery atherosclerosis	4
+Behavioral abnormality	15
+mental disorder	3
+congenital heart disease	3
+Chronic idiopathic urticaria	7
+Acantholysis	13
+Subarachnoid hemorrhage	2
+Primary adrenal insufficiency	14
+thyrotoxicosis	7
+Maculopapular exanthema	2
+Dowling-Degos disease	2
+Fox-Fordyce disease	2
+Hearing impairment	2
+interstitial keratitis	2
+Nephritis	8
+Steatocystoma multiplex	4
+Growth hormone excess	11
+mastitis	2
+Lymphedema	8
+elephantiasis	2
+demyelinating polyneuropathy	1
+polyradiculopathy	8
+Takayasu's arteritis	5
+bronchiolitis obliterans	1
+cystic fibrosis	37
+Dermal atrophy	18
+Bursitis	7
+Polyneuropathy	6
+Gait disturbance	1
+tenosynovitis	15
+Turner syndrome	7
+septooptic dysplasia	37
+Synostosis of joints	2
+DNA repair deficiency	2
+Periostosis	1
+disease of metabolism	4
+porokeratosis	2
+Chronic sinusitis	3
+pain disorder	1
+peeling skin syndrome	6
+Angioedema	3
+impetigo	8
+Cutis marmorata	1
+Erythematous plaque	2
+Periostitis	9
+pulmonary tuberculosis	3
+vaginal discharge	1
+Dyspareunia	1
+bone disease	5
+Fulminant hepatic failure	2
+hypertension	8
+hemophilia	16
+xeroderma pigmentosum	8
+Lentigo maligna melanoma	1
+Neural tube defect	1
+Cognitive impairment	4
+Poor wound healing	1
+peripheral enthesopathy	2
+chondrocalcinosis	2
+epidermolysis bullosa acquisita	13
+geographic tongue	7
+superficial basal cell carcinoma	3
+amelanotic melanoma	2
+Angiosarcoma	3
+Acute hepatitis	5
+Splenic abscess	1
+toxic encephalopathy	1
+Antiphospholipid antibody positivity	1
+localized scleroderma	4
+Deep venous thrombosis	3
+Lupus anticoagulant	2
+cerebral infarction	1
+Knee osteoarthritis	2
+Tooth abscess	1
+Mandibular osteomyelitis	8
+Hepatic fibrosis	36
+chronic fatigue syndrome	21
+Syncope	3
+invasive lobular carcinoma	2
+Somatic mutation	2
+epidermodysplasia verruciformis	23
+Hypernatremia	1
+Amniotic constriction ring	3
+Autoamputation	1
+Chronic otitis media	1
+primary syphilis	2
+signet ring cell adenocarcinoma	2
+Gastritis	4
+stomach carcinoma	2
+Arteriosclerosis	3
+leprosy	12
+generalized anxiety disorder	2
+Abnormality of the lower limb	1
+chronic myeloid leukemia	12
+Posterior blepharitis	2
+Hypogonadism	4
+Palmoplantar keratoderma	8
+Reticular hyperpigmentation	1
+neoplastic disease	1
+lymphoblastic lymphoma	3
+Nausea and vomiting	4
+Sclerosing cholangitis	16
+Histiocytosis	2
+Sarcoma	5
+Reduced bone mineral density	3
+xeroderma pigmentosum group D	7
+Paronychia	2
+Migraine	35
+genetic disease	5
+Cervical lymphadenopathy	2
+melioidosis	1
+Hypocalcemia	10
+Hypoparathyroidism	6
+Red eye	1
+Infertility	2
+Increased IgA level	1
+Striae distensae	5
+Glioblastoma multiforme	6
+glioblastoma multiforme	12
+brain cancer	2
+celiac disease	14
+pulmonary alveolar proteinosis	5
+Trichoepithelioma	1
+pilomatrixoma	2
+Fanconi anemia	2
+Ehlers-Danlos syndrome	13
+Civatte bodies	1
+Morbilliform	3
+necrobiosis lipoidica	18
+Dermatographic urticaria	5
+hypereosinophilic syndrome	1
+Peptic ulcer	2
+Abdominal distention	1
+Barrett's esophagus	27
+hairy cell leukemia	1
+Chronic lymphatic leukemia	4
+macroglobulinemia	7
+adrenoleukodystrophy	2
+breast fibroadenoma	1
+Leiomyosarcoma	1
+isolated ectopia lentis	7
+Vasculitis in the skin	8
+leukopenia	3
+polyarteritis nodosa	7
+epithelial carcinoma	3
+chronic granulomatous disease	3
+Hyperparakeratosis	5
+Small cell lung carcinoma	4
+diabetic neuropathy	1
+Leukopenia	4
+Loss of consciousness	1
+Polyneuritis	3
+Tubulointerstitial nephritis	3
+Bone pain	2
+Abnormality of coagulation	1
+Hypotension	6
+capillary leak syndrome	2
+Albuminuria	9
+Wegener's granulomatosis	8
+Skin plaque	2
+Confusion	7
+chikungunya	4
+Fatty streak	1
+hyperhomocysteinemia	3
+aortitis	4
+Wilson disease	1
+Left ventricular hypertrophy	10
+Noonan syndrome	1
+ovarian cancer	5
+Hyperlipoproteinemia	8
+Peripheral edema	1
+Microalbuminuria	8
+Venous occlusion	3
+Arteriovenous fistula	1
+Hypercapnia	1
+Focal segmental glomerulosclerosis	2
+Renal amyloidosis	2
+proliferative glomerulonephritis	1
+hereditary spherocytosis type 1	4
+hereditary spherocytosis type 2	4
+Decreased glomerular filtration rate	1
+Heavy proteinuria	1
+Chronic recurrent multifocal osteomyelitis	4
+chronic recurrent multifocal osteomyelitis	19
+Recurrent urinary tract infections	3
+Emphysema	3
+autoimmune uveitis	9
+head and neck cancer	2
+Hodgkin's lymphoma	17
+Hyperparathyroidism	3
+Bipolar affective disorder	7
+Abnormality of the cerebellum	1
+Coma	1
+Diabetes insipidus	2
+Parathyroid adenoma	1
+adenoma	9
+renal osteodystrophy	4
+Macular degeneration	2
+Growth abnormality	6
+Abnormal glycosylation	2
+chromoblastomycosis	8
+eumycotic mycetoma	8
+Ventricular arrhythmia	3
+Prolonged QT interval	1
+Hemiplegia	4
+metal allergy	4
+hereditary multiple exostoses	2
+Pseudoarthrosis	2
+Vertebral fusion	1
+discitis	1
+Sleep disturbance	1
+cataract 8 multiple types	4
+Telangiectasia	4
+Epidermal hyperkeratosis	3
+Pyelonephritis	1
+Pallor	1
+Abdominal mass	1
+Hydronephrosis	1
+xanthogranulomatous pyelonephritis	2
+epilepsy	76
+Lactose intolerance	1
+Constipation	3
+Enuresis	3
+Encopresis	1
+attention deficit hyperactivity disorder	12
+autism spectrum disorder	1
+learning disability	1
+tuberous sclerosis	4
+Incomplete penetrance	1
+early myoclonic encephalopathy	1
+Ragged-red muscle fibers	1
+Myopathy	2
+autosomal recessive congenital ichthyosis 11	1
+Elevated hepatic transaminases	4
+Lethargy	1
+Seizures	23
+Chronic bronchitis	3
+focal epilepsy	1
+antiphospholipid syndrome	8
+Self-injurious behavior	11
+substance abuse	2
+anterograde amnesia	2
+Calcinosis	2
+Cerebral calcification	1
+Pseudohypoparathyroidism	1
+Hyperphosphatemia	1
+Epigastric pain	2
+Facial paralysis	1
+Dementia	13
+Migraine without aura	1
+Migraine with aura	2
+Chronic rhinitis	1
+allergic rhinitis	1
+Insomnia	4
+Atrophic scars	4
+tendinitis	8
+atopic dermatitis and related conditions	1
+eczematous skin disease	1
+noninfectious dermatoses of eyelid	1
+temporal lobe epilepsy	8
+acute myocardial infarction	7
+Varicose veins	1
+Morbus Scheuermann	1
+idiopathic scoliosis	3
+Glaucoma	4
+phenylketonuria	1
+placental insufficiency	1
+skin carcinoma	5
+Gingival overgrowth	4
+Glucose intolerance	8
+Precocious atherosclerosis	4
+temporal arteritis	4
+common cold	3
+vesicular exanthema of swine	2
+peste des petits ruminants infectious disease	12
+Perifolliculitis	2
+Cartilage destruction	4
+non-small cell lung carcinoma	13
+Abnormality of mitochondrial metabolism	2
+drug-induced lupus erythematosus	6
+miliary tuberculosis	5
+monoclonal gammopathy of uncertain significance	2
+Panic attack	2
+Psoriasiform lesion	2
+Epstein-Barr virus encephalitis	2
+Legionnaires' disease	4
+Borrelia infectious disease	2
+Hypoglycemia	20
+myocardial infarction	6
+Arterial thrombosis	3
+Chilblain lupus	3
+Hypertrichosis	5
+Short stature	3
+brain ischemia	2
+Carcinoid tumor	1
+VIPoma	1
+Glucagonoma	4
+Insulinoma	1
+gastrinoma	1
+short bowel syndrome	1
+dumping syndrome	1
+Orthostatic hypotension	1
+colorectal adenocarcinoma	1
+hepatocellular carcinoma	2
+Polycyclic	8
+peripheral T-cell lymphoma	1
+Ascites	3
+Gastrointestinal stroma tumor	6
+nicotine dependence	2
+Increased reactive oxygen species production	1
+Acute monocytic leukemia	5
+Skin ulcer	2
+Hypercoagulability	2
+squamous cell papilloma	4
+Increased thyroid-stimulating hormone level	2
+Methemoglobinemia	1
+urticaria pigmentosa	1
+Cor pulmonale	1
+adenocarcinoma	8
+DiGeorge syndrome	2
+thalassemia	7
+sickle cell anemia	5
+neurodermatitis	10
+hypochondriasis	2
+chronic eosinophilic pneumonia	1
+Dyspnea	2
+Intellectual disability	4
+scabies	12
+Congenital nonbullous ichthyosiform erythroderma	4
+Photophobia	2
+peripheral nervous system neoplasm	1
+myelofibrosis	1
+Peutz-Jeghers syndrome	1
+Lung adenocarcinoma	4
+Mediastinal lymphadenopathy	1
+Renal cell carcinoma	6
+renal cell carcinoma	2
+microvillus inclusion disease	10
+Premature ejaculation	1
+Knee pain	1
+mal de Meleda	2
+Diffuse palmoplantar keratoderma	2
+Microcephaly	1
+Congenital cataract	2
+Growth delay	2
+Clear cell renal cell carcinoma	1
+Elevated serum creatine phosphokinase	1
+metastatic adenocarcinoma	1
+telangiectasis	1
+Abnormality of skin pigmentation	1
+Osteomalacia	4
+Capillary hemangioma	1
+Acrokeratosis	7
+porphyria cutanea tarda	3
+active peptic ulcer disease	2
+Cushing's syndrome	3
+Diurnal	4
+vulva squamous cell carcinoma	1
+atypical adenoma	1
+Capillary leak	1
+Toe syndactyly	1
+Polycystic kidney dysplasia	3
+Syndactyly	1
+mucositis	10
+Adrenal insufficiency	4
+Central adrenal insufficiency	1
+plantar wart	2
+halo nevus	1
+Alzheimer disease	4
+familial adenomatous polyposis	1
+pancreatic cancer	4
+hypercholesterolemia	1
+Pancreatitis	3
+childhood leukemia	1
+Choriocarcinoma	1
+occupational disease	4
+Increased body mass index	1
+Heparin-induced thrombocytopenia	1
+Hyperinsulinemia	4
+thyroid hyalinizing trabecular adenoma	1
+shipyard eye	8
+Orthokeratosis	5
+pulmonary hypertension	1
+Latex allergy	2
+Hypopigmentation of the skin	5
+kwashiorkor	1
+diverticulitis	4
+Leukonychia	2
+anorexia nervosa	2
+bulimia nervosa	2
+Angina pectoris	1
+Childhood onset	3
+Developmental stagnation	1
+Alcoholism	3
+gastroduodenal Crohn's disease	1
+Recurrent hypoglycemia	1
+morbid obesity	4
+Benign prostatic hyperplasia	1
+Dysautonomia	3
+Mixed hearing impairment	1
+oral candidiasis	22
+Mucinous neoplasm	2
+obstructive jaundice	2
+Neoplasm of the pancreas	1
+endogenous depression	2
+Hypoventilation	1
+Neurofibromas	8
+Hemangioma	2
+Conjunctival hyperemia	3
+Pinguecula	3
+Keratoconjunctivitis sicca	3
+breast cancer	1
+urinary bladder cancer	1
+atrophic gastritis	2
+Episcleritis	2
+Abnormality of the skeletal system	5
+Abnormality of the dentition	2
+Venous insufficiency	1
+esophageal cancer	2
+Fanconi syndrome	4
+Proximal renal tubular acidosis	4
+Hypokalemia	1
+Hyperchloremic metabolic acidosis	1
+Hypoproteinemia	1
+periodontal disease	2
+Blindness	1
+Coronary artery calcification	5
+Ichthyosis follicularis	1
+Recurrent aphthous stomatitis	1
+Ocular pain	1
+endophthalmitis	3
+Camptodactyly	1
+Tendon rupture	1
+Basal ganglia calcification	1
+Peripheral arterial stenosis	1
+Wiskott-Aldrich syndrome	1
+inherited neuropathy	1
+hereditary neuropathy with liability to pressure palsies	9
+Charcot-Marie-Tooth disease type 1A	3
+Lower limb muscle weakness	1
+Foot dorsiflexor weakness	1
+hypersensitivity vasculitis	1
+relapsing polychondritis	4
+vascular dementia	3
+Gastroesophageal reflux	1
+Subungual hyperkeratosis	7
+Maternal autoimmune disease	1
+Malar rash	2
+LEOPARD syndrome	1
+Bloch-Sulzberger syndrome	2
+hypomelanosis of Ito	2
+Dilated cardiomyopathy	2
+Cardiomyopathy	1
+Amyotrophic lateral sclerosis	4
+Membranous nephropathy	6
+Glomerular deposits	1
+T-cell leukemia	1
+skin lymphoma	1
+kidney cancer	1
+Xanthelasma	3
+Hirsutism	4
+hyperandrogenism	1
+polycystic ovary syndrome	9
+appendicitis	2
+Muscular dystrophy	1
+granuloma annulare	10
+Neurodegeneration	6
+Nephrolithiasis	5
+endometrial cancer	1
+ileitis	1
+Panuveitis	4
+Posterior uveitis	1
+Hypopyon	2
+subcorneal pustular dermatosis	3
+neurofibromatosis	7
+iron overload	2
+Chilblain lesions	1
+Recurrent spontaneous abortion	1
+Miller-Dieker lissencephaly syndrome	9
+cowpox	2
+tinea profunda	3
+Necrolytic migratory erythema	3
+fatty liver disease	3
+Macule	1
+papillomavirus infectious disease	3
+anogenital venereal wart	2
+Monocytosis	1
+perinatal necrotizing enterocolitis	1
+Wheezing	1
+Hyponatremia	1
+parasitic helminthiasis infectious disease	1
+strongyloidiasis	1
+Proteus syndrome	1
+epidermolysis bullosa	8
+Hypohidrotic ectodermal dysplasia	1
+Vascular calcification	1
+pulmonary sarcoidosis	2
+smallpox	4
+aphthous stomatitis	3
+Small for gestational age	1
+Inflammatory myopathy	1
+lymphadenitis	2
+Stomatitis	1
+Furrowed tongue	9
+burning mouth syndrome	1
+idiopathic urticaria	1
+Delusions	1
+intraductal papilloma	1
+extramammary Paget's disease	2
+X-linked dominant inheritance	4
+chondrodysplasia punctata	4
+skin atrophy	2
+Scarring alopecia of scalp	2
+Cataract	4
+Epiphyseal stippling	2
+autoimmune polyendocrine syndrome	4
+Hypergonadotropic hypogonadism	1
+Laterality	1
+Macular edema	2
+Retinal vasculitis	1
+Hypopnea	1
+gallbladder disease	1
+Villous atrophy	3
+Negative affectivity	2
+autoimmune polyendocrine syndrome type 1	1
+Increased susceptibility to fractures	2
+rheumatic heart disease	1
+rheumatic chorea	1
+aspergillosis	2
+cervical cancer	1
+Cryptococcal meningitis	1
+Cardiomyocyte hypertrophy	1
+Hypercalciuria	1
+Sudden death	1
+Hemolytic anemia	3
+Raynaud phenomenon	4
+Hostility	1
+meningococcal septicemia	1
+congenital syphilis	1
+prediabetes syndrome	1
+Calcinosis cutis	1
+obsessive-compulsive disorder	1
+Vitamin A deficiency	1
+Nyctalopia	1
+alcohol dependence	1
+Milia	1
+eczema herpeticum	4
+rapidly progressive glomerulonephritis	1
+Glossitis	2
+sexual dysfunction	5
+Cholestatic liver disease	2
+nevoid basal cell carcinoma syndrome	1
+Goodpasture syndrome	1
+Brain neoplasm	1
+Neuronal/glioneuronal neoplasm of the central nervous system	1
+Ectopic pregnancy	1
+Abnormal lymphocyte morphology	1
+chronic lymphocytic leukemia	1
+ciliopathy	1
+Bardet-Biedl syndrome	1
+Immunologic hypersensitivity	1
+Atherosclerotic lesion	2
+Punctate keratitis	1
+Blepharitis	1
+Pterygium	1
+cystic kidney disease	2
+Nephronophthisis	1
+Congenital hypothyroidism	1
+Abnormal facial shape	1
+Epstein-Barr virus infectious disease	3
+hereditary angioedema	2
+Episodic fever	1
+Cervical C2/C3 vertebral fusion	2
+diffuse idiopathic skeletal hyperostosis	4
+Exercise-induced asthma	1
+neuromyelitis optica	2
+Diabetic ketoacidosis	1
+Angle closure glaucoma	1
+Choroidal neovascularization	1
+Vogt-Koyanagi-Harada disease	3
+subacute thyroiditis	3
+Thymoma	11
+Kernicterus	1
+mantle cell lymphoma	1
+familial hemophagocytic lymphohistiocytosis 2	1
+Lipoatrophy	2
+Chondrocalcinosis	2
+pustulosis of palm and sole	1
+Facial telangiectasia	1
+dry eye syndrome	1
+Rapidly progressive	4
+Hepatic failure	4
+Bile duct proliferation	1
+thyroid cancer	1
+Pulmonary embolism	1
+Chronic active hepatitis	5
+drug-induced hepatitis	2
+central retinal vein occlusion	1
+intestinal disease	2
+Jaundice	1
+Prolactinoma	4
+Myelitis	1
+Iron deficiency anemia	1
+Cutis laxa	1
+pseudoxanthoma elasticum	2
+Caesarian section	1
+anal squamous cell carcinoma	2
+dermatomycosis	4
+Rheumatoid factor positive	2
+reflex sympathetic dystrophy	1
+complex regional pain syndrome	2
+Melanonychia	1
+Abnormality of the coagulation cascade	1
+Venous malformation	1
+childhood type dermatomyositis	1
+X-linked ichthyosis	1
+Hypotrichosis	1
+Oral-pharyngeal dysphagia	1
+Low-grade fever	1
+pycnodysostosis	4
+age related macular degeneration	1
+Dehydration	1
+Scoliosis	1
+soft tissue disease	1
+autosomal dominant familial periodic fever	1
+acneiform dermatitis	1
+Eczematoid dermatitis	1
+Lipodystrophy	1
+Left ventricular diastolic dysfunction	2
+Tricuspid valve prolapse	2
+diaper rash	4
+IgE-mediated food allergy	1
+Nasal obstruction	1
+Albright's hereditary osteodystrophy	1
+von Hippel-Lindau disease	1
+idiopathic juvenile osteoporosis	1
+Periorbital edema	1
+follicular mucinosis	1
+Plexiform neurofibroma	1
+Xanthomatosis	1
+porphyria	3
+Secretory diarrhea	1
+prostatic hypertrophy	2
+Tremor	2
+Decreased T cell activation	1
+coronary artery vasospasm	1
+lateral sclerosis	1
+Mitral regurgitation	1
+glucocorticoid-induced osteoporosis	1
+head and neck squamous cell carcinoma	1
+gastrointestinal system disease	1
+sitosterolemia	3
+periapical periodontitis	1
+Glomerulopathy	3
+Difficulty walking	1
+recessive dystrophic epidermolysis bullosa	1
+Chronic hepatitis	1
+Multifactorial inheritance	1
+Plasmacytosis	2
+verrucous carcinoma	1
+exanthema subitum	1
+rubella	1
+Cervical instability	1
+epidermolytic hyperkeratosis	3
+lymphatic system disease	1
+Hyperextensible skin	1
+Bruising susceptibility	1
+Felty's syndrome	2
+Hepatic amyloidosis	1
+Portal fibrosis	1
+peanut allergy	1
+Finger dactylitis	2
+Global developmental delay	1
+lipomatosis	2
+Skeletal muscle atrophy	1
+Subcortical dementia	1
+brain disease	1
+multiple system atrophy	2
+Spotty hyperpigmentation	1
+Clubbing	1
+Chorea	4
+Delirium	1
+joint disorder	1
+vulvar dystrophy	1
+Aplastic anemia	2
+Goiter	3
+Tetraplegia	2
+Torticollis	6
+C1-C2 subluxation	2
+carpal tunnel syndrome	1
+Acral lentiginous melanoma	1
+Bronchiolitis obliterans	3
+Hyperpigmentation of the skin	1
+Multiple cutaneous malignancies	1
+Increased antibody level in blood	1
+Left ventricular failure	1
+renal hypertension	1
+Follicular hyperkeratosis	1
+Perifollicular erythema	1
+ovary adenocarcinoma	1
+Protrusio acetabuli	2
+Acute leukemia	1
+invasive carcinoma	1
+penis carcinoma	1
+vascular cancer	1
+juvenile xanthogranuloma	1
+lung carcinoma	1
+scrotal carcinoma	1
+Cutaneous amyloidosis	2
+multiple endocrine neoplasia	1
+Otitis externa	1
+juvenile rheumatoid arthritis	1
+Squamous cell carcinoma of the skin	1
+bacillary angiomatosis	1
+trench fever	1
+Paroxysmal nocturnal hemoglobinuria	2
+carcinoid syndrome	1
+Dysesthesia	1
+scarlet fever	7
+Aseptic necrosis	3
+rheumatic fever	1
+drug allergy	1
+Hepatic hemangioma	1
+Low alkaline phosphatase	1
+Atlantoaxial dislocation	2
+Trachyonychia	1
+lymphocytic leukemia	1
+photosensitivity disease	4
+Atrioventricular block	1
+Heart murmur	1
+Physical urticaria	1
+cicatricial pemphigoid	1
+Anal fistula	1
+pigmented villonodular synovitis	2
+Microphakia	1
+syndromic X-linked intellectual disability Snyder type	1
+adult respiratory distress syndrome	1
+familial hypercholesterolemia	2
+carcinoma	1
+acute intermittent porphyria	1
+variegate porphyria	1
+hereditary coproporphyria	1
+cutaneous porphyria	1
+erythropoietic protoporphyria	1
+Ectodermal dysplasia	3
+X-linked recessive inheritance	4
+nodular lymphoma	2
+multicentric reticulohistiocytosis	2
+ulcerative proctitis	1
+Spondylolisthesis	1
+thrombocytosis	3
+Myelofibrosis	2
+shigellosis	1
+Erythema migrans	1
+Aminoaciduria	2
+open-angle glaucoma	1
+Keratoconus	2
+mucopolysaccharidosis	1
+Spastic tetraparesis	1
+Rod-cone dystrophy	1
+acrokeratosis verruciformis	1
+Microtia	2
+Facial palsy	1
+Micrognathia	1
+Cleft palate	1
+Stillbirth	1
+Telogen effluvium	1
+Hair-pulling	1
+Absent speech	1
+bipolar disorder	2
+CD3delta deficiency	1
+Basilar invagination	1
+Cervical myelopathy	1
+Myelopathy	1
+xeroderma pigmentosum group C	1
+primary immunodeficiency disease	1
+Toe dactylitis	4
+Small finger	1
+
