@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1311475.svg)](https://doi.org/10.5281/zenodo.1311475)
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/PhenoX.png" width="300" align="center"/>
+<img align="center" src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/PhenoX.png" width="300"/>
 
 # phenotypeXpression
 
