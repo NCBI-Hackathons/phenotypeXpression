@@ -18,7 +18,7 @@ class WordcloudPlotter:
         num_clusters = len(clusters)
         num_columns = 3
         num_rows = int(math.ceil(num_clusters/num_columns))
-        fig, axes = plt.subplots(num_rows, num_columns, figsize=(18, 5*num_rows), dpi= 200)
+        fig, axes = plt.subplots(num_rows, num_columns, figsize=(18, 5*num_rows), dpi=200)
         fig.subplots_adjust(hspace=0, wspace=0)
 
         single_row = False
@@ -46,7 +46,7 @@ class WordcloudPlotter:
             cluster_name, freqs = cluster
             row = int(math.floor(i / num_columns))
             col = i % num_columns
-            wordcloud = WordCloud(background_color="white").generate_from_frequencies(freqs)
+            wordcloud = WordCloud(width=1400, height=800, max_words=400, background_color=None, mode="RGBA").generate_from_frequencies(freqs)
             if single_row:
                 axes[col].imshow(wordcloud, interpolation="bilinear")
                 axes[col].set_title('{}'.format(cluster_name))
