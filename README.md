@@ -8,7 +8,7 @@
 
 PhenotypeXpression (PhenoX) is a proof of principle precision medicine tool for clinicians to quickly discover potential subtypes of known diseases. PhenoX rapidly aggregates gene expression data from multiple public studies, and then mines PubMed literature to develop novel disease subclassifications and expression profiles. By combining literature occurrences of subtype HPO and DOID information with GEO dataset expression profiles, each sub-classification of a disease is given a characteristic terminology fingerprint. Here we demonstrate the use of this tool for a common disease—Psoriasis—and identify two clusters with unique gene expression profiles.
 
-<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/2018-11-02_Phenox_Fig1.png" width="800" align="middle"/>
+<img src="https://github.com/NCBI-Hackathons/phenotypeXpression/blob/master/docs/2018-11-02_Phenox_Fig1.png" width="1000" align="middle"/>
 
 ### Minimum Inputs
 
