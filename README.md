@@ -29,6 +29,23 @@ python run_phenox.py -e A.N.Other@example.com "Psoriasis"
 
 ### Minimum Inputs
 
+```
+usage: run_phenox.py [-h] [-o prefix] [--version] -e EMAIL query_str
+
+Subclassification of disease states based on the intersection of literature and expression
+
+positional arguments:
+  query_str   disease query term
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -o prefix   choose an alternate prefix for outfiles
+  --version   show program's version number and exit
+
+required arguments:
+  -e EMAIL    NCBI requires an email for database queries
+```
+
 The primary inputs are a MeSH term and your email. The MeSH term should specify the parent condition for which you would like to derive subgroup information. The email is required to batch query NCBI databases.
 
 ### Optional Arguments
