@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 CONDAENV=phenoX
 
 if ! (which wget); then
@@ -14,22 +16,25 @@ if ! (which conda); then
 	  wget --continue http://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh
 	  bash Anaconda3-4.3.1-Linux-x86_64.sh -b
 	fi
+    printf '\n# Anaconda path addition\n' >> $HOME/.bashrc
+    echo 'export PATH="$HOME/anaconda3/bin:$PATH"' >> $HOME/.bashrc
 fi
 
-CONDAPATH="$(which conda)"
-
+CONDAPATH="$(which conda)" || CONDAPATH=$HOME/anaconda3/bin
+echo "CONDAPATH => $CONDAPATH"
 export PATH=$CONDAPATH:$PATH
 
 conda create -n ${CONDAENV} -y python==3.6 pip pytest || true
 
 echo "Activating Conda Environment ----->"
-conda $CONDAPATH/activate ${CONDAENV}
+conda activate ${CONDAENV} || source $CONDAPATH/activate ${CONDAENV} 
 
 echo "Installing required Python libraries ----->"
 pip install -r requirements.txt
+conda install -y matplotlib
 
 echo "Installing required conda-forge libraries ----->"
-conda install -y -c conda-forge rpy2 r-ape r-pvclust r-circlize matplotlib readline r-gplots
+conda install -y -c conda-forge rpy2 r-ape r-pvclust r-circlize readline r-gplots
 
 echo "Installing phenoX ----->"
 python setup.py develop
