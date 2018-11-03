@@ -23,15 +23,14 @@ export PATH=$CONDAPATH:$PATH
 conda create -n ${CONDAENV} -y python==3.6 pip pytest || true
 
 echo "Activating Conda Environment ----->"
-#if ! (conda $CONDAPATH/activate ${CONDAENV}); then
-source $CONDAPATH/activate ${CONDAENV}
-#fi
+conda $CONDAPATH/activate ${CONDAENV}
 
 echo "Installing required Python libraries ----->"
 pip install -r requirements.txt
+conda install -y matplotlib
 
 echo "Installing required conda-forge libraries ----->"
-conda install -y -c conda-forge rpy2 r-ape r-pvclust r-circlize matplotlib readline r-gplots
+conda install -y -c conda-forge rpy2 r-ape r-pvclust r-circlize readline r-gplots
 
 echo "Installing phenoX ----->"
 python setup.py develop
