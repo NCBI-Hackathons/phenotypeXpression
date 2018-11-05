@@ -12,7 +12,7 @@ PhenotypeXpression (PhenoX) is a proof of principle precision medicine tool for 
 
 ## Installation
 
-Implemented in Python 3.6 and R. For simplicity, the install script setup.sh utilizes a conda environment for a self contained environment. Tested environments include Anaconda3 4.3 and Anaconda3 4.4. To install:
+Implemented in Python 3.6 and R. For simplicity, the install script setup.sh utilizes a conda environment for a self contained environment. Tested environments include Anaconda3 >= 4.3.1. To install:
 
 ```
 git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
@@ -56,16 +56,16 @@ The user can specify a prefix with `-o` in addition to the automatic MeSH term p
 
 python dependencies
 ```
-biopython==1.72
-spacy==2.0.12
-spacy-lookup==0.0.2
-tqdm==4.23.4
-numpy==1.14.5
-pandas==0.23.3
-wordcloud==1.4.1
-scikit-learn==0.19.2
-pydendroheatmap==1.5
-scipy==1.1.0
+biopython>=1.72
+spacy>=2.0.12
+spacy-lookup>=0.0.2
+tqdm>=4.23.4
+numpy>=1.14.5
+pandas>=0.23.3
+wordcloud>=1.4.1
+scikit-learn>=0.19.2
+pydendroheatmap>=1.5
+scipy>=1.1.0
 ```
 
 conda dependencies
