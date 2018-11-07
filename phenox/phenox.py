@@ -4,6 +4,7 @@ import math
 import tqdm
 from typing import List, Dict, Tuple
 import matplotlib.pyplot as plt
+plt.switch_backend ('agg')
 from wordcloud import WordCloud
 
 from phenox.paths import PhenoXPaths
