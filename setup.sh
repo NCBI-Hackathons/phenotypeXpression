@@ -10,10 +10,10 @@ fi
 if ! (which conda); then
 	echo "No `conda` installation found.  Installing..."
 	if [[ $(uname) == "Darwin" ]]; then
-	  wget --continue http://repo.continuum.io/archive/Anaconda3-4.3.1-MacOSX-x86_64.sh
+	  wget --continue https://repo.continuum.io/archive/Anaconda3-4.3.1-MacOSX-x86_64.sh
 	  bash Anaconda3-4.3.1-MacOSX-x86_64.sh -b
 	else
-	  wget --continue http://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh
+	  wget --continue https://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh
 	  bash Anaconda3-4.3.1-Linux-x86_64.sh -b
 	fi
     printf '\n# Anaconda path addition\n' >> $HOME/.bashrc
