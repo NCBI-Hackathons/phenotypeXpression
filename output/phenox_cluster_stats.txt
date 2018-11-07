@@ -1,0 +1,3 @@
+Cluster ID	Sample N KS-stat	Sample N P-value	Sample N Mean	Sample N Std Dev	Submission Age KS-stat	Submission Age P-value	Submission Age Mean	Submission Age Std Dev	GPL Chi-stat	GPL P-value	GPL Mode	GPL Category N
+Overall	.	.	34.0	1.0	.	.	1267851600.0	80038863.39222965	.	.	570	1
+cluster0	0.0	1.0	34.0	1.0	0.0	1.0	1267851600.0	80038863.39222965	0.0	.	570	1
