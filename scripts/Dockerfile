@@ -2,11 +2,9 @@
   
 FROM ubuntu:18.04
 
-RUN buildDeps= 'build-essential g++ libgl1-mesa-glx' \
+RUN buildDeps='build-essential g++ libgl1-mesa-glx wget git' \
                 && apt update \
                 && apt install -y $buildDeps
-
-RUN apt install -y wget git
 
 # Get PhenoX
 WORKDIR /phenoX
@@ -18,7 +16,6 @@ WORKDIR /phenoX/phenotypeXpression/
 RUN sed -i 's|archive/Anaconda3-4.3.1|miniconda/Miniconda3-4.5.11|' setup.sh
 RUN sed -i 's/Anaconda3-4.3.1-/Miniconda3-4.5.11-/' setup.sh
 RUN sed -i 's/anaconda3/miniconda3/' setup.sh
-# RUN head -n20 setup.sh
 
 # Install conda and phenoX
 RUN chmod +x setup.sh
