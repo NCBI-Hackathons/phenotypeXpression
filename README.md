@@ -122,7 +122,7 @@ A pairwise distance graph showing the GDS datasets based on absoulte difference 
 
 ## Publication
 
-For more information on the function of PhenoX, please see our upcoming bioRxiv publication.
+For more information on the function of PhenoX, please see our recent [bioRxiv](https://www.biorxiv.org/content/early/2018/11/09/461301) publication.
 
 ## Authors
 
@@ -130,4 +130,5 @@ Lucy Lu Wang
 Huaiying Lin  
 Agnes Bao  
 Subhajit Sengupta  
+Ben Busby
 Robert R Butler III  
