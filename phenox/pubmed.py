@@ -139,7 +139,8 @@ class Pubmed:
             c_pmid = []
             for gene_id in cluster_genes:
                 try:
-                    c_pmid.append(gdsid_pmid_map[gene_id])
+                    if gdsid_pmid_map[gene_id]:
+                        c_pmid.append(gdsid_pmid_map[gene_id])
                 except KeyError:
                     sys.stdout.write('Missing Pubmed key: {}\n'.format(g))
                     continue

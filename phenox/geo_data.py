@@ -242,11 +242,17 @@ class GEOQuery:
                 id=gds_list, db='pubmed', dbfrom='gds', linkname='gds_pubmed'
             )
         )
-    
-        # extract pubmed IDs
-        pids = {
-            el['IdList'][0]: el['LinkSetDb'][0]['Link'][0]['Id'] for el in pid_list
-        }
+
+        # extract Pubmed IDs
+        pids = dict()
+
+        for entry in pid_list:
+            try:
+                pids[entry['IdList'][0]] = entry['LinkSetDb'][0]['Link'][0]['Id']
+            except IndexError:
+                # skip entries with missing info
+                pids[entry['IdList'][0]] = None
+                continue
     
         return pids
     
