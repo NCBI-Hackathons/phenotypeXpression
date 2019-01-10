@@ -4,7 +4,7 @@ import argparse
 from phenox.phenox import PhenoX
 
 
-__version__ = '0.3.1'
+__version__ = '0.3.2'
 
 
 def run(args):
