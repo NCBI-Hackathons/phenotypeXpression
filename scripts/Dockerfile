@@ -13,8 +13,8 @@ RUN git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
 WORKDIR /phenoX/phenotypeXpression/
 
 # Modified to run miniconda3 to save some disk space headaches
-RUN sed -i 's|archive/Anaconda3-4.3.1|miniconda/Miniconda3-4.5.11|' setup.sh
-RUN sed -i 's/Anaconda3-4.3.1-/Miniconda3-4.5.11-/' setup.sh
+RUN sed -i 's|archive/Anaconda3-4.3.1|miniconda/Miniconda3-4.5.12|' setup.sh
+RUN sed -i 's/Anaconda3-4.3.1-/Miniconda3-4.5.12-/' setup.sh
 RUN sed -i 's/anaconda3/miniconda3/' setup.sh
 
 # Install conda and phenoX
