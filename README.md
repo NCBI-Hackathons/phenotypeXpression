@@ -14,6 +14,16 @@ PhenotypeXpression (PhenoX) is a proof of principle precision medicine tool for 
 
 Implemented in Python 3.6 and R. For simplicity, the install script setup.sh utilizes Anaconda3 for a self contained environment. Tested environments include Anaconda3 >= 4.3.1. To install:
 
+A prebuilt docker image is available at https://hub.docker.com/r/ncbihackathons/phenotypexpression
+
+```
+docker pull ncbihackathons/phenotypexpression
+docker -it ncbihackathons/phenotypexpression
+python run_phenox.py -e A.N.Other@example.com "Psoriasis"
+```
+
+Local installation via a setup script should work with your Anaconda/Miniconda installation. Otherwise it will install Anaconda in the default location. In either case, it will build a "phenoX" environment and install into that location.
+
 ```
 git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
 cd phenotypeXpression
