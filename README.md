@@ -22,7 +22,7 @@ docker -it ncbihackathons/phenotypexpression
 python run_phenox.py -e A.N.Other@example.com "Psoriasis"
 ```
 
-Local installation via a setup script should work with your Anaconda/Miniconda installation. Otherwise it will install Anaconda in the default location. In either case, it will build a "phenoX" environment and install into that location.
+Alternatively, a local installation via a setup script should work with your Anaconda/Miniconda installation. Otherwise it will install Anaconda in your home directory. In either case, it will build a "phenoX" environment and install into that location.
 
 ```
 git clone https://github.com/NCBI-Hackathons/phenotypeXpression.git
